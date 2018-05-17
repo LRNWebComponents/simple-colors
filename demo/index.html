@@ -11,16 +11,22 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../simple-colors.html">
-
-    <style is="custom-style" include="demo-pages-shared-styles">
-    </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
       <h3>Basic simple-colors demo</h3>
       <demo-snippet>
         <template>
-          <simple-colors></simple-colors>
+          <style is="custom-style" include="simple-colors">
+            .simple-colors-container {
+              padding: 20px;
+            }
+          </style>
+          <div class="simple-colors-container" dark>
+            <p>Just <a href="http://www.google.com">Google</a> it!</p>
+            <button class="simple-colors-button">Simple Button</button>
+            <button class="simple-colors-accent-button" dark>Button with Accent Color on Focus/Toggle</button>
+          </div>
         </template>
       </demo-snippet>
     </div>
