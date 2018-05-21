@@ -11,22 +11,690 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../simple-colors.html">
+    <style is="custom-style">
+      demo-snippet {
+        font-size: 18pt;
+        margin-bottom: 15px;
+      }
+      my-text, 
+      my-dark-text {
+        display: block;
+        padding: 20px;
+      }
+      my-button, 
+      my-save-button, 
+      my-cancel-button, 
+      my-disabled-button,
+      my-delete-button,
+      my-dark-button, 
+      my-dark-save-button, 
+      my-dark-cancel-button, 
+      my-dark-disabled-button,
+      my-dark-delete-button {
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        margin: 0 0.25em;
+        border-radius: 0.1em;
+        border: 1px solid black;
+      }
+      my-button:focus, 
+      my-save-button:focus, 
+      my-delete-button:focus, 
+      my-cancel-button:focus,
+      my-button:hover, 
+      my-save-button:hover, 
+      my-delete-button:hover, 
+      my-cancel-button:hover, 
+      my-dark-button:focus, 
+      my-dark-save-button:focus, 
+      my-dark-delete-button:focus, 
+      my-dark-cancel-button:focus,
+      my-dark-button:hover, 
+      my-dark-save-button:hover, 
+      my-dark-delete-button:hover, 
+      my-dark-cancel-button:hover {
+        cursor: pointer;
+      }
+      my-disabled-button:focus,
+      my-disabled-button:hover,
+      my-dark-disabled-button:focus,
+      my-dark-disabled-button:hover {
+        cursor: no-drop;
+      }
+      my-progress-bar,
+      my-progress,
+      my-dark-progress-bar,
+      my-dark-progress {
+        display: inline-block;
+        width: 200px;
+        height: 1em;
+        border-radius: 0.5em;
+        border: 1px solid;
+      }
+      my-progress,
+      my-dark-progress {
+        width: 167px;
+        border-radius: 0.4em 0 0 0.4em;
+        border: none;
+      }
+      my-feature-box,
+      my-dark-feature-box {
+        padding: 20px;
+        border: 1px solid;
+        border-top: 4px solid;
+        display: block;
+        border-radius: 0 0 0.4em 0.4em;
+        margin: 0 0 15px;
+      }
+      my-color-demo,
+      my-dark-color-demo {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        width: 100%;
+      }
+      my-color-demo > *,
+      my-dark-color-demo > * {
+        width: 60px;
+        padding: 0.25em 1em;
+        text-align: center;
+        border: 1px solid;
+      }
+      ul {
+        list-style-type:none;
+        list-style-position: inside;
+        padding-left: 0;
+      } 
+      ul li {
+        line-height: 150%;
+      }
+      ul li swatch {    
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        margin-bottom: -0.3em;
+      }
+      .light-red swatch {
+        background-color: var(--simple-colors-light-red);
+      }
+      .light-red:focus swatch,
+      .light-red:hover swatch {
+        background-color: var(--simple-colors-light-red-faded);
+      }
+      .light-pink swatch {
+        background-color: var(--simple-colors-light-pink);
+      }
+      .light-pink:focus swatch,
+      .light-pink:hover swatch {
+        background-color: var(--simple-colors-light-pink-faded);
+      }
+      .light-purple swatch {
+        background-color: var(--simple-colors-light-purple);
+      }
+      .light-purple:focus swatch,
+      .light-purple:hover swatch {
+        background-color: var(--simple-colors-light-purple-faded);
+      }
+      .light-blue swatch {
+        background-color: var(--simple-colors-light-blue);
+      }
+      .light-blue:focus swatch,
+      .light-blue:hover swatch {
+        background-color: var(--simple-colors-light-blue-faded);
+      }
+      .light-lblue swatch {
+        background-color: var(--simple-colors-light-lblue);
+      }
+      .light-lblue:focus swatch,
+      .light-lblue:hover swatch {
+        background-color: var(--simple-colors-light-lblue-faded);
+      }
+      .light-cyan swatch {
+        background-color: var(--simple-colors-light-cyan);
+      }
+      .light-cyan:focus swatch,
+      .light-cyan:hover swatch {
+        background-color: var(--simple-colors-light-cyan-faded);
+      }
+      .light-teal swatch {
+        background-color: var(--simple-colors-light-teal);
+      }
+      .light-teal:focus swatch,
+      .light-teal:hover swatch {
+        background-color: var(--simple-colors-light-teal-faded);
+      }
+      .light-green swatch {
+        background-color: var(--simple-colors-light-green);
+      }
+      .light-green:focus swatch,
+      .light-green:hover swatch {
+        background-color: var(--simple-colors-light-green-faded);
+      }
+      .light-lgreen swatch {
+        background-color: var(--simple-colors-light-lgreen);
+      }
+      .light-lgreen:focus swatch,
+      .light-lgreen:hover swatch {
+        background-color: var(--simple-colors-light-lgreen-faded);
+      }
+      .light-lime swatch {
+        background-color: var(--simple-colors-light-lime);
+      }
+      .light-lime:focus swatch,
+      .light-lime:hover swatch {
+        background-color: var(--simple-colors-light-lime-faded);
+      }
+      .light-dorange swatch {
+        background-color: var(--simple-colors-light-dorange);
+      }
+      .light-dorange:focus swatch,
+      .light-dorange:hover swatch {
+        background-color: var(--simple-colors-light-dorange-faded);
+      }
+      .light-brown swatch {
+        background-color: var(--simple-colors-light-brown);
+      }
+      .light-brown:focus swatch,
+      .light-brown:hover swatch {
+        background-color: var(--simple-colors-light-brown-faded);
+      }
+      .light-bgrey swatch {
+        background-color: var(--simple-colors-light-bgrey);
+      }
+      .light-bgrey:focus swatch,
+      .light-bgrey:hover swatch {
+        background-color: var(--simple-colors-light-bgrey-faded);
+      }
+      .dark-red swatch {
+        background-color: var(--simple-colors-dark-red);
+      }
+      .dark-red:focus swatch,
+      .dark-red:hover swatch {
+        background-color: var(--simple-colors-dark-red-faded);
+      }
+      .dark-pink swatch {
+        background-color: var(--simple-colors-dark-pink);
+      }
+      .dark-pink:focus swatch,
+      .dark-pink:hover swatch {
+        background-color: var(--simple-colors-dark-pink-faded);
+      }
+      .dark-purple swatch {
+        background-color: var(--simple-colors-dark-purple);
+      }
+      .dark-purple:focus swatch,
+      .dark-purple:hover swatch {
+        background-color: var(--simple-colors-dark-purple-faded);
+      }
+      .dark-blue swatch {
+        background-color: var(--simple-colors-dark-blue);
+      }
+      .dark-blue:focus swatch,
+      .dark-blue:hover swatch {
+        background-color: var(--simple-colors-dark-blue-faded);
+      }
+      .dark-lblue swatch {
+        background-color: var(--simple-colors-dark-lblue);
+      }
+      .dark-lblue:focus swatch,
+      .dark-lblue:hover swatch {
+        background-color: var(--simple-colors-dark-lblue-faded);
+      }
+      .dark-cyan swatch {
+        background-color: var(--simple-colors-dark-cyan);
+      }
+      .dark-cyan:focus swatch,
+      .dark-cyan:hover swatch {
+        background-color: var(--simple-colors-dark-cyan-faded);
+      }
+      .dark-teal swatch {
+        background-color: var(--simple-colors-dark-teal);
+      }
+      .dark-teal:focus swatch,
+      .dark-teal:hover swatch {
+        background-color: var(--simple-colors-dark-teal-faded);
+      }
+      .dark-green swatch {
+        background-color: var(--simple-colors-dark-green);
+      }
+      .dark-green:focus swatch,
+      .dark-green:hover swatch {
+        background-color: var(--simple-colors-dark-green-faded);
+      }
+      .dark-lgreen swatch {
+        background-color: var(--simple-colors-dark-lgreen);
+      }
+      .dark-lgreen:focus swatch,
+      .dark-lgreen:hover swatch {
+        background-color: var(--simple-colors-dark-lgreen-faded);
+      }
+      .dark-lime swatch {
+        background-color: var(--simple-colors-dark-lime);
+      }
+      .dark-lime:focus swatch,
+      .dark-lime:hover swatch {
+        background-color: var(--simple-colors-dark-lime-faded);
+      }
+      .dark-yellow swatch {
+        background-color: var(--simple-colors-dark-yellow);
+      }
+      .dark-yellow:focus swatch,
+      .dark-yellow:hover swatch {
+        background-color: var(--simple-colors-dark-yellow-faded);
+      }
+      .dark-amber swatch {
+        background-color: var(--simple-colors-dark-amber);
+      }
+      .dark-amber:focus swatch,
+      .dark-amber:hover swatch {
+        background-color: var(--simple-colors-dark-amber-faded);
+      }
+      .dark-orange swatch {
+        background-color: var(--simple-colors-dark-orange);
+      }
+      .dark-orange:focus swatch,
+      .dark-orange:hover swatch {
+        background-color: var(--simple-colors-dark-orange-faded);
+      }
+    </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>Basic simple-colors demo</h3>
+      <h3>simple-colors demo</h3>
       <demo-snippet>
         <template>
           <style is="custom-style" include="simple-colors">
-            .simple-colors-container {
-              padding: 20px;
+            my-text {
+              @apply --simple-colors-light-content;
+            }
+            my-button {
+              @apply --simple-colors-light-blue-button;
+            }
+            my-button:focus,
+            my-button:hover {
+              @apply --simple-colors-light-blue-button-faded;
+            }
+            my-save-button {
+              @apply --simple-colors-light-blue-action-button;
+            }
+            my-save-button:focus,
+            my-save-button:hover {
+              @apply --simple-colors-light-blue-action-button-faded;
+            }
+            my-delete-button {
+              @apply --simple-colors-light-red-action-button;
+            }
+            my-delete-button:focus,
+            my-delete-button:hover {
+              @apply --simple-colors-light-red-action-button-faded;
+            }
+            my-cancel-button {
+              @apply --simple-colors-light-button;
+            }
+            my-cancel-button:focus,
+            my-cancel-button:hover {
+              @apply --simple-colors-light-button-faded;
+            }
+            my-disabled-button {
+              @apply --simple-colors-light-button-disabled;
+            }
+            my-progress-bar {
+              border-color: var(--simple-colors-light-lime-faded);
+            }
+            my-progress {
+              background-color: var(--simple-colors-light-lime);
+            }
+            my-feature-box  {
+              @apply --simple-colors-light-feature;
+              border-top-color: var(--simple-colors-light-pink);
+            }
+            my-color-demo {
+              color: var(--simple-colors-light-foreground-contrast);
+              border-color: var(--simple-colors-light-background-faded);
             }
           </style>
-          <div class="simple-colors-container" dark>
-            <p>Just <a href="http://www.google.com">Google</a> it!</p>
-            <button class="simple-colors-button">Simple Button</button>
-            <button class="simple-colors-accent-button" dark>Button with Accent Color on Focus/Toggle</button>
-          </div>
+          <h3>Light theme</h3>
+          <my-text>
+            <p>
+              Light theme colors with dark accent colors as CSS variables 
+              or as CSS @apply rules. Accent colors are loosely based on 
+              accessible combinations of Materialize colors. You can use 
+              simple color variables for your own CSS.
+            </p>
+            <my-feature-box>
+              To ensure WCAG 2.0 complaince, colors for light theme 
+              are intended for decorative items or large text 
+              <em>(at least 14 point bold or 18 pointt normal weight).</em>
+            </my-feature-box>
+
+            <p>Buttons:
+              <my-button>Accent Button</my-button>
+              <my-save-button>Save Button</my-save-button>
+              <my-delete-button>Delete Button</my-delete-button>
+              <my-cancel-button>Cancel Button</my-cancel-button>
+              <my-disabled-button>Disabled Button</my-disabled-button>
+            </p>
+
+            <p>Other:
+              <my-progress-bar>
+                <my-progress></my-progress>
+              </my-progress-bar>
+            </p>
+          </my-text>
+        </template>
+      </demo-snippet>
+
+      <demo-snippet>
+        <template>
+          <style is="custom-style" include="simple-colors">
+            .light-red {
+              color: var(--simple-colors-light-red);
+            }
+            .light-red:focus,
+            .light-red:hover {
+              color: var(--simple-colors-light-red-faded);
+            }
+            .light-pink {
+              color: var(--simple-colors-light-pink);
+            }
+            .light-pink:focus,
+            .light-pink:hover {
+              color: var(--simple-colors-light-pink-faded);
+            }
+            .light-purple {
+              color: var(--simple-colors-light-purple);
+            }
+            .light-purple:focus,
+            .light-purple:hover {
+              color: var(--simple-colors-light-purple-faded);
+            }
+            .light-blue {
+              color: var(--simple-colors-light-blue);
+            }
+            .light-blue:focus,
+            .light-blue:hover {
+              color: var(--simple-colors-light-blue-faded);
+            }
+            .light-lblue {
+              color: var(--simple-colors-light-lblue);
+            }
+            .light-lblue:focus,
+            .light-lblue:hover {
+              color: var(--simple-colors-light-lblue-faded);
+            }
+            .light-cyan {
+              color: var(--simple-colors-light-cyan);
+            }
+            .light-cyan:focus,
+            .light-cyan:hover {
+              color: var(--simple-colors-light-cyan-faded);
+            }
+            .light-teal {
+              color: var(--simple-colors-light-teal);
+            }
+            .light-teal:focus,
+            .light-teal:hover {
+              color: var(--simple-colors-light-teal-faded);
+            }
+            .light-green {
+              color: var(--simple-colors-light-green);
+            }
+            .light-green:focus,
+            .light-green:hover {
+              color: var(--simple-colors-light-green-faded);
+            }
+            .light-lgreen {
+              color: var(--simple-colors-light-lgreen);
+            }
+            .light-lgreen:focus,
+            .light-lgreen:hover {
+              color: var(--simple-colors-light-lgreen-faded);
+            }
+            .light-lime {
+              color: var(--simple-colors-light-lime);
+            }
+            .light-lime:focus,
+            .light-lime:hover {
+              color: var(--simple-colors-light-lime-faded);
+            }
+            .light-dorange {
+              color: var(--simple-colors-light-dorange);
+            }
+            .light-dorange:focus,
+            .light-dorange:hover {
+              color: var(--simple-colors-light-dorange-faded);
+            }
+            .light-brown {
+              color: var(--simple-colors-light-brown);
+            }
+            .light-brown:focus,
+            .light-brown:hover {
+              color: var(--simple-colors-light-brown-faded);
+            }
+            .light-bgrey {
+              color: var(--simple-colors-light-bgrey);
+            }
+            .light-bgrey:focus,
+            .light-bgrey:hover {
+              color: var(--simple-colors-light-bgrey-faded);
+            }
+          </style>
+          <h3>Light theme accent colors</h3>
+          <ul>
+            <li class="light-red"><swatch></swatch> --simple-colors-light-red</li>
+            <li class="light-pink"><swatch></swatch> --simple-colors-light-pink</li>
+            <li class="light-purple"><swatch></swatch> --simple-colors-light-purple</li>
+            <li class="light-blue"><swatch></swatch> --simple-colors-light-blue</li>
+            <li class="light-lblue"><swatch></swatch> --simple-colors-light-lblue</li>
+            <li class="light-cyan"><swatch></swatch> --simple-colors-light-cyan</li>
+            <li class="light-teal"><swatch></swatch> --simple-colors-light-teal</li>
+            <li class="light-green"><swatch></swatch> --simple-colors-light-green</li>
+            <li class="light-lgreen"><swatch></swatch> --simple-colors-light-lgreen</li>
+            <li class="light-lime"><swatch></swatch> --simple-colors-light-lime</li>
+            <li class="light-dorange"><swatch></swatch> --simple-colors-light-dorange</li>
+            <li class="light-brown"><swatch></swatch> --simple-colors-light-brown</li>
+            <li class="light-bgrey"><swatch></swatch> --simple-colors-light-bgrey</li>
+          </ul>
+        </template>
+      </demo-snippet>
+
+      <demo-snippet>
+        <template>
+          <style is="custom-style" include="simple-colors">
+            my-dark-text {
+              @apply --simple-colors-dark-content;
+              font-size: 18pt;
+            }
+            my-dark-button {
+              @apply --simple-colors-dark-blue-button;
+            }
+            my-dark-button:focus,
+            my-dark-button:hover {
+              @apply --simple-colors-dark-blue-button-faded;
+            }
+            my-dark-save-button {
+              @apply --simple-colors-dark-blue-action-button;
+            }
+            my-dark-save-button:focus,
+            my-dark-save-button:hover {
+              @apply --simple-colors-dark-blue-action-button-faded;
+            }
+            my-dark-delete-button {
+              @apply --simple-colors-dark-red-action-button;
+            }
+            my-dark-delete-button:focus,
+            my-dark-delete-button:hover {
+              @apply --simple-colors-dark-red-action-button-faded;
+            }
+            my-dark-cancel-button {
+              @apply --simple-colors-dark-button;
+            }
+            my-dark-cancel-button:focus,
+            my-dark-cancel-button:hover {
+              @apply --simple-colors-dark-button-faded;
+            }
+            my-dark-disabled-button {
+              @apply --simple-colors-dark-button-disabled;
+            }
+            my-dark-progress-bar {
+              border-color: var(--simple-colors-dark-lime-faded);
+            }
+            my-dark-progress {
+              background-color: var(--simple-colors-dark-lime);
+            }
+            my-dark-feature-box  {
+              @apply --simple-colors-dark-feature;
+              border-top-color: var(--simple-colors-dark-pink);
+            }
+            my-dark-color-demo {
+              color: var(--simple-colors-dark-foreground-contrast);
+              border-color: var(--simple-colors-dark-background-faded);
+            }
+          </style>
+          <my-dark-text>
+            <h3>Dark theme</h3>
+            <p>
+              Dark theme colors with bright accent colors as CSS variables 
+              or as CSS @apply rules. Accent colors are loosely based on 
+              accessible combinations of Materialize colors. You can use 
+              simple color variables for your own CSS.
+            </p>
+            <my-dark-feature-box>
+              To ensure WCAG 2.0 complaince, colors for light theme 
+              are intended for decorative items or large text 
+              <em>(at least 14 point bold or 18 pointt normal weight).</em>
+            </my-dark-feature-box>
+
+            <p>Buttons:
+              <my-dark-button class="simple-colors-button-accent">Accent Button</my-dark-button>
+              <my-dark-save-button class="simple-colors-button-action">Save Button</my-dark-save-button>
+              <my-dark-delete-button class="simple-colors-button-alert">Delete Button</my-dark-delete-button>
+              <my-dark-cancel-button class="simple-colors-button">Cancel Button</my-dark-cancel-button>
+              <my-dark-disabled-button class="simple-colors-button-disabled">Disabled Button</my-dark-disabled-button>
+            </p>
+
+            <p>Other:
+              <my-dark-progress-bar>
+                <my-dark-progress></my-dark-progress>
+              </my-dark-progress-bar>
+            </p>
+          </my-dark-text>
+        </template>
+      </demo-snippet>
+
+      <demo-snippet>
+        <template>
+          <style is="custom-style" include="simple-colors">
+            .dark-red {
+              color: var(--simple-colors-dark-red);
+            }
+            .dark-red:focus,
+            .dark-red:hover {
+              color: var(--simple-colors-dark-red-faded);
+            }
+            .dark-pink {
+              color: var(--simple-colors-dark-pink);
+            }
+            .dark-pink:focus,
+            .dark-pink:hover {
+              color: var(--simple-colors-dark-pink-faded);
+            }
+            .dark-purple {
+              color: var(--simple-colors-dark-purple);
+            }
+            .dark-purple:focus,
+            .dark-purple:hover {
+              color: var(--simple-colors-dark-purple-faded);
+            }
+            .dark-blue {
+              color: var(--simple-colors-dark-blue);
+            }
+            .dark-blue:focus,
+            .dark-blue:hover {
+              color: var(--simple-colors-dark-blue-faded);
+            }
+            .dark-lblue {
+              color: var(--simple-colors-dark-lblue);
+            }
+            .dark-lblue:focus,
+            .dark-lblue:hover {
+              color: var(--simple-colors-dark-lblue-faded);
+            }
+            .dark-cyan {
+              color: var(--simple-colors-dark-cyan);
+            }
+            .dark-cyan:focus,
+            .dark-cyan:hover {
+              color: var(--simple-colors-dark-cyan-faded);
+            }
+            .dark-teal {
+              color: var(--simple-colors-dark-teal);
+            }
+            .dark-teal:focus,
+            .dark-teal:hover {
+              color: var(--simple-colors-dark-teal-faded);
+            }
+            .dark-green {
+              color: var(--simple-colors-dark-green);
+            }
+            .dark-green:focus,
+            .dark-green:hover {
+              color: var(--simple-colors-dark-green-faded);
+            }
+            .dark-lgreen {
+              color: var(--simple-colors-dark-lgreen);
+            }
+            .dark-lgreen:focus,
+            .dark-lgreen:hover {
+              color: var(--simple-colors-dark-lgreen-faded);
+            }
+            .dark-lime {
+              color: var(--simple-colors-dark-lime);
+            }
+            .dark-lime:focus,
+            .dark-lime:hover {
+              color: var(--simple-colors-dark-lime-faded);
+            }
+            .dark-yellow {
+              color: var(--simple-colors-dark-yellow);
+            }
+            .dark-yellow:focus,
+            .dark-yellow:hover {
+              color: var(--simple-colors-dark-yellow-faded);
+            }
+            .dark-amber {
+              color: var(--simple-colors-dark-amber);
+            }
+            .dark-amber:focus,
+            .dark-amber:hover {
+              color: var(--simple-colors-dark-amber-faded);
+            }
+            .dark-orange {
+              color: var(--simple-colors-dark-orange);
+            }
+            .dark-orange:focus,
+            .dark-orange:hover {
+              color: var(--simple-colors-dark-orange-faded);
+            }
+          </style>
+          <my-dark-text>
+            <h3>Dark theme accent colors</h3>
+            <ul>
+              <li class="dark-red"><swatch></swatch> --simple-colors-dark-red</li>
+              <li class="dark-pink"><swatch></swatch> --simple-colors-dark-pink</li>
+              <li class="dark-purple"><swatch></swatch> --simple-colors-dark-purple</li>
+              <li class="dark-blue"><swatch></swatch> --simple-colors-dark-blue</li>
+              <li class="dark-lblue"><swatch></swatch> --simple-colors-dark-lblue</li>
+              <li class="dark-cyan"><swatch></swatch> --simple-colors-dark-cyan</li>
+              <li class="dark-teal"><swatch></swatch> --simple-colors-dark-teal</li>
+              <li class="dark-green"><swatch></swatch> --simple-colors-dark-green</li>
+              <li class="dark-lgreen"><swatch></swatch> --simple-colors-dark-lgreen</li>
+              <li class="dark-lime"><swatch></swatch> --simple-colors-dark-lime</li>
+              <li class="dark-yellow"><swatch></swatch> --simple-colors-dark-yellow</li>
+              <li class="dark-amber"><swatch></swatch> --simple-colors-dark-amber</li>
+              <li class="dark-orange"><swatch></swatch> --simple-colors-dark-orange</li>
+            </ul>
+          </my-dark-text>
         </template>
       </demo-snippet>
     </div>
