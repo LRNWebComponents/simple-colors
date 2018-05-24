@@ -2,711 +2,438 @@
   <template>
     <style is="custom-style">
         
-      /* LIGHT THEME */
+      /* LIGHT THEME (DEFAULT) */
       :root {
-        --simple-colors-foreground: #111111;
-        --simple-colors-foreground-contrast: #000000;
-        --simple-colors-foreground-faded: #666666;
-        --simple-colors-foreground-disabled: #aaaaaa;
-        --simple-colors-background: #eeeeee;
-        --simple-colors-background-contrast: #ffffff;
-        --simple-colors-background-faded: #cccccc;
-        --simple-colors-red: #c62828;
-        --simple-colors-red-faded: #e64848;
-        --simple-colors-pink: #c2185b;
-        --simple-colors-pink-faded: #e2387b;
-        --simple-colors-purple: #6a1b9a;
-        --simple-colors-purple-faded: #8a3bba;
-        --simple-colors-deep-purple: #4527a0;
-        --simple-colors-deep-purple-faded: #6547c0;
-        --simple-colors-indigo: #283593;
-        --simple-colors-indigo-faded: #4855b3;
-        --simple-colors-blue: #0d47a1;
-        --simple-colors-blue-faded: #2d67c1;
-        --simple-colors-light-blue: #01579b;
-        --simple-colors-light-blue-faded: #3177bb;
-        --simple-colors-cyan: #00737F;
-        --simple-colors-cyan-faded: #20939f;
-        --simple-colors-teal: #00695c;
-        --simple-colors-teal-faded: #20998c;
-        --simple-colors-green: #105e20;
-        --simple-colors-green-faded: #307e40;
-        --simple-colors-light-green: #33691e;
-        --simple-colors-light-green-faded: #53893e;
-        --simple-colors-lime: #53691E;
-        --simple-colors-lime-faded: #73893E;
-        --simple-colors-deep-orange: #bf360c;
-        --simple-colors-deep-orange-faded: #df562c;
-        --simple-colors-brown: #5D4037;
-        --simple-colors-brown-faded: #7D6057;
-        --simple-colors-blue-grey: #455a64;
-        --simple-colors-blue-grey-faded: #657a84;
-
-        /* light theme content colors */
-        --simple-colors-content: {
-          color: var(--simple-colors-foreground);
-          background-color: var(--simple-colors-background-contrast);
-        };
-
-        /* colors for light theme featured content, like callouts and pullquotes */
-        --simple-colors-feature: {
-          color: var(--simple-colors-foreground-contrast);
-          background-color: var(--simple-colors-background);
-          border-color: var(--simple-colors-background-faded);
-        };
-
-        /* colors for light theme plain button or cancel button */
-        --simple-colors-button: {
-          color: var(--simple-colors-foreground);
-          background-color: var(--simple-colors-background);
-          border-color: var(--simple-colors-background);
-        };
-        --simple-colors-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-foreground-contrast);
-        };
-
-        /* colors for light theme disabled buttons */
-        --simple-colors-button-disabled: {
-          color: var(--simple-colors-foreground-disabled);
-          background-color: var(--simple-colors-background);
-          border-color: var(--simple-colors-background);
-        };
-
-        /* colors for light theme button with a hint of red */
-        --simple-colors-red-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-red);
-        };
-        --simple-colors-red-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-red-faded);
-        };
-
-        /* colors for light theme button with a hint of pink */
-        --simple-colors-pink-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-pink);
-        };
-        --simple-colors-pink-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-pink-faded);
-        };
-
-        /* colors for light theme button with a hint of purple */
-        --simple-colors-purple-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-purple);
-        };
-        --simple-colors-purple-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-purple-faded);
-        };
-
-        /* colors for light theme button with a hint of blue */
-        --simple-colors-blue-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-blue);
-        };
-        --simple-colors-blue-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-blue-faded);
-        };
-
-        /* colors for light theme button with a hint of light blue */
-        --simple-colors-light-blue-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-light-light-blue);
-        };
-        --simple-colors-light-blue-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-light-blue-faded);
-        };
-
-        /* colors for light theme button with a hint of cyan */
-        --simple-colors-cyan-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-cyan);
-        };
-        --simple-colors-cyan-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-cyan-faded);
-        };
-
-        /* colors for light theme button with a hint of teal */
-        --simple-colors-teal-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-teal);
-        };
-        --simple-colors-teal-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-teal-faded);
-        };
-
-        /* colors for light theme button with a hint of green */
-        --simple-colors-green-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-green);
-        };
-        --simple-colors-green-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-green-faded);
-        };
-
-        /* colors for light theme button with a hint of light green */
-        --simple-colors-light-green-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-light-green);
-        };
-        --simple-colors-light-green-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-light-green-faded);
-        };
-
-        /* colors for light theme button with a hint of lime */
-        --simple-colors-lime-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-lime);
-        };
-        --simple-colors-lime-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-lime-faded);
-        };
-
-        /* colors for light theme button with a hint of deep orange */
-        --simple-colors-deep-orange-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-deep-orange);
-        };
-        --simple-colors-deep-orange-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-deep-orange-faded);
-        };
-
-        /* colors for light theme button with a hint of brown */
-        --simple-colors-brown-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-brown);
-        };
-        --simple-colors-brown-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-brown-faded);
-        };
-
-        /* colors for light theme button with a hint of blue grey */
-        --simple-colors-blue-grey-button: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-blue-grey);
-        };
-        --simple-colors-blue-grey-button-faded: {
-          @apply --simple-colors-button;
-          color: var(--simple-colors-blue-grey-faded);
-        };
-
-        /* colors for light theme action button in red, recommended for delete actions */
-        --simple-colors-red-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-red);
-          border-color: var(--simple-colors-red-faded);
-        };
-        --simple-colors-red-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-red-faded);
-        };
-
-        /* colors for light theme action button in pink */
-        --simple-colors-pink-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-pink);
-          border-color: var(--simple-colors-pink-faded);
-        };
-        --simple-colors-pink-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-pink-faded);
-        };
-
-        /* colors for light theme action button in purple */
-        --simple-colors-purple-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-purple);
-          border-color: var(--simple-colors-purple-faded);
-        };
-        --simple-colors-purple-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-purple-faded);
-        };
-
-        /* colors for light theme action button in blue */
-        --simple-colors-blue-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-blue);
-          border-color: var(--simple-colors-blue-faded);
-        };
-        --simple-colors-blue-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-blue-faded);
-        };
-
-        /* colors for light theme action button in light blue */
-        --simple-colors-light-blue-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-light-blue);
-          border-color: var(--simple-colors-light-blue-faded);
-        };
-        --simple-colors-light-blue-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-light-blue-faded);
-        };
-
-        /* colors for light theme action button in cyan */
-        --simple-colors-cyan-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-cyan);
-          border-color: var(--simple-colors-cyan-faded);
-        };
-        --simple-colors-cyan-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-cyan-faded);
-        };
-
-        /* colors for light theme action button in teal */
-        --simple-colors-teal-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-teal);
-          border-color: var(--simple-colors-teal-faded);
-        };
-        --simple-colors-teal-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-teal-faded);
-        };
-
-        /* colors for light theme action button in green */
-        --simple-colors-green-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-green);
-          border-color: var(--simple-colors-green-faded);
-        };
-        --simple-colors-green-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-green-faded);
-        };
-
-        /* colors for light theme action button in light green */
-        --simple-colors-light-green-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-light-green);
-          border-color: var(--simple-colors-light-green-faded);
-        };
-        --simple-colors-light-green-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-light-green-faded);
-        };
-
-        /* colors for light theme action button in lime */
-        --simple-colors-lime-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-lime);
-          border-color: var(--simple-colors-lime-faded);
-        };
-        --simple-colors-lime-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-lime-faded);
-        };
-
-        /* colors for light theme action button in deep orange */
-        --simple-colors-deep-orange-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-deep-orange);
-          border-color: var(--simple-colors-deep-orange-faded);
-        };
-        --simple-colors-deep-orange-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-deep-orange-faded);
-        };
-
-        /* colors for light theme action button in brown */
-        --simple-colors-brown-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-brown);
-          border-color: var(--simple-colors-brown-faded);
-        };
-        --simple-colors-brown-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-brown-faded);
-        };
-
-        /* colors for light theme action button in blue grey */
-        --simple-colors-blue-grey-action-button: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-blue-grey);
-          border-color: var(--simple-colors-blue-grey-faded);
-        };
-        --simple-colors-blue-grey-action-button-faded: {
-          color: var(--simple-colors-background-contrast);
-          background-color: var(--simple-colors-blue-grey-faded);
-        };
+        --simple-colors-light-theme-foreground1: #000000;
+        --simple-colors-light-theme-foreground2: #111111;
+        --simple-colors-light-theme-foreground3: #222222;
+        --simple-colors-light-theme-foreground4: #444444;
+        --simple-colors-light-theme-foreground5: #666666;
+        --simple-colors-light-theme-background1: #ffffff;
+        --simple-colors-light-theme-background2: #eeeeee;
+        --simple-colors-light-theme-background3: #dddddd;
+        --simple-colors-light-theme-background4: #bbbbbb;
+        --simple-colors-light-theme-background5: #999999;
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-foreground1);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-foreground2);
+        --simple-colors-light-theme-accent-highlight: var(--simple-colors-light-theme-background2);
+        --simple-colors-light-theme-red: #c62828;
+        --simple-colors-light-theme-red-faded: #e64848;
+        --simple-colors-light-theme-red-highlight: #ffc3bf;
+        --simple-colors-light-theme-pink: #c2185b;
+        --simple-colors-light-theme-pink-faded: #e2387b;
+        --simple-colors-light-theme-pink-highlight: #ffc4d9;
+        --simple-colors-light-theme-purple: #6a1b9a;
+        --simple-colors-light-theme-purple-faded: #8a3bba;
+        --simple-colors-light-theme-purple-highlight: #f6cbfe;
+        --simple-colors-light-theme-deep-purple: #4527a0;
+        --simple-colors-light-theme-deep-purple-faded: #6547c0;
+        --simple-colors-light-theme-deep-purple-highlight: #d7caff;
+        --simple-colors-light-theme-indigo: #283593;
+        --simple-colors-light-theme-indigo-faded: #4855b3;
+        --simple-colors-light-theme-indigo-highlight: #c3cbff;
+        --simple-colors-light-theme-blue: #0d47a1;
+        --simple-colors-light-theme-blue-faded: #2d67c1;
+        --simple-colors-light-theme-blue-highlight: #b9d4ff;
+        --simple-colors-light-theme-light-blue: #01579b;
+        --simple-colors-light-theme-light-blue-faded: #3177bb;
+        --simple-colors-light-theme-light-blue-highlight: #ace8ff;
+        --simple-colors-light-theme-cyan: #00737F;
+        --simple-colors-light-theme-cyan-faded: #20939f;
+        --simple-colors-light-theme-cyan-highlight: #abffff;
+        --simple-colors-light-theme-teal: #00695c;
+        --simple-colors-light-theme-teal-faded: #20998c;
+        --simple-colors-light-theme-teal-highlight: #aaffea;
+        --simple-colors-light-theme-green: #105e20;
+        --simple-colors-light-theme-green-faded: #307e40;
+        --simple-colors-light-theme-green-highlight: #afffd7;
+        --simple-colors-light-theme-light-green: #33691e;
+        --simple-colors-light-theme-light-green-faded: #53893e;
+        --simple-colors-light-theme-light-green-highlight: #ceffa3;
+        --simple-colors-light-theme-lime: #63691e;
+        --simple-colors-light-theme-lime-faded: #83893e;
+        --simple-colors-light-theme-lime-highlight: #ebffa2;
+        --simple-colors-light-theme-yellow: #e6ad00;
+        --simple-colors-light-theme-yellow-faded: #ffcd20;
+        --simple-colors-light-theme-yellow-highlight: #ffffa1;
+        --simple-colors-light-theme-amber: #e69d00;
+        --simple-colors-light-theme-amber-faded: #ffc520;
+        --simple-colors-light-theme-amber-highlight: #ffebaa;
+        --simple-colors-light-theme-orange: #ff4a13;
+        --simple-colors-light-theme-orange-faded: #ff6933;
+        --simple-colors-light-theme-orange-highlight: #ffe2b9;
+        --simple-colors-light-theme-deep-orange: #bf360c;
+        --simple-colors-light-theme-deep-orange-faded: #df562c;
+        --simple-colors-light-theme-deep-orange-highlight: #ffd3c6;
+        --simple-colors-light-theme-brown: #5D4037;
+        --simple-colors-light-theme-brown-faded: #7D6057;
+        --simple-colors-light-theme-brown-highlight: #e0cfca;
+        --simple-colors-light-theme-blue-grey: #455a64;
+        --simple-colors-light-theme-blue-grey-faded: #657a84;
+        --simple-colors-light-theme-blue-grey-highlight: #d2dce0; 
       }
 
       /* DARK THEME */
       :root {
-        --simple-colors-dark-foreground: #eeeeee;
-        --simple-colors-dark-foreground-contrast: #ffffff;
-        --simple-colors-dark-foreground-faded: #bbbbbb;
-        --simple-colors-dark-foreground-disabled: #999999;
-        --simple-colors-dark-background: #111111;
-        --simple-colors-dark-background-contrast: #000000;
-        --simple-colors-dark-background-faded: #222222;
-        --simple-colors-dark-red: #f44336;
-        --simple-colors-dark-red-faded: #d42316;
-        --simple-colors-dark-pink: #fd377d;
-        --simple-colors-dark-pink-faded: #dd175d;
-        --simple-colors-dark-purple: #e040fb;
-        --simple-colors-dark-purple-faded: #c020db;
-        --simple-colors-dark-blue: #448aff;
-        --simple-colors-dark-blue-faded: #3479df;
-        --simple-colors-dark-light-blue: #40c4ff;
-        --simple-colors-dark-light-blue-faded: #20a4df;
-        --simple-colors-dark-cyan: #18ffff;
-        --simple-colors-dark-cyan-faded: #00dfdf;
-        --simple-colors-dark-teal: #64ffda;
-        --simple-colors-dark-teal-faded: #44dfba;
-        --simple-colors-dark-green: #00e676;
-        --simple-colors-dark-green-faded: #00c656;
-        --simple-colors-dark-light-green: #76ff03;
-        --simple-colors-dark-light-green-faded: #56df00;
-        --simple-colors-dark-lime: #c6ff00;
-        --simple-colors-dark-lime-faded: #a6df00;
-        --simple-colors-dark-yellow: #ffff00;
-        --simple-colors-dark-yellow-faded: #dddd00;
-        --simple-colors-dark-amber: #ffc400;
-        --simple-colors-dark-amber-faded: #dfa400;
-        --simple-colors-dark-orange: #ff9800;
-        --simple-colors-dark-orange-faded: #df7800;
+        --simple-colors-dark-theme-foreground1: #ffffff;
+        --simple-colors-dark-theme-foreground2: #eeeeee;
+        --simple-colors-dark-theme-foreground3: #dddddd;
+        --simple-colors-dark-theme-foreground4: #bbbbbb;
+        --simple-colors-dark-theme-foreground5: #999999;
+        --simple-colors-dark-theme-background1: #000000;
+        --simple-colors-dark-theme-background2: #111111;
+        --simple-colors-dark-theme-background3: #222222;
+        --simple-colors-dark-theme-background4: #444444;
+        --simple-colors-dark-theme-background5: #666666;
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-foreground1);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-foreground2);
+        --simple-colors-dark-theme-accent-highlight: var(--simple-colors-dark-theme-background2);
+        --simple-colors-dark-theme-red: #f44336;
+        --simple-colors-dark-theme-red-faded: #d42316;
+        --simple-colors-dark-theme-pink: #fd377d;
+        --simple-colors-dark-theme-pink-faded: #dd175d;
+        --simple-colors-dark-theme-purple: #e040fb;
+        --simple-colors-dark-theme-purple-faded: #c020db;
+        --simple-colors-dark-theme-deep-purple: #b29eff;
+        --simple-colors-dark-theme-deep-purple-faded: #827edf;
+        --simple-colors-dark-theme-indigo: #919bef;
+        --simple-colors-dark-theme-indigo-faded: #717bcf;
+        --simple-colors-dark-theme-blue: #448aff;
+        --simple-colors-dark-theme-blue-faded: #3479df;
+        --simple-colors-dark-theme-light-blue: #40c4ff;
+        --simple-colors-dark-theme-light-blue-faded: #20a4df;
+        --simple-colors-dark-theme-cyan: #18ffff;
+        --simple-colors-dark-theme-cyan-faded: #00dfdf;
+        --simple-colors-dark-theme-teal: #64ffda;
+        --simple-colors-dark-theme-teal-faded: #44dfba;
+        --simple-colors-dark-theme-green: #00e676;
+        --simple-colors-dark-theme-green-faded: #00c656;
+        --simple-colors-dark-theme-light-green: #76ff03;
+        --simple-colors-dark-theme-light-green-faded: #56df00;
+        --simple-colors-dark-theme-lime: #c6ff00;
+        --simple-colors-dark-theme-lime-faded: #a6df00;
+        --simple-colors-dark-theme-yellow: #ffff00;
+        --simple-colors-dark-theme-yellow-faded: #dddd00;
+        --simple-colors-dark-theme-amber: #ffc400;
+        --simple-colors-dark-theme-amber-faded: #dfa400;
+        --simple-colors-dark-theme-orange: #ff9800;
+        --simple-colors-dark-theme-orange-faded: #df7800;
+        --simple-colors-dark-theme-deep-orange: #ff9800;
+        --simple-colors-dark-theme-deep-orange-faded: #df7800;
+        --simple-colors-dark-theme-brown: #b4958c;
+        --simple-colors-dark-theme-brown-faded: #84756c;
+        --simple-colors-dark-theme-blue-grey: #8b9fa8;
+        --simple-colors-dark-theme-blue-grey-faded: #6b7f88;
+      }
         
-        /* dark theme content colors */
-        --simple-colors-dark-content: {
-          color: var(--simple-colors-dark-foreground);
-          background-color: var(--simple-colors-dark-background-faded);
-        };
-
-        /* colors for dark theme featured content, like callouts and pullquotes */
-        --simple-colors-dark-feature: {
-          color: var(--simple-colors-dark-foreground-contrast);
-          background-color: var(--simple-colors-dark-background);
-          border-color: var(--simple-colors-dark-background-contrast);
-        };
-        /* colors for dark theme plain button or cancel button */
-        --simple-colors-dark-button: {
-          color: var(--simple-colors-dark-foreground);
-          background-color: var(--simple-colors-dark-background);
-          border-color: var(--simple-colors-dark-background);
-        };
-        --simple-colors-dark-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-foreground-contrast);
-        };
-
-        /* colors for dark theme disabled buttons */
-        --simple-colors-dark-button-disabled: {
-          color: var(--simple-colors-dark-foreground-disabled);
-          background-color: var(--simple-colors-dark-background);
-          border-color: var(--simple-colors-dark-background);
-        };
-
-        /* colors for dark theme button with a hint of red */
-        --simple-colors-dark-red-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-red);
-        };
-        --simple-colors-dark-red-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-red-faded);
-        };
-
-        /* colors for dark theme button with a hint of pink */
-        --simple-colors-dark-pink-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-pink);
-        };
-        --simple-colors-dark-pink-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-pink-faded);
-        };
-
-        /* colors for dark theme button with a hint of purple */
-        --simple-colors-dark-purple-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-purple);
-        };
-        --simple-colors-dark-purple-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-purple-faded);
-        };
-
-        /* colors for dark theme button with a hint of blue */
-        --simple-colors-dark-blue-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-blue);
-        };
-        --simple-colors-dark-blue-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-blue-faded);
-        };
-
-        /* colors for dark theme button with a hint of light blue */
-        --simple-colors-dark-light-blue-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-light-dark-blue);
-        };
-        --simple-colors-dark-light-blue-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-light-blue-faded);
-        };
-
-        /* colors for dark theme button with a hint of cyan */
-        --simple-colors-dark-cyan-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-cyan);
-        };
-        --simple-colors-dark-cyan-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-cyan-faded);
-        };
-
-        /* colors for dark theme button with a hint of teal */
-        --simple-colors-dark-teal-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-teal);
-        };
-        --simple-colors-dark-teal-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-teal-faded);
-        };
-
-        /* colors for dark theme button with a hint of green */
-        --simple-colors-dark-green-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-green);
-        };
-        --simple-colors-dark-green-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-green-faded);
-        };
-
-        /* colors for dark theme button with a hint of light green */
-        --simple-colors-dark-light-green-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-light-green);
-        };
-        --simple-colors-dark-light-green-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-light-green-faded);
-        };
-
-        /* colors for dark theme button with a hint of lime */
-        --simple-colors-dark-lime-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-lime);
-        };
-        --simple-colors-dark-lime-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-lime-faded);
-        };
-
-        /* colors for dark theme button with a hint of yellow */
-        --simple-colors-dark-yellow-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-yellow-brown);
-        };
-        --simple-colors-dark-yellow-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-yellow-faded);
-        };
-
-        /* colors for dark theme button with a hint of amber */
-        --simple-colors-dark-amber-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-amber);
-        };
-        --simple-colors-dark-amber-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-amber-faded);
-        };
-
-        /* colors for dark theme button with a hint of orange */
-        --simple-colors-dark-orange-button: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-orange);
-        };
-        --simple-colors-dark-orange-button-faded: {
-          @apply --simple-colors-dark-button;
-          color: var(--simple-colors-dark-orange-faded);
-        };
-
-        /* colors for dark theme action button in red, recommended for delete actions */
-        --simple-colors-dark-red-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-red);
-          border-color: var(--simple-colors-dark-red-faded);
-        };
-        --simple-colors-dark-red-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-red-faded);
-        };
-
-        /* colors for dark theme action button in pink */
-        --simple-colors-dark-pink-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-pink);
-          border-color: var(--simple-colors-dark-pink-faded);
-        };
-        --simple-colors-dark-pink-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-pink-faded);
-        };
-
-        /* colors for dark theme action button in purple */
-        --simple-colors-dark-purple-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-purple);
-          border-color: var(--simple-colors-dark-purple-faded);
-        };
-        --simple-colors-dark-purple-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-purple-faded);
-        };
-
-        /* colors for dark theme action button in blue */
-        --simple-colors-dark-blue-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-blue);
-          border-color: var(--simple-colors-dark-blue-faded);
-        };
-        --simple-colors-dark-blue-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-blue-faded);
-        };
-
-        /* colors for dark theme action button in light blue */
-        --simple-colors-dark-light-blue-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-light-blue);
-          border-color: var(--simple-colors-dark-light-blue-faded);
-        };
-        --simple-colors-dark-light-blue-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-light-blue-faded);
-        };
-
-        /* colors for dark theme action button in cyan */
-        --simple-colors-dark-cyan-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-cyan);
-          border-color: var(--simple-colors-dark-cyan-faded);
-        };
-        --simple-colors-dark-cyan-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-cyan-faded);
-        };
-
-        /* colors for dark theme action button in teal */
-        --simple-colors-dark-teal-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-teal);
-          border-color: var(--simple-colors-dark-teal-faded);
-        };
-        --simple-colors-dark-teal-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-teal-faded);
-        };
-
-        /* colors for dark theme action button in green */
-        --simple-colors-dark-green-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-green);
-          border-color: var(--simple-colors-dark-green-faded);
-        };
-        --simple-colors-dark-green-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-green-faded);
-        };
-
-        /* colors for dark theme action button in light green */
-        --simple-colors-dark-light-green-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-light-green);
-          border-color: var(--simple-colors-dark-light-green-faded);
-        };
-        --simple-colors-dark-light-green-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-light-green-faded);
-        };
-
-        /* colors for dark theme action button in lime */
-        --simple-colors-dark-lime-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-lime);
-          border-color: var(--simple-colors-dark-lime-faded);
-        };
-        --simple-colors-dark-lime-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-lime-faded);
-        };
-
-        /* colors for dark theme action button in yellow */
-        --simple-colors-dark-yellow-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-yellow);
-          border-color: var(--simple-colors-dark-yellow-faded);
-        };
-        --simple-colors-dark-yellow-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-yellow-faded);
-        };
-
-        /* colors for dark theme action button in amber */
-        --simple-colors-dark-amber-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-amber);
-          border-color: var(--simple-colors-dark-amber-faded);
-        };
-        --simple-colors-dark-amber-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-amber-faded);
-        };
-
-        /* colors for dark theme action button in orange */
-        --simple-colors-dark-orange-action-button: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-orange);
-          border-color: var(--simple-colors-dark-orange-faded);
-        };
-        --simple-colors-dark-orange-action-button-faded: {
-          color: var(--simple-colors-dark-background-contrast);
-          background-color: var(--simple-colors-dark-orange-faded);
-        };
+      /* DEFAULT THEME */
+      :root {
+        --simple-colors-foreground1: var(--simple-colors-light-theme-foreground1);
+        --simple-colors-foreground2: var(--simple-colors-light-theme-foreground2);
+        --simple-colors-foreground3: var(--simple-colors-light-theme-foreground3);
+        --simple-colors-foreground4: var(--simple-colors-light-theme-foreground4);
+        --simple-colors-foreground5: var(--simple-colors-light-theme-foreground5);
+        --simple-colors-background1: var(--simple-colors-light-theme-background1);
+        --simple-colors-background2: var(--simple-colors-light-theme-background2);
+        --simple-colors-background3: var(--simple-colors-light-theme-background3);
+        --simple-colors-background4: var(--simple-colors-light-theme-background4);
+        --simple-colors-background5: var(--simple-colors-light-theme-background5);
+        --simple-colors-accent: var(--simple-colors-light-theme-accent);
+        --simple-colors-accent-faded: var(--simple-colors-light-theme-accent-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-light-theme-accent-highlight);
+        --simple-colors-red: var(--simple-colors-light-theme-red);
+        --simple-colors-red-faded: var(--simple-colors-light-theme-red-faded);
+        --simple-colors-red-highlight: var(--simple-colors-light-theme-red-highlight);
+        --simple-colors-pink: var(--simple-colors-light-theme-pink);
+        --simple-colors-pink-faded: var(--simple-colors-light-theme-pink-faded);
+        --simple-colors-pink-highlight: var(--simple-colors-light-theme-pink-highlight);
+        --simple-colors-purple: var(--simple-colors-light-theme-purple);
+        --simple-colors-purple-faded: var(--simple-colors-light-theme-purple-faded);
+        --simple-colors-purple-highlight: var(--simple-colors-light-theme-purple-highlight);
+        --simple-colors-deep-purple: var(--simple-colors-light-theme-deep-purple);
+        --simple-colors-deep-purple-faded: var(--simple-colors-light-theme-deep-purple-faded);
+        --simple-colors-deep-purple-highlight: var(--simple-colors-light-theme-deep-purple-highlight);
+        --simple-colors-indigo: var(--simple-colors-light-theme-indigo);
+        --simple-colors-indigo-faded: var(--simple-colors-light-theme-indigo-faded);
+        --simple-colors-indigo-highlight: var(--simple-colors-light-theme-indigo-highlight);
+        --simple-colors-blue: var(--simple-colors-light-theme-blue);
+        --simple-colors-blue-faded: var(--simple-colors-light-theme-blue-faded);
+        --simple-colors-blue-highlight: var(--simple-colors-light-theme-blue-highlight);
+        --simple-colors-light-blue: var(--simple-colors-light-theme-light-blue);
+        --simple-colors-light-blue-faded: var(--simple-colors-light-theme-light-blue-faded);
+        --simple-colors-light-blue-highlight: var(--simple-colors-light-theme-light-blue-highlight);
+        --simple-colors-cyan: var(--simple-colors-light-theme-cyan);
+        --simple-colors-cyan-faded: var(--simple-colors-light-theme-cyan-faded);
+        --simple-colors-cyan-highlight: var(--simple-colors-light-theme-cyan-highlight);
+        --simple-colors-teal: var(--simple-colors-light-theme-teal);
+        --simple-colors-teal-faded: var(--simple-colors-light-theme-teal-faded);
+        --simple-colors-teal-highlight: var(--simple-colors-light-theme-teal-highlight);
+        --simple-colors-green: var(--simple-colors-light-theme-green);
+        --simple-colors-green-faded: var(--simple-colors-light-theme-green-faded);
+        --simple-colors-green-highlight: var(--simple-colors-light-theme-green-highlight);
+        --simple-colors-light-green: var(--simple-colors-light-theme-light-green);
+        --simple-colors-light-green-faded: var(--simple-colors-light-theme-light-green-faded);
+        --simple-colors-light-green-highlight: var(--simple-colors-light-theme-light-green-highlight);
+        --simple-colors-lime: var(--simple-colors-light-theme-lime);
+        --simple-colors-lime-faded: var(--simple-colors-light-theme-lime-faded);
+        --simple-colors-lime-highlight: var(--simple-colors-light-theme-lime-highlight);
+        --simple-colors-yellow: var(--simple-colors-light-theme-yellow);
+        --simple-colors-yellow-faded: var(--simple-colors-light-theme-yellow-faded);
+        --simple-colors-yellow-highlight: var(--simple-colors-light-theme-yellow-highlight);
+        --simple-colors-amber: var(--simple-colors-light-theme-amber);
+        --simple-colors-amber-faded: var(--simple-colors-light-theme-amber-faded);
+        --simple-colors-amber-highlight: var(--simple-colors-light-theme-amber-highlight);
+        --simple-colors-orange: var(--simple-colors-light-theme-orange);
+        --simple-colors-orange-faded: var(--simple-colors-light-theme-orange-faded);
+        --simple-colors-orange-highlight: var(--simple-colors-light-theme-orange-highlight);
+        --simple-colors-deep-orange: var(--simple-colors-light-theme-deep-orange);
+        --simple-colors-deep-orange-faded: var(--simple-colors-light-theme-deep-orange-faded);
+        --simple-colors-deep-orange-highlight: var(--simple-colors-light-theme-deep-orange-highlight); 
+        --simple-colors-brown: var(--simple-colors-light-theme-brown);
+        --simple-colors-brown-faded: var(--simple-colors-light-theme-brown-faded);
+        --simple-colors-brown-highlight: var(--simple-colors-light-theme-brown-highlight); 
+        --simple-colors-blue-grey: var(--simple-colors-light-theme-blue-grey);
+        --simple-colors-blue-grey-faded: var(--simple-colors-light-theme-blue-grey-faded);
+        --simple-colors-blue-grey-highlight: var(--simple-colors-light-theme-blue-grey-highlight);
+      }
+      
+      /* WEIRD HACK */
+      ::host {
+        --weird-hack: #000000;
       }
 
-      /* PALE COLORS for HIGHLIGHTING */
-      :root {
-        --simple-colors-pale-red: #ffc3bf;
-        --simple-colors-pale-pink: #ffc4d9;
-        --simple-colors-pale-purple: #f6cbfe;
-        --simple-colors-pale-deep-purple: #d7caff;
-        --simple-colors-pale-indigo: #c3cbff;
-        --simple-colors-pale-blue: #b9d4ff;
-        --simple-colors-pale-light-blue: #ace8ff;
-        --simple-colors-pale-cyan: #abffff;
-        --simple-colors-pale-teal: #aaffea;
-        --simple-colors-pale-green: #afffd7;
-        --simple-colors-pale-light-green: #ceffa3;
-        --simple-colors-pale-lime: #ebffa2;
-        --simple-colors-pale-yellow: #ffffa1;
-        --simple-colors-pale-amber: #ffebaa;
-        --simple-colors-pale-orange: #ffe2b9;
-        --simple-colors-pale-deep-orange: #ffd3c6;
-        --simple-colors-pale-blue-grey: #d2dce0; 
-        --simple-colors-pale-brown: #e0cfca;
+      /* CHANGING DEFAULT THEME BASED ON "DARK" ATTRIBUTE */
+      *[dark] {
+        --simple-colors-foreground1: var(--simple-colors-dark-theme-foreground1);
+        --simple-colors-foreground2: var(--simple-colors-dark-theme-foreground2);
+        --simple-colors-foreground3:  var(--simple-colors-dark-theme-foreground3);
+        --simple-colors-foreground4:  var(--simple-colors-dark-theme-foreground4);
+        --simple-colors-foreground5:  var(--simple-colors-dark-theme-foreground5);
+        --simple-colors-background1: var(--simple-colors-dark-theme-background1);
+        --simple-colors-background2: var(--simple-colors-dark-theme-background2);
+        --simple-colors-background3: var(--simple-colors-dark-theme-background3);
+        --simple-colors-background4: var(--simple-colors-dark-theme-background4);
+        --simple-colors-background5: var(--simple-colors-dark-theme-background5);
+        --simple-colors-accent: var(--simple-colors-dark-theme-foreground1);
+        --simple-colors-accent-faded: var(--simple-colors-dark-theme-foreground3);
+        --simple-colors-red: var(--simple-colors-dark-theme-red);
+        --simple-colors-red-faded: var(--simple-colors-dark-theme-red-faded);
+        --simple-colors-pink: var(--simple-colors-dark-theme-pink);
+        --simple-colors-pink-faded: var(--simple-colors-dark-theme-pink-faded);
+        --simple-colors-purple: var(--simple-colors-dark-theme-purple);
+        --simple-colors-purple-faded: var(--simple-colors-dark-theme-purple-faded);
+        --simple-colors-deep-purple: var(--simple-colors-dark-theme-deep-purple);
+        --simple-colors-deep-purple-faded: var(--simple-colors-dark-theme-deep-purple-faded);
+        --simple-colors-indigo: var(--simple-colors-dark-theme-indigo);
+        --simple-colors-indigo-faded: var(--simple-colors-dark-theme-indigo-faded);
+        --simple-colors-blue: var(--simple-colors-dark-theme-blue);
+        --simple-colors-blue-faded: var(--simple-colors-dark-theme-blue-faded);
+        --simple-colors-light-blue: var(--simple-colors-dark-theme-light-blue);
+        --simple-colors-light-blue-faded: var(--simple-colors-dark-theme-light-blue-faded);
+        --simple-colors-cyan: var(--simple-colors-dark-theme-cyan);
+        --simple-colors-cyan-faded: var(--simple-colors-dark-theme-cyan-faded);
+        --simple-colors-teal: var(--simple-colors-dark-theme-teal);
+        --simple-colors-teal-faded: var(--simple-colors-dark-theme-teal-faded);
+        --simple-colors-green: var(--simple-colors-dark-theme-green);
+        --simple-colors-green-faded: var(--simple-colors-dark-theme-green-faded);
+        --simple-colors-light-green: var(--simple-colors-dark-theme-light-green);
+        --simple-colors-light-green-faded: var(--simple-colors-dark-theme-light-green-faded);
+        --simple-colors-lime: var(--simple-colors-dark-theme-lime);
+        --simple-colors-lime-faded: var(--simple-colors-dark-theme-lime-faded);
+        --simple-colors-yellow: var(--simple-colors-dark-theme-yellow);
+        --simple-colors-yellow-faded: var(--simple-colors-dark-theme-yellow-faded);
+        --simple-colors-amber: var(--simple-colors-dark-theme-amber);
+        --simple-colors-amber-faded: var(--simple-colors-dark-theme-amber-faded);
+        --simple-colors-orange: var(--simple-colors-dark-theme-orange);
+        --simple-colors-orange-faded: var(--simple-colors-dark-theme-orange-faded);
+        --simple-colors-deep-orange: var(--simple-colors-dark-theme-deep-orange);
+        --simple-colors-deep-orange-faded: var(--simple-colors-dark-theme-deep-orange-faded);
+        --simple-colors-brown: var(--simple-colors-dark-theme-brown);
+        --simple-colors-brown-faded: var(--simple-colors-dark-theme-brown-faded);
+        --simple-colors-blue-grey: var(--simple-colors-dark-theme-blue-grey);
+        --simple-colors-blue-grey-faded: var(--simple-colors-dark-theme-blue-grey-faded);
+      }
+
+      /* CHANGING DEFAULT ACCENT COLORS BASED ON "ACCENT-COLOR" ATTRIBUTE */
+      *[accent-color="red"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-red);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-red-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-red);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-red-faded);
+        --simple-colors-accent-faded: var(--simple-colors-red-faded);
+        --simple-colors-accent: var(--simple-colors-red);
+        --simple-colors-accent-faded: var(--simple-colors-red-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-red-highlight);
+      }
+
+      *[accent-color="pink"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-pink);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-pink-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-pink);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-pink-faded);
+        --simple-colors-accent: var(--simple-colors-pink);
+        --simple-colors-accent-faded: var(--simple-colors-pink-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-pink-highlight);
+      }
+      
+      *[accent-color="purple"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-purple);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-purple-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-purple);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-purple-faded);
+        --simple-colors-accent: var(--simple-colors-purple);
+        --simple-colors-accent-faded: var(--simple-colors-purple-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-purple-highlight);
+      }
+      
+      *[accent-color="deep-purple"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-deep-purple);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-deep-purple-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-deep-purple);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-deep-purple-faded);
+        --simple-colors-accent: var(--simple-colors-deep-purple);
+        --simple-colors-accent-faded: var(--simple-colors-deep-purple-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-deep-purple-highlight);
+      }
+      
+      *[accent-color="indigo"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-indigo);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-indigo-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-indigo);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-indigo-faded);
+        --simple-colors-accent: var(--simple-colors-indigo);
+        --simple-colors-accent-faded: var(--simple-colors-indigo-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-indigo-highlight);
+      }
+      
+      *[accent-color="blue"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-blue);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-blue-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-blue);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-blue-faded);
+        --simple-colors-accent: var(--simple-colors-blue);
+        --simple-colors-accent-faded: var(--simple-colors-blue-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-blue-highlight);
+      }
+      
+      *[accent-color="light-blue"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-light-blue);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-light-blue-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-light-blue);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-light-blue-faded);
+        --simple-colors-accent: var(--simple-colors-light-blue);
+        --simple-colors-accent-faded: var(--simple-colors-light-blue-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-light-blue-highlight);
+      }
+      
+      *[accent-color="cyan"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-cyan);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-cyan-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-cyan);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-cyan-faded);
+        --simple-colors-accent: var(--simple-colors-cyan);
+        --simple-colors-accent-faded: var(--simple-colors-cyan-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-cyan-highlight);
+      }
+      
+      *[accent-color="teal"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-teal);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-teal-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-teal);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-teal-faded);
+        --simple-colors-accent: var(--simple-colors-teal);
+        --simple-colors-accent-faded: var(--simple-colors-teal-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-teal-highlight);
+      }
+      
+      *[accent-color="green"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-green);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-green-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-green);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-green-faded);
+        --simple-colors-accent: var(--simple-colors-green);
+        --simple-colors-accent-faded: var(--simple-colors-green-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-green-highlight);
+      }
+      
+      *[accent-color="light-green"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-light-green);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-light-green-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-light-green);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-light-green-faded);
+        --simple-colors-accent: var(--simple-colors-light-green);
+        --simple-colors-accent-faded: var(--simple-colors-light-green-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-light-green-highlight);
+      }
+      
+      *[accent-color="lime"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-lime);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-lime-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-lime);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-lime-faded);
+        --simple-colors-accent: var(--simple-colors-lime);
+        --simple-colors-accent-faded: var(--simple-colors-lime-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-lime-highlight);
+      }
+      
+      *[accent-color="yellow"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-yellow);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-yellow-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-yellow);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-yellow-faded);
+        --simple-colors-accent: var(--simple-colors-yellow);
+        --simple-colors-accent-faded: var(--simple-colors-yellow-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-yellow-highlight);
+      }
+      
+      *[accent-color="amber"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-amber);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-amber-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-amber);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-amber-faded);
+        --simple-colors-accent: var(--simple-colors-amber);
+        --simple-colors-accent-faded: var(--simple-colors-amber-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-amber-highlight);
+      }
+      
+      *[accent-color="orange"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-orange);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-orange-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-orange);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-orange-faded);
+        --simple-colors-accent: var(--simple-colors-orange);
+        --simple-colors-accent-faded: var(--simple-colors-orange-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-orange-highlight);
+      }
+      
+      *[accent-color="deep-orange"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-deep-orange);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-deep-orange-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-deep-orange);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-deep-orange-faded);
+        --simple-colors-accent: var(--simple-colors-deep-orange);
+        --simple-colors-accent-faded: var(--simple-colors-deep-orange-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-deep-orange-highlight);
+      }
+      
+      *[accent-color="brown"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-brown);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-brown-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-brown);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-brown-faded);
+        --simple-colors-accent: var(--simple-colors-brown);
+        --simple-colors-accent-faded: var(--simple-colors-brown-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-brown-highlight);
+      }
+      
+      *[accent-color="blue-grey"]{
+        --simple-colors-light-theme-accent: var(--simple-colors-light-theme-blue-grey);
+        --simple-colors-light-theme-accent-faded: var(--simple-colors-light-theme-blue-grey-faded);
+        --simple-colors-dark-theme-accent: var(--simple-colors-dark-theme-blue-grey);
+        --simple-colors-dark-theme-accent-faded: var(--simple-colors-dark-theme-blue-grey-faded);
+        --simple-colors-accent: var(--simple-colors-blue-grey);
+        --simple-colors-accent-faded: var(--simple-colors-blue-grey-faded);
+        --simple-colors-accent-highlight: var(--simple-colors-blue-grey-highlight);
       }
     </style>
   </template>

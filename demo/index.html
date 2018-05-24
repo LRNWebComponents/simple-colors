@@ -12,91 +12,60 @@
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../simple-colors.html">
     <style is="custom-style">
-      .references-outer {
-        padding: 20px;
+      .theme-selector {
+        border: 1px solid #ddd;
+        padding: 15px;
       }
-      .references {
+      .theme-selector,
+      .theme-selector > div {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
+        margin-bottom: 5px;
       }
-      .reference {
-        align-self: top;
-        padding: 10px;
-        margin: 10px;
+      .theme-selector > div, 
+      .theme-selector > div > * {
+        align-self: middle;
       }
-      .reference:nth-child(1) {
-        @apply --simple-colors-feature;
-      }
-      .reference:nth-child(2) {
-        @apply --simple-colors-dark-content;
-      }
-      demo-snippet {
-        margin-bottom: 15px;
-      }
-      my-text, 
-      my-dark-text {
+      my-text {
         display: block;
         padding: 20px;
       }
-      my-button, 
-      my-save-button, 
-      my-cancel-button, 
-      my-disabled-button,
-      my-delete-button,
-      my-dark-button, 
-      my-dark-save-button, 
-      my-dark-cancel-button, 
-      my-dark-disabled-button,
-      my-dark-delete-button {
+      button {
         display: inline-block;
         padding: 0.25em 0.5em;
         margin: 0 0.25em;
-        border-radius: 0.1em;
-        border: 1px solid black;
+        border-radius: 0.2em;
         font-size: 18pt;
       }
-      my-button:focus, 
-      my-save-button:focus, 
-      my-delete-button:focus, 
-      my-cancel-button:focus,
-      my-button:hover, 
-      my-save-button:hover, 
-      my-delete-button:hover, 
-      my-cancel-button:hover, 
-      my-dark-button:focus, 
-      my-dark-save-button:focus, 
-      my-dark-delete-button:focus, 
-      my-dark-cancel-button:focus,
-      my-dark-button:hover, 
-      my-dark-save-button:hover, 
-      my-dark-delete-button:hover, 
-      my-dark-cancel-button:hover {
+      button:focus, 
+      button:hover{
         cursor: pointer;
       }
-      my-disabled-button:focus,
-      my-disabled-button:hover,
-      my-dark-disabled-button:focus,
-      my-dark-disabled-button:hover {
+      button[disabled]:focus,
+      button[disabled]:hover {
         cursor: no-drop;
       }
       my-progress-bar,
-      my-progress,
-      my-dark-progress-bar,
-      my-dark-progress {
+      my-progress {
         display: inline-block;
         width: 200px;
-        height: 1em;
+        height: 10px;
         border-radius: 0.5em;
         border: 1px solid;
+        position: relative;
       }
-      my-progress,
-      my-dark-progress {
+      my-progress {
+        height: 10px;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      my-progress {
         width: 167px;
         border-radius: 0.4em 0 0 0.4em;
         border: none;
       }
-      my-feature-box,
-      my-dark-feature-box {
+      my-feature-box {
         padding: 20px;
         border: 1px solid;
         border-top: 4px solid;
@@ -104,540 +73,63 @@
         border-radius: 0 0 0.4em 0.4em;
         margin: 0 0 15px;
       }
-      my-color-demo,
-      my-dark-color-demo {
-        display: flex;
-        align-items: stretch;
-        justify-content: space-between;
-        width: 100%;
-      }
-      my-color-demo > *,
-      my-dark-color-demo > * {
-        width: 60px;
-        padding: 0.25em 1em;
-        text-align: center;
-        border: 1px solid;
-      }
-      ul {
-        list-style-type:none;
-        list-style-position: inside;
-        padding-left: 0;
-      } 
-      ul li {
-        line-height: 150%;
-        font-size: 18pt;
-      }
-      ul li swatch {    
-        width: 1em;
-        height: 1em;
-        display: inline-block;
-        margin-bottom: -0.3em;
-      }
-      .red {
-        color: var(--simple-colors-red);
-      }
-      .red:focus,
-      .red:hover {
-        color: var(--simple-colors-red-faded);
-      }
-      .pink {
-        color: var(--simple-colors-pink);
-      }
-      .pink:focus,
-      .pink:hover {
-        color: var(--simple-colors-pink-faded);
-      }
-      .purple {
-        color: var(--simple-colors-purple);
-      }
-      .purple:focus,
-      .purple:hover {
-        color: var(--simple-colors-purple-faded);
-      }
-      .deep-purple {
-        color: var(--simple-colors-deep-purple);
-      }
-      .deep-purple:focus,
-      .deep-purple:hover {
-        color: var(--simple-colors-deep-purple-faded);
-      }
-      .indigo {
-        color: var(--simple-colors-indigo);
-      }
-      .indigo:focus,
-      .indigo:hover {
-        color: var(--simple-colors-indigo-faded);
-      }
-      .blue {
-        color: var(--simple-colors-blue);
-      }
-      .blue:focus,
-      .blue:hover {
-        color: var(--simple-colors-blue-faded);
-      }
-      .light-blue {
-        color: var(--simple-colors-light-blue);
-      }
-      .light-blue:focus,
-      .light-blue:hover {
-        color: var(--simple-colors-light-blue-faded);
-      }
-      .cyan {
-        color: var(--simple-colors-cyan);
-      }
-      .cyan:focus,
-      .cyan:hover {
-        color: var(--simple-colors-cyan-faded);
-      }
-      .teal {
-        color: var(--simple-colors-teal);
-      }
-      .teal:focus,
-      .teal:hover {
-        color: var(--simple-colors-teal-faded);
-      }
-      .green {
-        color: var(--simple-colors-green);
-      }
-      .green:focus,
-      .green:hover {
-        color: var(--simple-colors-green-faded);
-      }
-      .light-green {
-        color: var(--simple-colors-light-green);
-      }
-      .light-green:focus,
-      .light-green:hover {
-        color: var(--simple-colors-light-green-faded);
-      }
-      .lime {
-        color: var(--simple-colors-lime);
-      }
-      .lime:focus,
-      .lime:hover {
-        color: var(--simple-colors-lime-faded);
-      }
-      .deep-orange {
-        color: var(--simple-colors-deep-orange);
-      }
-      .deep-orange:focus,
-      .deep-orange:hover {
-        color: var(--simple-colors-deep-orange-faded);
-      }
-      .brown {
-        color: var(--simple-colors-brown);
-      }
-      .brown:focus,
-      .brown:hover {
-        color: var(--simple-colors-brown-faded);
-      }
-      .blue-grey {
-        color: var(--simple-colors-blue-grey);
-      }
-      .blue-grey:focus,
-      .blue-grey:hover {
-        color: var(--simple-colors-blue-grey-faded);
-      }
-      .red swatch {
-        background-color: var(--simple-colors-red);
-      }
-      .red:focus swatch,
-      .red:hover swatch {
-        background-color: var(--simple-colors-red-faded);
-      }
-      .pink swatch {
-        background-color: var(--simple-colors-pink);
-      }
-      .pink:focus swatch,
-      .pink:hover swatch {
-        background-color: var(--simple-colors-pink-faded);
-      }
-      .purple swatch {
-        background-color: var(--simple-colors-purple);
-      }
-      .purple:focus swatch,
-      .purple:hover swatch {
-        background-color: var(--simple-colors-purple-faded);
-      }
-      .deep-purple swatch {
-        background-color: var(--simple-colors-deep-purple);
-      }
-      .deep-purple:focus swatch,
-      .deep-purple:hover swatch {
-        background-color: var(--simple-colors-deep-purple-faded);
-      }
-      .indigo swatch {
-        background-color: var(--simple-colors-indigo);
-      }
-      .indigo:focus swatch,
-      .indigo:hover swatch {
-        background-color: var(--simple-colors-indigo-faded);
-      }
-      .blue swatch {
-        background-color: var(--simple-colors-blue);
-      }
-      .blue:focus swatch,
-      .blue:hover swatch {
-        background-color: var(--simple-colors-blue-faded);
-      }
-      .light-blue swatch {
-        background-color: var(--simple-colors-light-blue);
-      }
-      .light-blue:focus swatch,
-      .light-blue:hover swatch {
-        background-color: var(--simple-colors-light-blue-faded);
-      }
-      .cyan swatch {
-        background-color: var(--simple-colors-cyan);
-      }
-      .cyan:focus swatch,
-      .cyan:hover swatch {
-        background-color: var(--simple-colors-cyan-faded);
-      }
-      .teal swatch {
-        background-color: var(--simple-colors-teal);
-      }
-      .teal:focus swatch,
-      .teal:hover swatch {
-        background-color: var(--simple-colors-teal-faded);
-      }
-      .green swatch {
-        background-color: var(--simple-colors-green);
-      }
-      .green:focus swatch,
-      .green:hover swatch {
-        background-color: var(--simple-colors-green-faded);
-      }
-      .light-green swatch {
-        background-color: var(--simple-colors-light-green);
-      }
-      .light-green:focus swatch,
-      .light-green:hover swatch {
-        background-color: var(--simple-colors-light-green-faded);
-      }
-      .lime swatch {
-        background-color: var(--simple-colors-lime);
-      }
-      .lime:focus swatch,
-      .lime:hover swatch {
-        background-color: var(--simple-colors-lime-faded);
-      }
-      .deep-orange swatch {
-        background-color: var(--simple-colors-deep-orange);
-      }
-      .deep-orange:focus swatch,
-      .deep-orange:hover swatch {
-        background-color: var(--simple-colors-deep-orange-faded);
-      }
-      .brown swatch {
-        background-color: var(--simple-colors-brown);
-      }
-      .brown:focus swatch,
-      .brown:hover swatch {
-        background-color: var(--simple-colors-brown-faded);
-      }
-      .blue-grey swatch {
-        background-color: var(--simple-colors-blue-grey);
-      }
-      .blue-grey:focus swatch,
-      .blue-grey:hover swatch {
-        background-color: var(--simple-colors-blue-grey-faded);
-      }
-      .dark-red {
-        color: var(--simple-colors-dark-red);
-      }
-      .dark-red:focus,
-      .dark-red:hover {
-        color: var(--simple-colors-dark-red-faded);
-      }
-      .dark-pink {
-        color: var(--simple-colors-dark-pink);
-      }
-      .dark-pink:focus,
-      .dark-pink:hover {
-        color: var(--simple-colors-dark-pink-faded);
-      }
-      .dark-purple {
-        color: var(--simple-colors-dark-purple);
-      }
-      .dark-purple:focus,
-      .dark-purple:hover {
-        color: var(--simple-colors-dark-purple-faded);
-      }
-      .dark-blue {
-        color: var(--simple-colors-dark-blue);
-      }
-      .dark-blue:focus,
-      .dark-blue:hover {
-        color: var(--simple-colors-dark-blue-faded);
-      }
-      .dark-light-blue {
-        color: var(--simple-colors-dark-light-blue);
-      }
-      .dark-light-blue:focus,
-      .dark-light-blue:hover {
-        color: var(--simple-colors-dark-light-blue-faded);
-      }
-      .dark-cyan {
-        color: var(--simple-colors-dark-cyan);
-      }
-      .dark-cyan:focus,
-      .dark-cyan:hover {
-        color: var(--simple-colors-dark-cyan-faded);
-      }
-      .dark-teal {
-        color: var(--simple-colors-dark-teal);
-      }
-      .dark-teal:focus,
-      .dark-teal:hover {
-        color: var(--simple-colors-dark-teal-faded);
-      }
-      .dark-green {
-        color: var(--simple-colors-dark-green);
-      }
-      .dark-green:focus,
-      .dark-green:hover {
-        color: var(--simple-colors-dark-green-faded);
-      }
-      .dark-light-green {
-        color: var(--simple-colors-dark-light-green);
-      }
-      .dark-light-green:focus,
-      .dark-light-green:hover {
-        color: var(--simple-colors-dark-light-green-faded);
-      }
-      .dark-lime {
-        color: var(--simple-colors-dark-lime);
-      }
-      .dark-lime:focus,
-      .dark-lime:hover {
-        color: var(--simple-colors-dark-lime-faded);
-      }
-      .dark-yellow {
-        color: var(--simple-colors-dark-yellow);
-      }
-      .dark-yellow:focus,
-      .dark-yellow:hover {
-        color: var(--simple-colors-dark-yellow-faded);
-      }
-      .dark-amber {
-        color: var(--simple-colors-dark-amber);
-      }
-      .dark-amber:focus,
-      .dark-amber:hover {
-        color: var(--simple-colors-dark-amber-faded);
-      }
-      .dark-orange {
-        color: var(--simple-colors-dark-orange);
-      }
-      .dark-orange:focus,
-      .dark-orange:hover {
-        color: var(--simple-colors-dark-orange-faded);
-      }
-      .dark-red swatch {
-        background-color: var(--simple-colors-dark-red);
-      }
-      .dark-red:focus swatch,
-      .dark-red:hover swatch {
-        background-color: var(--simple-colors-dark-red-faded);
-      }
-      .dark-pink swatch {
-        background-color: var(--simple-colors-dark-pink);
-      }
-      .dark-pink:focus swatch,
-      .dark-pink:hover swatch {
-        background-color: var(--simple-colors-dark-pink-faded);
-      }
-      .dark-purple swatch {
-        background-color: var(--simple-colors-dark-purple);
-      }
-      .dark-purple:focus swatch,
-      .dark-purple:hover swatch {
-        background-color: var(--simple-colors-dark-purple-faded);
-      }
-      .dark-blue swatch {
-        background-color: var(--simple-colors-dark-blue);
-      }
-      .dark-blue:focus swatch,
-      .dark-blue:hover swatch {
-        background-color: var(--simple-colors-dark-blue-faded);
-      }
-      .dark-light-blue swatch {
-        background-color: var(--simple-colors-dark-light-blue);
-      }
-      .dark-light-blue:focus swatch,
-      .dark-light-blue:hover swatch {
-        background-color: var(--simple-colors-dark-light-blue-faded);
-      }
-      .dark-cyan swatch {
-        background-color: var(--simple-colors-dark-cyan);
-      }
-      .dark-cyan:focus swatch,
-      .dark-cyan:hover swatch {
-        background-color: var(--simple-colors-dark-cyan-faded);
-      }
-      .dark-teal swatch {
-        background-color: var(--simple-colors-dark-teal);
-      }
-      .dark-teal:focus swatch,
-      .dark-teal:hover swatch {
-        background-color: var(--simple-colors-dark-teal-faded);
-      }
-      .dark-green swatch {
-        background-color: var(--simple-colors-dark-green);
-      }
-      .dark-green:focus swatch,
-      .dark-green:hover swatch {
-        background-color: var(--simple-colors-dark-green-faded);
-      }
-      .dark-light-green swatch {
-        background-color: var(--simple-colors-dark-light-green);
-      }
-      .dark-light-green:focus swatch,
-      .dark-light-green:hover swatch {
-        background-color: var(--simple-colors-dark-light-green-faded);
-      }
-      .dark-lime swatch {
-        background-color: var(--simple-colors-dark-lime);
-      }
-      .dark-lime:focus swatch,
-      .dark-lime:hover swatch {
-        background-color: var(--simple-colors-dark-lime-faded);
-      }
-      .dark-yellow swatch {
-        background-color: var(--simple-colors-dark-yellow);
-      }
-      .dark-yellow:focus swatch,
-      .dark-yellow:hover swatch {
-        background-color: var(--simple-colors-dark-yellow-faded);
-      }
-      .dark-amber swatch {
-        background-color: var(--simple-colors-dark-amber);
-      }
-      .dark-amber:focus swatch,
-      .dark-amber:hover swatch {
-        background-color: var(--simple-colors-dark-amber-faded);
-      }
-      .dark-orange swatch {
-        background-color: var(--simple-colors-dark-orange);
-      }
-      .dark-orange:focus swatch,
-      .dark-orange:hover swatch {
-        background-color: var(--simple-colors-dark-orange-faded);
-      }
-      .red-highlight {
-        background-color: var(--simple-colors-pale-red);
-      }
-      .pink-highlight {
-        background-color: var(--simple-colors-pale-pink);
-      }
-      .purple-highlight {
-        background-color: var(--simple-colors-pale-purple);
-      }
-      .deep-purple-highlight {
-        background-color: var(--simple-colors-pale-deep-purple);
-      }
-      .indigo-highlight {
-        background-color: var(--simple-colors-pale-indigo);
-      }
-      .blue-highlight {
-        background-color: var(--simple-colors-pale-blue);
-      }
-      .light-blue-highlight {
-        background-color: var(--simple-colors-pale-light-blue);
-      }
-      .cyan-highlight {
-        background-color: var(--simple-colors-pale-cyan);
-      }
-      .teal-highlight {
-        background-color: var(--simple-colors-pale-teal);
-      }
-      .green-highlight {
-        background-color: var(--simple-colors-pale-green);
-      }
-      .light-green-highlight {
-        background-color: var(--simple-colors-pale-light-green);
-      }
-      .lime-highlight {
-        background-color: var(--simple-colors-pale-lime);
-      }
-      .yellow-highlight {
-        background-color: var(--simple-colors-pale-yellow);
-      }
-      .amber-highlight {
-        background-color: var(--simple-colors-pale-amber);
-      }
-      .orange-highlight {
-        background-color: var(--simple-colors-pale-orange);
-      }
-      .deep-orange-highlight {
-        background-color: var(--simple-colors-pale-deep-orange);
-      }
-      .brown-highlight {
-        background-color: var(--simple-colors-pale-brown);
-      }
-      .blue-grey-highlight {
-        background-color: var(--simple-colors-pale-blue-grey);
-      }
     </style>
+    <script>
+      window.onload = function(){
+        let theme = document.getElementById('theme'), accent = document.getElementById('accent'), mytext = document.getElementById('mytext');
+        accent.onchange = function(){
+          themer.setAttribute('accent-color',accent.options[accent.selectedIndex].innerText);
+        }
+        theme.onchange = function(){
+          if (theme.options[theme.selectedIndex].innerText === 'dark'){
+            themer.setAttribute('dark','dark');
+          } else {
+            themer.removeAttribute('dark');
+          }
+        }
+      }
+    </script>
   </head>
   <body>
     <div class="vertical-section-container centered">
       <h3>simple-colors demo</h3>
       <demo-snippet>
+        <div class="theme-selector">
+          <div>Change the theme and/or accent color. </div>
+          <div>
+            <label for="theme">Theme: </label>
+            <select id="theme">
+              <option>light (default)</option>
+              <option>dark</option>
+            </select>
+          </div>
+          <div>
+            <label for="accent">Accent Color: </label>
+            <select id="accent">
+              <option>none (default)</option>
+              <option>red</option>
+              <option>pink</option>
+              <option>purple</option>
+              <option>deep-purple</option>
+              <option>indigo</option>
+              <option>blue</option>
+              <option>light-blue</option>
+              <option>cyan</option>
+              <option>teal</option>
+              <option>green</option>
+              <option>light-green</option>
+              <option>lime</option>
+              <option>yellow</option>
+              <option>amber</option>
+              <option>orange</option>
+              <option>deep-orange</option>
+              <option>brown</option>
+              <option>blue-grey</option>
+            </select>
+          </div>
+        </div>
         <template>
-          <style is="custom-style" include="simple-colors">
-            my-text {
-              @apply --simple-colors-content;
-            }
-            my-button {
-              @apply --simple-colors-blue-button;
-            }
-            my-button:focus,
-            my-button:hover {
-              @apply --simple-colors-blue-button-faded;
-            }
-            my-save-button {
-              @apply --simple-colors-blue-action-button;
-            }
-            my-save-button:focus,
-            my-save-button:hover {
-              @apply --simple-colors-blue-action-button-faded;
-            }
-            my-delete-button {
-              @apply --simple-colors-red-action-button;
-            }
-            my-delete-button:focus,
-            my-delete-button:hover {
-              @apply --simple-colors-red-action-button-faded;
-            }
-            my-cancel-button {
-              @apply --simple-colors-button;
-            }
-            my-cancel-button:focus,
-            my-cancel-button:hover {
-              @apply --simple-colors-button-faded;
-            }
-            my-disabled-button {
-              @apply --simple-colors-button-disabled;
-            }
-            my-progress-bar {
-              border-color: var(--simple-colors-lime-faded);
-            }
-            my-progress {
-              background-color: var(--simple-colors-lime);
-            }
-            my-feature-box  {
-              @apply --simple-colors-feature;
-              border-top-color: var(--simple-colors-pink);
-            }
-            my-color-demo {
-              color: var(--simple-colors-foreground-contrast);
-              border-color: var(--simple-colors-background-faded);
-            }
-          </style>
-          <h3>Light theme</h3>
-          <my-text>
+          <my-text id="themer">
             <my-feature-box>
               <p>
                 Light theme colors with dark accent colors as CSS variables 
@@ -648,11 +140,12 @@
             </my-feature-box>
 
             <p>Buttons:
-              <my-button>Accent Button</my-button>
-              <my-save-button>Save Button</my-save-button>
-              <my-delete-button>Delete Button</my-delete-button>
-              <my-cancel-button>Cancel Button</my-cancel-button>
-              <my-disabled-button>Disabled Button</my-disabled-button>
+              <button class="accent">Accent Button</button>
+              <button class="action">Action Button</button>
+              <button class="action" accent-color="blue">Save Button</button>
+              <button class="action" accent-color="red">Delete Button</button>
+              <button>Cancel Button</button>
+              <button disabled>Disabled Button</button>
             </p>
 
             <p>Other:
@@ -661,171 +154,64 @@
               </my-progress-bar>
             </p>
           </my-text>
-        </template>
-      </demo-snippet>
-
-      <demo-snippet>
-        <template>
           <style is="custom-style" include="simple-colors">
-            my-dark-text {
-              @apply --simple-colors-dark-content;
+            my-text {
+              color: var(--simple-colors-foreground1);
+              background-color: var(--simple-colors-background1);
             }
-            my-dark-button {
-              @apply --simple-colors-dark-blue-button;
+            my-feature-box {
+              border-color: var(--simple-colors-foreground1);
+              border-top-color: var(--simple-colors-accent);
+              color: var(--simple-colors-foreground1);
+              background-color: var(--simple-colors-background2);
             }
-            my-dark-button:focus,
-            my-dark-button:hover {
-              @apply --simple-colors-dark-blue-button-faded;
+            button {
+              color: var(--simple-colors-foreground1);
+              background-color: var(--simple-colors-background1);
+              border-color: var(--simple-colors-foreground3);
             }
-            my-dark-save-button {
-              @apply --simple-colors-dark-blue-action-button;
+            button:not([disabled]):focus, 
+            button:not([disabled]):hover {
+              background-color: var(--simple-colors-background2);
+              border-color: var(--simple-colors-background3);
             }
-            my-dark-save-button:focus,
-            my-dark-save-button:hover {
-              @apply --simple-colors-dark-blue-action-button-faded;
+            button.accent {
+              color: var(--simple-colors-accent);
             }
-            my-dark-delete-button {
-              @apply --simple-colors-dark-red-action-button;
+            button.action {
+              color: var(--simple-colors-background1);
+              background-color: var(--simple-colors-accent);
+              border-color: var(--simple-colors-accent);
             }
-            my-dark-delete-button:focus,
-            my-dark-delete-button:hover {
-              @apply --simple-colors-dark-red-action-button-faded;
+            button.action:not([disabled]):focus, 
+            button.action:not([disabled]):hover {
+              background-color: var(--simple-colors-accent-faded);
+              border-color: var(--simple-colors-accent);
             }
-            my-dark-cancel-button {
-              @apply --simple-colors-dark-button;
+            button[disabled] {
+              color: var(--simple-colors-foreground5);
+              background-color: var(--simple-colors-background2);
+              border-color: var(--simple-colors-background3);
             }
-            my-dark-cancel-button:focus,
-            my-dark-cancel-button:hover {
-              @apply --simple-colors-dark-button-faded;
+            my-progress-bar {
+              border-color: var(--simple-colors-accent-faded);
             }
-            my-dark-disabled-button {
-              @apply --simple-colors-dark-button-disabled;
+            my-progress {
+              background-color: var(--simple-colors-accent);
             }
-            my-dark-progress-bar {
-              border-color: var(--simple-colors-dark-lime-faded);
+            ul li span {
+              background-color: var(--simple-colors-accent-highlight);
             }
-            my-dark-progress {
-              background-color: var(--simple-colors-dark-lime);
+            ul li swatch {    
+              background-color: var(--simple-colors-accent);
             }
-            my-dark-feature-box  {
-              @apply --simple-colors-dark-feature;
-              border-top-color: var(--simple-colors-dark-pink);
-            }
-            my-dark-color-demo {
-              color: var(--simple-colors-dark-foreground-contrast);
-              border-color: var(--simple-colors-dark-background-faded);
+            ul li:focus swatch,
+            ul li:hover swatch {
+              background-color: var(--simple-colors-accent-faded);
             }
           </style>
-          <my-dark-text>
-            <h3>Dark theme</h3>
-            <my-dark-feature-box>
-              <p>
-                Dark theme colors with bright accent colors as CSS variables 
-                or as CSS @apply rules. Accent colors are loosely based on 
-                accessible combinations of Materialize colors. You can use 
-                simple color variables for your own CSS.
-              </p>
-            </my-dark-feature-box>
-
-            <p>Buttons:
-              <my-dark-button class="simple-colors-button-accent">Accent Button</my-dark-button>
-              <my-dark-save-button class="simple-colors-button-action">Save Button</my-dark-save-button>
-              <my-dark-delete-button class="simple-colors-button-alert">Delete Button</my-dark-delete-button>
-              <my-dark-cancel-button class="simple-colors-button">Cancel Button</my-dark-cancel-button>
-              <my-dark-disabled-button class="simple-colors-button-disabled">Disabled Button</my-dark-disabled-button>
-            </p>
-
-            <p>Other:
-              <my-dark-progress-bar>
-                <my-dark-progress></my-dark-progress>
-              </my-dark-progress-bar>
-            </p>
-          </my-dark-text>
         </template>
       </demo-snippet> 
-      
-      <div class="references-outer"> 
-        <h3>simple-colors reference</h3>
-        <div class="references"> 
-          <div class="reference">
-            <h4>Light theme accent colors</h4>
-            <p>
-              The following colors are WCAG 2.0 AA-compliant
-              as decorative elements or as <strong>large text*</strong> 
-              on a background no darker than #111111:
-            </p>
-            <ul>
-              <li class="red"><swatch></swatch> --simple-colors-red</li>
-              <li class="pink"><swatch></swatch> --simple-colors-pink</li>
-              <li class="purple"><swatch></swatch> --simple-colors-purple</li>
-              <li class="deep-purple"><swatch></swatch> --simple-colors-deep-purple</li>
-              <li class="indigo"><swatch></swatch> --simple-colors-purple</li>
-              <li class="blue"><swatch></swatch> --simple-colors-blue</li>
-              <li class="light-blue"><swatch></swatch> --simple-colors-light-blue</li>
-              <li class="cyan"><swatch></swatch> --simple-colors-cyan</li>
-              <li class="teal"><swatch></swatch> --simple-colors-teal</li>
-              <li class="green"><swatch></swatch> --simple-colors-green</li>
-              <li class="light-green"><swatch></swatch> --simple-colors-light-green</li>
-              <li class="lime"><swatch></swatch> --simple-colors-lime</li>
-              <li class="deep-orange"><swatch></swatch> --simple-colors-deep-orange</li>
-              <li class="brown"><swatch></swatch> --simple-colors-brown</li>
-              <li class="blue-grey"><swatch></swatch> --simple-colors-blue-grey</li>
-            </ul>
-          </div>
-          <div class="reference">
-            <h3>Dark theme accent colors</h3>
-            <p>
-              The following colors are WCAG 2.0 AA-compliant 
-              as decorative elements or as <strong>large text*</strong> 
-              on a background no lighter than #eeeeee:
-            </p>
-            <ul>
-              <li class="dark-red"><swatch></swatch> --simple-colors-dark-red</li>
-              <li class="dark-pink"><swatch></swatch> --simple-colors-dark-pink</li>
-              <li class="dark-purple"><swatch></swatch> --simple-colors-dark-purple</li>
-              <li class="dark-blue"><swatch></swatch> --simple-colors-dark-blue</li>
-              <li class="dark-light-blue"><swatch></swatch> --simple-colors-dark-light-blue</li>
-              <li class="dark-cyan"><swatch></swatch> --simple-colors-dark-cyan</li>
-              <li class="dark-teal"><swatch></swatch> --simple-colors-dark-teal</li>
-              <li class="dark-green"><swatch></swatch> --simple-colors-dark-green</li>
-              <li class="dark-light-green"><swatch></swatch> --simple-colors-dark-light-green</li>
-              <li class="dark-lime"><swatch></swatch> --simple-colors-dark-lime</li>
-              <li class="dark-yellow"><swatch></swatch> --simple-colors-dark-yellow</li>
-              <li class="dark-amber"><swatch></swatch> --simple-colors-dark-amber</li>
-              <li class="dark-orange"><swatch></swatch> --simple-colors-dark-orange</li>
-            </ul>
-          </div>
-          <div class="reference">
-            <h3>Pale colors for highlighting</h3>
-            <p>
-              The following colors are WCAG 2.0 AA-compliant as backgrounds 
-              with a black foreground color:
-            </p>
-            <ul>
-              <li class="red-highlight">--simple-colors-pale-red</li>
-              <li class="pink-highlight">--simple-colors-pale-pink</li>
-              <li class="purple-highlight">--simple-colors-pale-purple</li>
-              <li class="deep-purple-highlight">--simple-colors-pale-deep-purple</li>
-              <li class="indigo-highlight">--simple-colors-pale-purple</li>
-              <li class="blue-highlight">--simple-colors-pale-blue</li>
-              <li class="light-blue-highlight">--simple-colors-pale-light-blue</li>
-              <li class="cyan-highlight">--simple-colors-pale-cyan</li>
-              <li class="teal-highlight">--simple-colors-pale-teal</li>
-              <li class="green-highlight">--simple-colors-pale-green</li>
-              <li class="light-green-highlight">--simple-colors-pale-light-green</li>
-              <li class="lime-highlight">--simple-colors-pale-lime</li>
-              <li class="yellow-highlight">--simple-colors-pale-yellow</li>
-              <li class="amber-highlight">--simple-colors-pale-amber</li>
-              <li class="orange-highlight">--simple-colors-pale-orange</li>
-              <li class="deep-orange-highlight">--simple-colors-pale-deep-orange</li>
-              <li class="brown-highlight">--simple-colors-pale-brown</li>
-              <li class="blue-grey-highlight">--simple-colors-pale-blue-grey</li>
-            </ul>
-          </div>
-        </div>
-        <p><strong>* Large text</strong> is defined as bold text that is at least 14 points or 
-          normal text that is at least 18 points.</p>   
-      </div> 
     </div>
   </body>
 </html>
