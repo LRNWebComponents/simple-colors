@@ -3,7 +3,7 @@
     <style is="custom-style">
         
       /* LIGHT THEME (DEFAULT) --ALL COLORS ARE DEFINED HERE */
-      :root {
+      html {
         --simple-colors-light-theme-foreground1: #000000;
         --simple-colors-light-theme-foreground2: #111111;
         --simple-colors-light-theme-foreground3: #222222;
@@ -20,9 +20,9 @@
         --simple-colors-light-theme-accent-background1: var(--simple-colors-light-theme-background1);
         --simple-colors-light-theme-accent-background2: var(--simple-colors-light-theme-background2);
         --simple-colors-light-theme-accent-background3: var(--simple-colors-light-theme-background3);
-        --simple-colors-light-theme-red-foreground1: #8f0000;
-        --simple-colors-light-theme-red-foreground2: #c20000;
-        --simple-colors-light-theme-red-foreground3: #fa0000;
+        --simple-colors-light-theme-red-foreground1: #a00000;
+        --simple-colors-light-theme-red-foreground2: #c70000;
+        --simple-colors-light-theme-red-foreground3: #ee0000;
         --simple-colors-light-theme-red-background1: #ff6666;
         --simple-colors-light-theme-red-background2: #ff4444;
         --simple-colors-light-theme-red-background3: #ff1100;
@@ -131,7 +131,7 @@
       }
 
       /* DARK THEME */
-      :root {
+      html {
         --simple-colors-dark-theme-foreground1: var(--simple-colors-light-theme-background1);
         --simple-colors-dark-theme-foreground2: var(--simple-colors-light-theme-background2);
         --simple-colors-dark-theme-foreground3: var(--simple-colors-light-theme-background3);
@@ -257,14 +257,9 @@
         --simple-colors-dark-theme-blue-grey-background2: var(--simple-colors-light-theme-blue-grey-foreground2);
         --simple-colors-dark-theme-blue-grey-background3: var(--simple-colors-light-theme-blue-grey-foreground3);
       }
-      
-      /* WEIRD HACK */
-      ::host {
-        --weird-hack: #000000;
-      }
         
       /* DEFAULT THEME OR RESEtTING DEFAULT THEME BACK TO LIGHT THEME */
-      :root, *[dark="false"] {
+      html, *[dark="false"] {
         --simple-colors-foreground1: var(--simple-colors-light-theme-foreground1);
         --simple-colors-foreground2: var(--simple-colors-light-theme-foreground2);
         --simple-colors-foreground3: var(--simple-colors-light-theme-foreground3);
