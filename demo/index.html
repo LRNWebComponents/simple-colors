@@ -35,7 +35,8 @@
         padding: 0.25em 0.5em;
         margin: 0 0.25em;
         border-radius: 0.2em;
-        font-size: 18pt;
+        font-weight: bold;
+        font-size: 14pt;
       }
       button:focus, 
       button:hover{
@@ -127,12 +128,18 @@
         </div>
         <template>
           <my-text id="themer">
+            <p>
+              Simple colors is a collection of CSS variables that let you 
+              centralize your colors accross components, and easily 
+              change a color scheme with two attributes. 
+              (See <a href="documentation">documentation</a> for more information.)
+            </p>
+            <p>Features and callouts:</p>
             <my-feature-box>
               <p>
-                Light theme colors with dark accent colors as CSS variables 
-                or as CSS @apply rules. Accent colors are loosely based on 
-                accessible combinations of Materialize colors. You can use 
-                simple color variables for your own CSS.
+                Simple colors lets you centralize your colors accross components, 
+                and dyamically easily a color scheme with a single attribute.
+                (See <a href="documentation">documentation</a> for more information.)
               </p>
             </my-feature-box>
 
@@ -155,6 +162,12 @@
             my-text {
               color: var(--simple-colors-foreground1);
               background-color: var(--simple-colors-background1);
+            }
+            my-text a:link {
+              color: var(--simple-colors-blue-foreground2);
+            }
+            my-text a:visited {
+              color: var(--simple-colors-purple-foreground2);
             }
             my-feature-box {
               border: 1px solid var(--simple-colors-foreground1);
