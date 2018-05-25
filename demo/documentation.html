@@ -98,28 +98,40 @@
             Most often you will want to use the highest-contrast foreground
             with the highest-contrast background to ensure readability. 
             For short sections of text, such as callouts or UI buttons, 
-            you may reduce the contrast. WCAG 2.0 AA allows the follwoing 
-            exceptions for contrast:
-          </p>  
+            you may reduce the contrast. 
+          </p>
+          <h5>Body Text</h5>
+          <p>
+            Any body text using a greyscale foreground 1-4 with a greyscale 
+            background 1-4 is WCAG 2.0 AA compliant. Body text using colors with 
+            foreground1-2 on greyscale background1-3 or (greyscale foreground1-3 
+            on colors with background1-2) is also compliant.
+          </p>
+          <h5>Large Text</h5>
+          <p>
+            WCAG 2.0 AA reuires higher contrast for small text than for large
+            text. Large text is defined as:
+          </p>
           <ul>
-            <li>decorative elements that have no semantic meaning, such as borders,</li>
-            <li>disabled UI elements,</li>
             <li>bold text that is 14 point or higher, or</li>
             <li>text that is 18 point or higher</li>
           </ul>
           <p>
-            You can use the forground number plus the background 
-            number to guide your color choices. (For example, 
-            <tt>--simple-colors-green-foreground2</tt> and 
-            <tt>--simple-colors-background</tt> would have a value of 4.)
+            Large text using colors with foreground1-3 on a
+            greyscale background1-3 (or greyscale foreground1-3 on 
+            colors with background1-3) is WCAG 2.0 AA compliant. 
+            All greyscale foregrounds and backgrounds are compliant 
+            for large text <em>except foreground5 with background5</em>.
           </p>
+          
+          <h5>Other UI Elements</h5>
+          <p>WCAG 2.0 AA allows the following exceptions for contrast:
+          </p>  
           <ul>
-            <li><strong>body text</strong> should be <= 3</li>
-            <li><strong>bold text</strong> should be <= 4</li>
-            <li><strong>callouts and asides</strong> should be <= 4</li>
-            <li><strong>disabled elements</strong> should be <= 6</li>
-            <li><strong>decorative elements</strong> should be <= 7</li>
+            <li>decorative elements that have no semantic meaning, such as borders</li>
+            <li>disabled UI elements</li>
           </ul>
+
           <h4 id="reference">simple-colors CSS Variable Reference</h4>
           <div class="theme-selector">
             <div>Change the theme and/or accent color. </div>
