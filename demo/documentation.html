@@ -10,6 +10,204 @@
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../simple-colors-demo.html">
+    <style>
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      table th, table td, table caption {
+        border: 1px solid black;
+      }
+      table caption {
+        border-bottom: none;
+        font-size: 120%;
+      }
+      table td {
+        padding: 0.25em 1em;
+      }
+      #simple-table tr.sfg td {
+        color: var(--simple-colors-background1);
+      }
+      #simple-table tr.sbg td {
+        color: var(--simple-colors-foreground1);
+      }
+      #simple-table tr.sfg td:nth-child(1) {
+        background-color: var(--simple-colors-foreground1);
+      }
+      #simple-table tr.sfg td:nth-child(2) {
+        background-color: var(--simple-colors-foreground2);
+      }
+      #simple-table tr.sfg td:nth-child(3) {
+        background-color: var(--simple-colors-foreground3);
+      }
+      #simple-table tr.sfg td:nth-child(4) {
+        background-color: var(--simple-colors-foreground4);
+      }
+      #simple-table tr.sfg td:nth-child(5) {
+        background-color: var(--simple-colors-foreground5);
+      }
+      #simple-table tr.sbg td:nth-child(1) {
+        background-color: var(--simple-colors-background1);
+      }
+      #simple-table tr.sbg td:nth-child(2) {
+        background-color: var(--simple-colors-background2);
+      }
+      #simple-table tr.sbg td:nth-child(3) {
+        background-color: var(--simple-colors-background3);
+      }
+      #simple-table tr.sbg td:nth-child(4) {
+        background-color: var(--simple-colors-background4);
+      }
+      #simple-table tr.sbg td:nth-child(5) {
+        background-color: var(--simple-colors-background5);
+      }
+      #light-theme-table tr.lfg td {
+        color: var(--simple-colors-light-theme-background1);
+      }
+      #light-theme-table tr.lbg td {
+        color: var(--simple-colors-light-theme-foreground1);
+      }
+      #light-theme-table tr.lfg td:nth-child(1) {
+        background-color: var(--simple-colors-light-theme-foreground1);
+      }
+      #light-theme-table tr.lfg td:nth-child(2) {
+        background-color: var(--simple-colors-light-theme-foreground2);
+      }
+      #light-theme-table tr.lfg td:nth-child(3) {
+        background-color: var(--simple-colors-light-theme-foreground3);
+      }
+      #light-theme-table tr.lfg td:nth-child(4) {
+        background-color: var(--simple-colors-light-theme-foreground4);
+      }
+      #light-theme-table tr.lfg td:nth-child(5) {
+        background-color: var(--simple-colors-light-theme-foreground5);
+      }
+      #light-theme-table tr.lbg td:nth-child(1) {
+        background-color: var(--simple-colors-light-theme-background1);
+      }
+      #light-theme-table tr.lbg td:nth-child(2) {
+        background-color: var(--simple-colors-light-theme-background2);
+      }
+      #light-theme-table tr.lbg td:nth-child(3) {
+        background-color: var(--simple-colors-light-theme-background3);
+      }
+      #light-theme-table tr.lbg td:nth-child(4) {
+        background-color: var(--simple-colors-light-theme-background4);
+      }
+      #light-theme-table tr.lbg td:nth-child(5) {
+        background-color: var(--simple-colors-light-theme-background5);
+      }
+      #dark-theme-table tr.dfg td {
+        color: var(--simple-colors-dark-theme-background1);
+      }
+      #dark-theme-table tr.dbg td {
+        color: var(--simple-colors-dark-theme-foreground1);
+      }
+      #dark-theme-table tr.dfg td:nth-child(1) {
+        background-color: var(--simple-colors-dark-theme-foreground1);
+      }
+      #dark-theme-table tr.dfg td:nth-child(2) {
+        background-color: var(--simple-colors-dark-theme-foreground2);
+      }
+      #dark-theme-table tr.dfg td:nth-child(3) {
+        background-color: var(--simple-colors-dark-theme-foreground3);
+      }
+      #dark-theme-table tr.dfg td:nth-child(4) {
+        background-color: var(--simple-colors-dark-theme-foreground4);
+      }
+      #dark-theme-table tr.dfg td:nth-child(5) {
+        background-color: var(--simple-colors-dark-theme-foreground5);
+      }
+      #dark-theme-table tr.dbg td:nth-child(1) {
+        background-color: var(--simple-colors-dark-theme-background1);
+      }
+      #dark-theme-table tr.dbg td:nth-child(2) {
+        background-color: var(--simple-colors-dark-theme-background2);
+      }
+      #dark-theme-table tr.dbg td:nth-child(3) {
+        background-color: var(--simple-colors-dark-theme-background3);
+      }
+      #dark-theme-table tr.dbg td:nth-child(4) {
+        background-color: var(--simple-colors-dark-theme-background4);
+      }
+      #dark-theme-table tr.dbg td:nth-child(5) {
+        background-color: var(--simple-colors-dark-theme-background5);
+      }
+      #simple-color-table td:nth-child(1) {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-accent-foreground1);
+      }
+      #simple-color-table td:nth-child(2) {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-accent-foreground2);
+      }
+      #simple-color-table td:nth-child(3) {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-accent-foreground3);
+      }
+      #simple-color-table td:nth-child(4) {
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-accent-background1);
+      }
+      #simple-color-table td:nth-child(5) {
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-accent-background2);
+      }
+      #simple-color-table td:nth-child(6) {
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-accent-background3);
+      }
+      #light-color-table td:nth-child(1) {
+        color: var(--simple-colors-light-theme-background1);
+        background-color: var(--simple-colors-light-theme-accent-foreground1);
+      }
+      #light-color-table td:nth-child(2) {
+        color: var(--simple-colors-light-theme-background1);
+        background-color: var(--simple-colors-light-theme-accent-foreground2);
+      }
+      #light-color-table td:nth-child(3) {
+        color: var(--simple-colors-light-theme-background1);
+        background-color: var(--simple-colors-light-theme-accent-foreground3);
+      }
+      #light-color-table td:nth-child(4) {
+        color: var(--simple-colors-light-theme-foreground1);
+        background-color: var(--simple-colors-light-theme-accent-background1);
+      }
+      #light-color-table td:nth-child(5) {
+        color: var(--simple-colors-light-theme-foreground1);
+        background-color: var(--simple-colors-light-theme-accent-background2);
+      }
+      #light-color-table td:nth-child(6) {
+        color: var(--simple-colors-light-theme-foreground1);
+        background-color: var(--simple-colors-light-theme-accent-background3);
+      }
+      #dark-color-table td:nth-child(1) {
+        color: var(--simple-colors-dark-theme-background1);
+        background-color: var(--simple-colors-dark-theme-accent-foreground1);
+      }
+      #dark-color-table td:nth-child(2) {
+        color: var(--simple-colors-dark-theme-background1);
+        background-color: var(--simple-colors-dark-theme-accent-foreground2);
+      }
+      #dark-color-table td:nth-child(3) {
+        color: var(--simple-colors-dark-theme-background1);
+        background-color: var(--simple-colors-dark-theme-accent-foreground3);
+      }
+      #dark-color-table td:nth-child(4) {
+        color: var(--simple-colors-dark-theme-foreground1);
+        background-color: var(--simple-colors-dark-theme-accent-background1);
+      }
+      #dark-color-table td:nth-child(5) {
+        color: var(--simple-colors-dark-theme-foreground1);
+        background-color: var(--simple-colors-dark-theme-accent-background2);
+      }
+      #dark-color-table td:nth-child(6) {
+        color: var(--simple-colors-dark-theme-foreground1);
+        background-color: var(--simple-colors-dark-theme-accent-background3);
+      }
+    </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
@@ -19,8 +217,10 @@
           <div slot="preselector">
             To use simple-colors in a component:
             <ol>
-              <li><tt>bower install --save LRNWebComponents/simple-colors-behaviors</tt></li>
-              <li><tt>&lt;link rel="import" href="../simple-colors-behaviors/simple-colors-behaviors.html"&gt;</tt></li>
+              <li><tt>bower install --save LRNWebComponents/simple-colors</tt></li>
+              <li>Include <tt>&lt;link rel="import" href="<em>path/to/</em>simple-colors/simple-colors.html"&gt;</tt></li>
+              <li>To allow an element to inherit the variables, add the behavior: <tt>simpleColorsBehaviors, </tt></li>
+              <li>When the element ready, request the color variables: <tt>Polymer.SimpleColorsUtility.requestAvailability();</tt></li>
               <li>Add custom styles to you element using the <a href="#simple">simple colors variables</a>:
                 <br><tt>&lt;style is="custom-style"&gt;
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;<em>:host { 
@@ -36,7 +236,7 @@
                 <tt>--simple-colors-<em><a href="#thamename">(theme name)</em></a>-<em><a href="#color">(color)</a></em>-<em><a href="#contrast">foreground or background with level</a></em></tt>. 
                 For example, <tt>--simple-colors-light-theme-red-background1</tt> 
                 would be a highest-contrast background color for UI element with 
-                a lighter theme. (See <a href="#reference">color reference</a> below.)
+                a lighter theme. (See <a href="#tables">color reference</a> below.)
               </p>
               <h2 id="thamename"><em>theme name</em></h2>
               <p>
@@ -334,6 +534,7 @@
             </div>
             <div id="light">
               <h2><tt>--simple-colors-light-theme</tt></h2>
+              <p>Use these variables only if you wish to override the current theme with a light theme.</p>
               <table id="light-theme-table">
                 <caption>Light Theme Colors (default)</caption>
                 <thead>
@@ -532,6 +733,7 @@
             </div>
             <div id="dark">
               <h2><tt>--simple-colors-dark-theme</tt></h2>
+              <p>Use these variables only if you wish to override the current theme with a dark theme.</p>
               <table id="dark-theme-table">
                 <caption>Dark Theme Colors (default)</caption>
                 <thead>

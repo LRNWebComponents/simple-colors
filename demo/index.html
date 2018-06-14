@@ -13,6 +13,115 @@
     <link rel="import" href="../simple-colors-demo.html">
     <style>
       element-with-simple-colors-behaviors { display: none; }
+     my-text {
+        display: block;
+        padding: 20px;
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-background1);
+      }
+     my-text button {
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        margin: 0 0.25em;
+        border-radius: 0.2em;
+        font-size: 14pt;
+      }
+     my-text button:focus, 
+     my-text button:hover {
+        cursor: pointer;
+      }
+     my-text button[disabled]:focus,
+     my-text button[disabled]:hover {
+        cursor: no-drop;
+      }
+     my-text my-progress-bar,
+     my-text my-progress {
+        display: inline-block;
+        width: 200px;
+        height: 10px;
+        border-radius: 0.5em;
+        position: relative;
+      }
+     my-text my-progress-bar {
+        border: 1px solid var(--simple-colors-accent-foreground3);
+      }
+     my-text my-progress {
+        height: 10px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 167px;
+        border-radius: 0.4em 0 0 0.4em;
+        border: none;
+        background-color: var(--simple-colors-accent-foreground2);
+      }
+     my-text my-feature-box {
+        padding: 20px;
+        display: block;
+        border-radius: 0 0 0.4em 0.4em;
+        margin: 0 0 15px;
+      }
+     my-text a:link {
+        color: var(--simple-colors-blue-foreground2);
+      }
+     my-text a:visited {
+        color: var(--simple-colors-purple-foreground2);
+      }
+     my-text my-feature-box {
+        border: 1px solid var(--simple-colors-foreground1);
+        border-top: 4px solid var(--simple-colors-accent-foreground2);
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-background2);
+      }
+     my-text button {
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-background1);
+        border: 1px solid var(--simple-colors-foreground3);
+      }
+     my-text button:not([disabled]):focus, 
+     my-text button:not([disabled]):hover {
+        background-color: var(--simple-colors-background2);
+        border-color: var(--simple-colors-background3);
+      }
+     my-text button.accent {
+        color: var(--simple-colors-accent-foreground2);
+        border-color: var(--simple-colors-accent-foreground2);
+      }
+     my-text button.action {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-accent-foreground2);
+        border-color: var(--simple-colors-accent-foreground2);
+      }
+     my-text button.action:not([disabled]):focus, 
+     my-text button.action:not([disabled]):hover {
+        background-color: var(--simple-colors-accent-foreground3);
+        border-color: var(--simple-colors-accent-foreground2);
+      }
+     my-text button.save {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-blue-foreground2);
+        border-color: var(--simple-colors-blue-foreground2);
+      }
+     my-text button.save:not([disabled]):focus, 
+     my-text button.save:not([disabled]):hover {
+        background-color: var(--simple-colors-blue-foreground3);
+        border-color: var(--simple-colors-blue-foreground2);
+      }
+     my-text button.delete {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-red-foreground2);
+        border-color: var(--simple-colors-red-foreground2);
+      }
+     my-text button.delete:not([disabled]):focus, 
+     my-text button.delete:not([disabled]):hover {
+        background-color: var(--simple-colors-red-foreground3);
+        border-color: var(--simple-colors-red-foreground2);
+      }
+     my-text button[disabled] {
+        color: var(--simple-colors-foreground5);
+        background-color: var(--simple-colors-background2);
+        border-color: var(--simple-colors-background3);
+      }
     </style>
   </head>
   <body>

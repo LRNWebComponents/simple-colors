@@ -5,7 +5,6 @@ A set of theming and accent color behaviors for components.
  - 
  - 
 -->
-
 <script>
   window.simpleColorsBehaviors = window.simpleColorsBehaviors || {};
   window.simpleColorsBehaviors = {
@@ -27,14 +26,44 @@ A set of theming and accent color behaviors for components.
         reflectToAttribute: true
       },
     },
-    observers: ['setTheme(accentColor,dark)'],
 
+    observers: ['setTheme(accentColor,dark)'],
+    /** 
+     * Call the css for slotted content.
+     */
     ready: function(){
+    },
+    /** 
+     * Set color variables. Set variables for element and for slotted content.
+     */
+    ready: function(){
+      Polymer.SimpleColorsUtility.requestAvailability();
+      this.__hexCodes = {
+        "grey": ['#000000','#111111','#222222','#444444','#666666','#999999','#bbbbbb','#dddddd','#eeeeee','#ffffff'],
+        "accent": ['#000000','#111111','#222222','#dddddd','#eeeeee','#ffffff'],
+        "red": ['#a00000','#c70000','#ee0000','#ff2222','#ff4444','#ff6666'],
+        "pink": ['#9a006e','#bb0080','#da0099','#ff2077','#ff4089','#ff5b9a'],
+        "purple": ['#44006f','#6300a0','#7200ba','#dd22ee','#e75cff','#ea75ff'],
+        "deepPurple": ['#1d005c','#2b0082','#32009d','#7f5fff','#9175FF','#9e86ff'],
+        "indigo": ['#000f72','#00149a','#001dc4','#2277ff','#428BFF','#5da1ff'],
+        "blue": ['#002b63','#0041a2','#0156c6','#0091ff','#199fff','#30aaff'],
+        "lightBlue": ['#002f50','#00547e','#0075a7','#00c0ff','#22cbff','#3cd2ff'],
+        "cyan": ['#00393c','#005b61','#017f8a','#22f0f0','#4fffff','#6affff'],
+        "teal": ['#003930','#006559','#018e7b','#00ffa6','#1bffaf','#5dffc1'],
+        "green": ['#022709','#105e26','#128737','#00f956','#38FF61','#7bff86'],
+        "lightGreen": ['#122d09','#2f5c16','#438316','#6fff00','#89FF2E','#A0FF52'],
+        "lime": ['#594700','#716000','#877000','#aeff00','#b4ff18','#beff4d'],
+        "yellow": ['#634200','#855400','#965c00','#f6f600','#fcfc38','#ffff60'],
+        "amber": ['#673800','#8F4F00','#a85c00','#dfa400','#e3b030','#ffcb62'],
+        "orange": ['#8c2a00','#a83500','#bf3900','#ff9625','#ff8800','#ff9625'],
+        "deepOrange": ['#820400','#a70800','#c61400','#ff7b42','#ff7738','#ff7b42'],
+        "brown": ['#442d26','#5D4037','#85574a','#a47060','#b67f6f','#c28a7b'],
+        "blueGrey": ['#2f4149','#455a64','#56707c','#699096','#75989F','#81a3a9']
+      };
       this.reset();
     },
 
     setTheme: function(accentColor,dark){
-      //console.log('--- SETTING THEME DARK='+dark+' AND ACCENT-COLOR='+accentColor+' -------');
       if(accentColor!== null && accentColor!==""){
         let prop = accentColor.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
         if(this.__lightTheme.hasOwnProperty(prop)){
@@ -80,29 +109,7 @@ A set of theming and accent color behaviors for components.
           }
         }
       };
-      this.__defaultAccent = ['#000000','#111111','#222222','#dddddd','#eeeeee','#ffffff'];
-      this.__lightTheme = {
-        "grey": ['#000000','#111111','#222222','#444444','#666666','#999999','#bbbbbb','#dddddd','#eeeeee','#ffffff'],
-        "accent": this.__defaultAccent.slice(),
-        "red": ['#a00000','#c70000','#ee0000','#ff1100','#ff4444','#ff6666'],
-        "pink": ['#9a006e','#bb0080','#da0099','#ff006f','#ff4089','#ff5b9a'],
-        "purple": ['#44006f','#6300a0','#ee0000','#c020db','#e75cff','#ea75ff'],
-        "deepPurple": ['#1d005c','#2b0082','#32009d','#7f5fff','#9175FF','#9e86ff'],
-        "indigo": ['#000f72','#00149a','#001dc4','#1170ff','#428BFF','#5da1ff'],
-        "blue": ['#002b63','#0041a2','#0156c6','#0091ff','#199fff','#2ba7ff'],
-        "lightBlue": ['#002f50','#00547e','#0075a7','#31c8ff','#14c0ff','#00b7ff'],
-        "cyan": ['#00393c','#005b61','#017f8a','#00dfdf','#4fffff','#6affff'],
-        "teal": ['#003930','#006559','#018e7b','#00ffa6','#1bffaf','#5dffc1'],
-        "green": ['#022709','#105e26','#128737','#00c956','#38FF61','#38FF61'],
-        "lightGreen": ['#122d09','#2f5c16','#438316','#6fff00','#89FF2E','#A0FF52'],
-        "lime": ['#594700','#716000','#877000','#aeff00','#b4ff18','#beff4d'],
-        "yellow": ['#634200','#855400','#965c00','#f6f600','#fcfc38','#ffff60'],
-        "amber": ['#673800','#8F4F00','#a85c00','#dfa400','#e3b030','#ffcb62'],
-        "orange": ['#8c2a00','#a83500','#bf3900','#ff6600','#ff8800','#ff9625'],
-        "deepOrange": ['#820400','#a70800','#c61400','#31c8ff','#ff7738','#ff7b42'],
-        "brown": ['#442d26','#5D4037','#85574a','#a47060','#b67f6f','#c28a7b'],
-        "blueGrey": ['#2f4149','#455a64','#56707c','#699096','#75989F','#81a3a9']
-      };
+      this.__lightTheme = this.__hexCodes;
       this.__darkTheme = {
         "grey": this.__lightTheme.grey.slice().reverse(),
         "accent": this.__lightTheme.accent.slice().reverse(),
