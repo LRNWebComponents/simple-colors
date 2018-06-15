@@ -29,14 +29,9 @@ A set of theming and accent color behaviors for components.
 
     observers: ['setTheme(accentColor,dark)'],
     /** 
-     * Call the css for slotted content.
-     */
-    ready: function(){
-    },
-    /** 
      * Set color variables. Set variables for element and for slotted content.
      */
-    ready: function(){
+    created: function(){
       Polymer.SimpleColorsUtility.requestAvailability();
       this.__hexCodes = {
         "grey": ['#000000','#111111','#222222','#444444','#666666','#999999','#bbbbbb','#dddddd','#eeeeee','#ffffff'],
