@@ -75,6 +75,7 @@
         accent.onchange = function(){
           updateSpan();
           root.accentColor = accent.options[accent.selectedIndex].innerText;
+          root.getContrasts('',accent.options[accent.selectedIndex].innerText !== 'none (default)',true,accent.selectedIndex,accent.selectedIndex%2==1);
         }
         theme.onchange = function(){
           updateSpan();

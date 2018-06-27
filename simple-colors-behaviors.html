@@ -131,6 +131,55 @@ A set of theming and accent color behaviors for components.
       this.setThemeProps('--simple-colors-light-theme-',this.__lightTheme);
       this.setThemeProps('--simple-colors-dark-theme-',this.__darkTheme);
     },
+    getContrasts: function(theme,isColor,isForeground,level,isSmallText) {
+      //let labels = color.replace('--simple-colors-').split('-').reverse(), isForeground = labels[0].indexOf('foreground') === 0, level = parseInt(labels[0][labels[0].length-1]), isColor = labels[1] !== 'theme';
+      isSmallText =  isSmallText !== undefined ? isSmallText : true;
+      /*  Small text requires the highest contrast ratio for WCAG 2.0 AA compliance. 
+          Small text is any content that is NOT:
+          - bold text that is 14 point or higher,
+          - text that is 18 point or higher,
+          - a decorative element that has no semantic meaning, such as a border, or
+          - a disabled UI element */
+      let wcagaa = [
+        //level 1
+        {
+          "colors": {"small": [1,2,3,4], "largeOnly": [5]}, 
+          "greys": {"small": [1,2,3,4,5], "largeOnly": []} 
+        },
+        //level 2
+        {
+          "colors": {"small": [1,2,3], "largeOnly": [4]}, 
+          "greys": {"small": [1,2,3,4,5], "largeOnly": []} 
+        },
+        //level 3
+        {
+          "colors": {"small": [1,2,3], "largeOnly": []}, 
+          "greys": {"small": [1,2,3,4], "largeOnly": [5]} 
+        },
+        //level 4
+        {
+          "colors": {"small": [1], "largeOnly": [2]}, 
+          "greys": {"small": [1,2,3,4], "largeOnly": []} 
+        },
+        //level 5
+        {
+          "colors": {"small": [], "largeOnly": [1]}, 
+          "greys": {"small": [1], "largeOnly": [2]} 
+        }
+      ];
+      let data1 = wcagaa[level-1], colors = data1.colors.small.slice(0);
+      if(!isSmallText) {
+        console.log(data1.colors.largeOnly);
+        colors.concat(data1.colors.largeOnly);
+        if(!isColor) {
+          colors.concat(data1.greys.small);
+          colors.concat(data1.greys.largeOnly);
+        }
+      } else {
+        if(!isColor) colors.concat(data1.greys.small);
+      }
+      console.log('level,isSmallText,isColor,data1.colors.small,colors',level,isSmallText,isColor,data1.colors.small,colors);
+    }
   };
 </script>
 
