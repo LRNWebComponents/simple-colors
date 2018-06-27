@@ -167,18 +167,10 @@ A set of theming and accent color behaviors for components.
           "greys": {"small": [1], "largeOnly": [2]} 
         }
       ];
-      let data1 = wcagaa[level-1], colors = data1.colors.small.slice(0);
+      let data1 = wcagaa[level-1], data2 = isColor ? data1.colors : data1.greys, colors = data2.small.slice(0);
       if(!isSmallText) {
-        console.log(data1.colors.largeOnly);
-        colors.concat(data1.colors.largeOnly);
-        if(!isColor) {
-          colors.concat(data1.greys.small);
-          colors.concat(data1.greys.largeOnly);
-        }
-      } else {
-        if(!isColor) colors.concat(data1.greys.small);
+        colors = colors.concat(data2.largeOnly);
       }
-      console.log('level,isSmallText,isColor,data1.colors.small,colors',level,isSmallText,isColor,data1.colors.small,colors);
     }
   };
 </script>
