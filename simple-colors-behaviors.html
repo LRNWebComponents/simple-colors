@@ -96,7 +96,6 @@ A set of theming and accent color behaviors for components.
       this.setThemeProps('--simple-colors-dark-theme-',this.__darkTheme);
     },
     getContrasts: function(theme,isColor,isForeground,level,isSmallText) {
-      //let labels = color.replace('--simple-colors-').split('-').reverse(), isForeground = labels[0].indexOf('foreground') === 0, level = parseInt(labels[0][labels[0].length-1]), isColor = labels[1] !== 'theme';
       isSmallText =  isSmallText !== undefined ? isSmallText : true;
       /*  Small text requires the highest contrast ratio for WCAG 2.0 AA compliance. 
           Small text is any content that is NOT:
@@ -136,7 +135,7 @@ A set of theming and accent color behaviors for components.
         colors = colors.concat(data2.largeOnly);
       }
       for(let i = 0; i<colors.length; i++){
-        let suffix = isForeground ? '-background'+colors[i] : '-foreground'+level;
+        let suffix = isForeground ? '-background'+colors[i] : '-foreground'+(i+1);
         for (var property in this.__hexCodes) {
           if(property !== 'colorLevels'){
             let color = property === 'grey' ? '' : '-'+property.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(), cssVar =  '--simple-colors-'+theme+'-theme'+color+suffix, hex = this.__variables[cssVar];

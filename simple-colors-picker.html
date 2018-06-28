@@ -128,20 +128,14 @@
                 }
                 color2 = color === 'grey' ? '' : '-'+color;
                 fgbg = isForeground ? 'foreground' : 'background';
-                colorName = '--simple-colors-'+theme+'-theme'+color2+'-'+fgbg+level; results += '<p><strong>'+colorName+':</strong> '+colorName+' ('+this.getAttribute('color')+')</p><p><strong>Contrasting Colors:</strong></p><ul>';
+                colorName = '--simple-colors-'+theme+'-theme'+color2+'-'+fgbg+level; results += '<p><strong>Color Name:</strong> '+colorName+' ('+root.__hexCodes[property][i]+')</p><p><strong>Contrasting Colors:</strong></p><ul>';
                 contrasts = root.getContrasts(theme,color !== 'grey',isForeground,level,size === 'small text');
-                for(let j=0; j<contrasts.length;j++){
-                  console.log(j);
-                  contrasts += '<li>'+contrasts[j].variable+' ('+contrasts[j].hexCode+')</li>'
+                
+                for(let j=0; j < contrasts.length;j++){
+                  results += '<li>'+contrasts[j].variable+' ('+contrasts[j].hexCode+')</li>';
                 }
                 results += '</ul>';
-                this.$.results.innerHTML = results;
-                contrasts = root.getContrasts(theme,color !== 'grey',isForeground,level,size === 'small text');
-                for(let j=0; j<contrasts.length;j++){
-                  
-                }
-                alert('you picked '+colorName);
-                console.log('contrasting colors ',root.getContrasts(theme,color !== 'grey',isForeground,level,size === 'small text'));
+                root.$.results.innerHTML = results;
               });
               row.appendChild(swatch);
             }
