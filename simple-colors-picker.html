@@ -1,0 +1,154 @@
+<link rel="import" href="simple-colors.html">
+<dom-module id="simple-colors-picker">
+  <template>
+    <style is="custom-style">
+      .theme-selector {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 5px;
+      }
+      .theme-selector-inner {
+        display: flex;
+        justify-content: space-around;
+        margin: 15px 0;
+      }
+      .theme-selector-inner .dropdowns div {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 5px;
+      }
+      .theme-selector-inner > div, 
+      .theme-selector-inner .dropdowns div > * {
+        align-self: middle;
+      }
+      .theme-selector-inner select { 
+        margin-left: 1em;
+      }
+    </style>
+    <h3>Small Text</h3>
+    <p>
+      Small text requires the highest contrast ratio for WCAG 2.0 AA compliance. 
+      Small text is any content that is <strong>NOT</strong>:
+    </p>
+    <ul>
+      <li>bold text that is 14 point or higher,</li>
+      <li>text that is 18 point or higher,</li>
+      <li>a decorative elements that has no semantic meaning, such as a border, or</li>
+      <li>a disabled UI element</li>
+    </ul>
+    <h3>Large Text</h3>
+    <p>
+      WCAG 2.0 AA requires higher contrast for small text than for large
+      text and for UI elements that have no text. Large text is defined as:
+    </p>
+    <ul>
+      <li>bold text that is 14 point or higher, or</li>
+      <li>text that is 18 point or higher</li>
+    </ul>
+    
+    <h3>Other UI Elements</h3>
+    <p>WCAG 2.0 AA allows the following exceptions for contrast:
+    </p>  
+    <ul>
+      <li>decorative elements that have no semantic meaning, such as borders</li>
+      <li>disabled UI elements</li>
+    </ul>
+    <div class="theme-selector">
+      <div>Select a color to get a list of WCAG 2.0 AA-coompliant contrasting colors: </div>
+      <div class="theme-selector-inner">
+        <div class="dropdowns">
+          <div>
+            <label for="size">Text Size: </label>
+            <select id="size">
+              <option>small text</option>
+              <option>large text</option>
+            </select>
+          </div>
+          <div>
+            <label for="theme">Theme: </label>
+            <select id="theme">
+              <option>light</option>
+              <option>dark</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="color">Color:</label>
+          <div id="swatches">
+          </div>
+        </div>
+      </div>
+      <div>
+        <label for="results">Results:</label>
+        <div id="results"></div>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'simple-colors-picker',
+      behaviors: [ simpleColorsBehaviors ], 
+      ready: function(){
+        let root = this;
+        for(let i=this.__hexCodes.colorLevels.length-1; i>=0; i--){
+          let row = document.createElement('div');
+          row.style.margin = '0';
+          row.style.padding = '0';
+          row.style.height = '20px';
+          row.style.boxSizing = 'content-box';
+          for (var property in this.__hexCodes) {
+            if (property !== 'colorLevels' && property !== 'accent' && this.__hexCodes.hasOwnProperty(property)) {
+              let swatch = document.createElement('button');
+              swatch.style.backgroundColor = this.__hexCodes[property][i];
+              swatch.setAttribute('color',property);
+              swatch.setAttribute('level',(i+1));
+              swatch.style.width = '20px';
+              swatch.style.height = '20px';
+              swatch.style.margin = '0';
+              swatch.style.padding = '0';
+              swatch.style.borderRadius = '0em';
+              swatch.style.boxSizing = 'content-box';
+              swatch.style.border = 'none';
+              swatch.addEventListener('click',function(){
+                let isForeground, fgbg, color2, colorName, contrasts = [], results = '',size = root.$.size[root.$.size.selectedIndex].innerText, level = parseInt(swatch.getAttribute('level')), theme = root.$.theme[root.$.theme.selectedIndex].innerText, color = swatch.getAttribute('color').replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase();
+                if(theme === 'light'){
+                  if(level < 6){
+                    isForeground = true;
+                  } else {
+                    isForeground = false;
+                    level = 11 - level;
+                  }
+                } else {
+                  if(level < 6){
+                    isForeground = false;
+                  } else {
+                    isForeground = true;
+                    level = 11 - level;
+                  }
+                }
+                color2 = color === 'grey' ? '' : '-'+color;
+                fgbg = isForeground ? 'foreground' : 'background';
+                colorName = '--simple-colors-'+theme+'-theme'+color2+'-'+fgbg+level; results += '<p><strong>'+colorName+':</strong> '+colorName+' ('+this.getAttribute('color')+')</p><p><strong>Contrasting Colors:</strong></p><ul>';
+                contrasts = root.getContrasts(theme,color !== 'grey',isForeground,level,size === 'small text');
+                for(let j=0; j<contrasts.length;j++){
+                  console.log(j);
+                  contrasts += '<li>'+contrasts[j].variable+' ('+contrasts[j].hexCode+')</li>'
+                }
+                results += '</ul>';
+                this.$.results.innerHTML = results;
+                contrasts = root.getContrasts(theme,color !== 'grey',isForeground,level,size === 'small text');
+                for(let j=0; j<contrasts.length;j++){
+                  
+                }
+                alert('you picked '+colorName);
+                console.log('contrasting colors ',root.getContrasts(theme,color !== 'grey',isForeground,level,size === 'small text'));
+              });
+              row.appendChild(swatch);
+            }
+            this.$.swatches.appendChild(row);
+          }
+        }
+      }
+    });
+  </script>
+</dom-module>
