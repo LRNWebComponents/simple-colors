@@ -136,11 +136,17 @@ A set of theming and accent color behaviors for components.
       }
       for(let i = 0; i<colors.length; i++){
         let suffix = isForeground ? '-background'+colors[i] : '-foreground'+(i+1);
-        for (var property in this.__hexCodes) {
-          if(property !== 'colorLevels'){
-            let color = property === 'grey' ? '' : '-'+property.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(), cssVar =  '--simple-colors-'+theme+'-theme'+color+suffix, hex = this.__variables[cssVar];
-            results.push({"variable": cssVar, "hexCode": hex});
-          }
+
+        if(!isColor) {
+          for (var property in this.__hexCodes) {
+            if(property !== 'colorLevels'){
+              let color = property === 'grey' ? '' : '-'+property.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(), cssVar =  '--simple-colors-'+theme+'-theme'+color+suffix, hex = this.__variables[cssVar];
+              results.push({"variable": cssVar, "hexCode": hex});
+            }
+          }   
+        } else {
+          let  cssVar =  '--simple-colors-'+theme+'-theme'+suffix, hex = this.__variables[cssVar];
+          results.push({"variable": cssVar, "hexCode": hex});
         }
       }
       return results;

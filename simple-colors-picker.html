@@ -12,17 +12,24 @@
         justify-content: space-around;
         margin: 15px 0;
       }
-      .theme-selector-inner .dropdowns div {
+      .theme-selector-inner .dropdowns div.dropdown {
         display: flex;
         justify-content: flex-start;
         margin-bottom: 5px;
       }
       .theme-selector-inner > div, 
-      .theme-selector-inner .dropdowns div > * {
+      .theme-selector-inner .dropdowns div.dropdown > * {
         align-self: middle;
       }
       .theme-selector-inner select { 
         margin-left: 1em;
+      }
+      .theme-selector-inner #results:not(:empty) {
+        max-height: 220px;
+        overflow-y: scroll;
+        padding: 15px;
+        border-radius: 0.25em;
+        border: 1px solid #aaa;
       }
     </style>
     <h3>Small Text</h3>
@@ -57,30 +64,29 @@
       <div>Select a color to get a list of WCAG 2.0 AA-coompliant contrasting colors: </div>
       <div class="theme-selector-inner">
         <div class="dropdowns">
-          <div>
+          <div class="dropdown">
             <label for="size">Text Size: </label>
             <select id="size">
               <option>small text</option>
               <option>large text</option>
             </select>
           </div>
-          <div>
+          <div class="dropdown">
             <label for="theme">Theme: </label>
             <select id="theme">
               <option>light</option>
               <option>dark</option>
             </select>
           </div>
-        </div>
-        <div>
-          <label for="color">Color:</label>
-          <div id="swatches">
+          <div>
+            <label for="color">Color:</label>
+            <div id="swatches">
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <label for="results">Results:</label>
-        <div id="results"></div>
+        <div>
+          <div id="results"></div>
+        </div>
       </div>
     </div>
   </template>
@@ -90,26 +96,18 @@
       behaviors: [ simpleColorsBehaviors ], 
       ready: function(){
         let root = this;
+        //loop through each level 1-10 (foreground 1-5 and background 1-5)
         for(let i=this.__hexCodes.colorLevels.length-1; i>=0; i--){
           let row = document.createElement('div');
           row.style.margin = '0';
           row.style.padding = '0';
           row.style.height = '20px';
           row.style.boxSizing = 'content-box';
+          // loop through each color at that level
           for (var property in this.__hexCodes) {
             if (property !== 'colorLevels' && property !== 'accent' && this.__hexCodes.hasOwnProperty(property)) {
-              let swatch = document.createElement('button');
-              swatch.style.backgroundColor = this.__hexCodes[property][i];
-              swatch.setAttribute('color',property);
-              swatch.setAttribute('level',(i+1));
-              swatch.style.width = '20px';
-              swatch.style.height = '20px';
-              swatch.style.margin = '0';
-              swatch.style.padding = '0';
-              swatch.style.borderRadius = '0em';
-              swatch.style.boxSizing = 'content-box';
-              swatch.style.border = 'none';
-              swatch.addEventListener('click',function(){
+              let hex = root.__hexCodes[property][i], swatch = document.createElement('button'), getColors = function(swatch){
+                // when swatch is selected get and display the contrasting colors
                 let isForeground, fgbg, color2, colorName, contrasts = [], results = '',size = root.$.size[root.$.size.selectedIndex].innerText, level = parseInt(swatch.getAttribute('level')), theme = root.$.theme[root.$.theme.selectedIndex].innerText, color = swatch.getAttribute('color').replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase();
                 if(theme === 'light'){
                   if(level < 6){
@@ -128,14 +126,43 @@
                 }
                 color2 = color === 'grey' ? '' : '-'+color;
                 fgbg = isForeground ? 'foreground' : 'background';
-                colorName = '--simple-colors-'+theme+'-theme'+color2+'-'+fgbg+level; results += '<p><strong>Color Name:</strong> '+colorName+' ('+root.__hexCodes[property][i]+')</p><p><strong>Contrasting Colors:</strong></p><ul>';
-                contrasts = root.getContrasts(theme,color !== 'grey',isForeground,level,size === 'small text');
-                
+                colorName = '--simple-colors-'+theme+'-theme'+color2+'-'+fgbg+level; results += '<p><strong>Color Name:</strong> '+colorName+' ('+hex+')</p><p><strong>Contrasting Colors:</strong></p><ul>';
+                contrasts = root.getContrasts(theme,color !== 'grey',isForeground,level,size === 'small text'); 
                 for(let j=0; j < contrasts.length;j++){
-                  results += '<li>'+contrasts[j].variable+' ('+contrasts[j].hexCode+')</li>';
+                  let hex2 = contrasts[j].hexCode, c1 = textColor = isForeground ? hex : hex2, bgColor = !isForeground ? hex : hex2;
+                  results += '<li style="color: '+textColor+';background-color: '+bgColor+';">'+contrasts[j].variable+' ('+hex2+')</li>';
                 }
                 results += '</ul>';
                 root.$.results.innerHTML = results;
+              };
+              // set up swatches
+              swatch.style.backgroundColor = this.__hexCodes[property][i];
+              swatch.setAttribute('color',property);
+              swatch.setAttribute('level',(i+1));
+              swatch.style.width = '20px';
+              swatch.style.height = '20px';
+              swatch.style.margin = '0';
+              swatch.style.padding = '0';
+              swatch.style.borderRadius = '0em';
+              swatch.style.boxSizing = 'content-box';
+              swatch.style.border = 'none';
+              swatch.addEventListener('click',function(){
+                getColors(swatch);
+              });
+              // listen for swatch navigation or selection
+              swatch.addEventListener('keyup',function(e){
+                let level = parseInt(swatch.getAttribute('level'));
+                if(e.keyCode === 13 || e.keyCode === 32) {
+                  getColors(swatch);
+                } else if (e.keyCode === 37) {
+                  if (swatch.previousSibling !== undefined && swatch.previousSibling !== null) swatch.previousSibling.focus();
+                } else if (e.keyCode === 39) {
+                  if (swatch.nextSibling !== undefined && swatch.nextSibling !== null) swatch.nextSibling.focus();
+                } else if (e.keyCode === 38) {
+                  if (level < 10) root.$$('button[level="'+(level+1)+'"][color="'+swatch.getAttribute('color')+'"]').focus();
+                } else if (e.keyCode === 39) {
+                  if (level > 1) root.$$('button[level="'+(level-1)+'"][color="'+swatch.getAttribute('color')+'"]').focus();
+                } 
               });
               row.appendChild(swatch);
             }
