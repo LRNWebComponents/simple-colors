@@ -1,92 +1,111 @@
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-icons/image-icons.html">
 <link rel="import" href="simple-colors.html">
+<link rel="import" href="simple-colors-picker-swatch.html">
 <dom-module id="simple-colors-picker">
   <template>
     <style is="custom-style">
-      .theme-selector {
-        border: 1px solid #ddd;
-        padding: 15px;
-        margin: 5px;
-      }
-      .theme-selector-inner {
-        display: flex;
-        justify-content: space-around;
-        margin: 15px 0;
-      }
-      .theme-selector-inner .dropdowns div.dropdown {
-        display: flex;
-        justify-content: flex-start;
-        margin-bottom: 5px;
-      }
-      .theme-selector-inner > div, 
-      .theme-selector-inner .dropdowns div.dropdown > * {
-        align-self: middle;
-      }
-      .theme-selector-inner select { 
-        margin-left: 1em;
-      }
-      .theme-selector-inner #results:not(:empty) {
-        max-height: 220px;
-        overflow-y: scroll;
-        padding: 15px;
-        border-radius: 0.25em;
-        border: 1px solid #aaa;
-      }
+        :host {
+          display: inline-block;
+        }
+        :host, :host #button, :host #palette {
+          margin: 0;
+          padding: 0;
+        }
+        :host #collapse {
+          position: relative;
+        }
+        :host[disabled] #collapse,
+        :host[collapsed] #collapse {
+          height: 0;
+          overflow: hidden;
+          transition: all 0.25s;
+          transition-delay: 0.25s;
+        }
+        :host #palette {
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: table;
+          border-collapse: collapse;
+        }
+        :host .row {
+          display: table-row;
+        }
+        :host simple-colors-picker-swatch {
+          display: table-cell;
+          padding-top: var(--simple-colors-picker-swatch-size, 20px);
+          padding-left: var(--simple-colors-picker-swatch-size, 20px);
+        }
+        :host simple-colors-picker-swatch[disabled] {
+          display: none;
+        }
+        :host .sr-only {
+          display: table-cell;
+          font-size: 0;
+        }
+        :host #button {
+          display: flex;
+          align-items: center;
+          border: 1px solid;
+          border-radius: 0.25em;
+          color: var(--simple-colors-picker-button-color, --simple-colors-foreground2);
+          border-color: var(--simple-colors-picker-button-border-color, --simple-colors-background3);
+          background-color: var(--simple-colors-picker-button-bg-color, --simple-colors-background2);
+        }
+        :host:not([disabled]) #button:focus,
+        :host:not([disabled]) #button:hover {
+          color: var(--simple-colors-picker-button-hover-color, --simple-colors-foreground1);
+          border-color: var(--simple-colors-picker-button-hover-color, --simple-colors-background5);
+          background-color: var(--simple-colors-picker-button-hover-bg-color, --simple-colors-background1);
+        }
+        :host #button > div {
+          margin: 5px;
+          border: 1px solid;
+          flex-grow: 1;
+          border-color: var(--simple-colors-picker-button-hover-color, --simple-colors-background5);
+          display: inline-block;
+        }
+        :host #button > div, :host #button > div iron-icon {
+          width: var(--simple-colors-picker-preview-size, 20px);
+          height: var(--simple-colors-picker-preview-size, 20px);
+        }
+        :host:not([collapsed]) #icon {
+          transform: rotate(-90deg);
+          transition: transform 0.25s;
+        }
+        :host #palette {
+          border: 1px solid;
+          border-color: var(--simple-colors-picker-button-border-color, --simple-colors-background3);
+        }
+        :host #empty {
+          padding: 15px;
+        }
     </style>
-    <h3>Small Text</h3>
-    <p>
-      Small text requires the highest contrast ratio for WCAG 2.0 AA compliance. 
-      Small text is any content that is <strong>NOT</strong>:
-    </p>
-    <ul>
-      <li>bold text that is 14 point or higher,</li>
-      <li>text that is 18 point or higher,</li>
-      <li>a decorative elements that has no semantic meaning, such as a border, or</li>
-      <li>a disabled UI element</li>
-    </ul>
-    <h3>Large Text</h3>
-    <p>
-      WCAG 2.0 AA requires higher contrast for small text than for large
-      text and for UI elements that have no text. Large text is defined as:
-    </p>
-    <ul>
-      <li>bold text that is 14 point or higher, or</li>
-      <li>text that is 18 point or higher</li>
-    </ul>
-    
-    <h3>Other UI Elements</h3>
-    <p>WCAG 2.0 AA allows the following exceptions for contrast:
-    </p>  
-    <ul>
-      <li>decorative elements that have no semantic meaning, such as borders</li>
-      <li>disabled UI elements</li>
-    </ul>
-    <div class="theme-selector">
-      <div>Select a color to get a list of WCAG 2.0 AA-coompliant contrasting colors: </div>
-      <div class="theme-selector-inner">
-        <div class="dropdowns">
-          <div class="dropdown">
-            <label for="size">Text Size: </label>
-            <select id="size">
-              <option>small text</option>
-              <option>large text</option>
-            </select>
+    <button id="button" label="[[label]]" disabled$="[[disabled]]">
+      <div id="swatch" style="[[selectedStyle]]"><iron-icon id="texture" icon="image:texture"></iron-icon></div>
+      <span id="icon"><iron-icon icon="arrow-drop-down"></iron-icon></span>
+    </button>
+    <div id="collapse" aria-collapsed="[[collapse]]">
+      <div id="palette">
+        <div id="empty">No colors available.</div>
+        <template id="rows" is="dom-repeat" items="[[swatches]]" as="row" index-as="level">
+          <div class="row">
+            <span id="level" class="sr-only">lightness level [[level]]</span>
+            <template id="swatches" is="dom-repeat" items="[[row]]" as="swatch" index-as="order">
+              <simple-colors-picker-swatch
+                aria-describedby="level"
+                disabled="[[disabled]]"
+                hex="[[swatch.hex]]" 
+                label="[[swatch.label]]" 
+                level="[[swatch.level]]" 
+                order="[[order]]"
+                role="button"
+                tabindex="0">
+              </simple-colors-picker-swatch>
+            </template>
           </div>
-          <div class="dropdown">
-            <label for="theme">Theme: </label>
-            <select id="theme">
-              <option>light</option>
-              <option>dark</option>
-            </select>
-          </div>
-          <div>
-            <label for="color">Color:</label>
-            <div id="swatches">
-            </div>
-          </div>
-        </div>
-        <div>
-          <div id="results"></div>
-        </div>
+        </template>
       </div>
     </div>
   </template>
@@ -94,81 +113,219 @@
     Polymer({
       is: 'simple-colors-picker',
       behaviors: [ simpleColorsBehaviors ], 
+      listeners: {
+        'click-swatch': '_onClickSwatch',
+        'previous-swatch': '_onPreviousSwatch',
+        'next-swatch': '_onNextSwatch',
+        'previous-level': '_onPreviousLevel',
+        'next-level': '_onNextLevel'
+      },
+      properties: {
+        /**
+          * Only show colors that contrast with supplied color variable?
+          */
+        contrast: {
+          type: String,
+          value: null
+        },
+        /**
+          * Expand contrasting colors to WCAG 2.0 AA for large text? 
+          * Default is WCAG 2.0 AA small text.
+          */
+        contrastLargeText: {
+          type: Boolean,
+          value: false
+        },
+        /**
+          * is the picker disabled?
+          */
+        disabled: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+        /**
+          * is the picker collapsed?
+          */
+        collapsed: {
+          type: Boolean,
+          value: true,
+          reflectToAttribute: true
+        },
+        /**
+          * The label for the color picker input
+          */
+        label: {
+          type: String,
+          value: 'Pick a color.'
+        },
+        /**
+          * The theme for the color variables
+          */
+        theme: {
+          type: String,
+          value: null
+        },
+        /**
+          * The swatches for the color picker
+          */
+        swatches: {
+          type: Array,
+          value: []
+        },
+        /**
+          * An object with the variable and hex code for the selected color
+          */
+        value: {
+          type: Object,
+          value: null
+        },
+        /**
+          * CSS to preview selected swatch
+          */
+        selectedStyle: {
+          type: String,
+          computed: '_setSelectedStyle(value)'
+        }
+      },
+      /**
+        * Load swatches and listen for button click
+        */
       ready: function(){
         let root = this;
-        //loop through each level 1-10 (foreground 1-5 and background 1-5)
-        for(let i=this.__hexCodes.colorLevels.length-1; i>=0; i--){
-          let row = document.createElement('div');
-          row.style.margin = '0';
-          row.style.padding = '0';
-          row.style.height = '20px';
-          row.style.boxSizing = 'content-box';
-          // loop through each color at that level
-          for (var property in this.__hexCodes) {
-            if (property !== 'colorLevels' && property !== 'accent' && this.__hexCodes.hasOwnProperty(property)) {
-              let hex = root.__hexCodes[property][i], swatch = document.createElement('button'), getColors = function(swatch){
-                // when swatch is selected get and display the contrasting colors
-                let isForeground, fgbg, color2, colorName, contrasts = [], results = '',size = root.$.size[root.$.size.selectedIndex].innerText, level = parseInt(swatch.getAttribute('level')), theme = root.$.theme[root.$.theme.selectedIndex].innerText, color = swatch.getAttribute('color').replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase();
-                if(theme === 'light'){
-                  if(level < 6){
-                    isForeground = true;
-                  } else {
-                    isForeground = false;
-                    level = 11 - level;
-                  }
+        root.updateSwatches(root.contrast,root.contrastLargeText);
+
+        // click button to expand swatches
+        root.$.button.addEventListener('click',function(){
+          root.toggleCollapse();
+        });
+
+        // use spacebar or enter keys on button to expand swatches
+        root.$.button.addEventListener('keyup',function(e){
+          if(e.keyCode === 13 || e.keyCode === 32) root.toggleCollapse(false);
+        });
+      },
+      /**
+        * updates swatches 
+        */
+      updateSwatches: function(contrast,contrastLargeText){
+        contrast = contrast !== null ? contrast: this.contrast;
+        contrastLargeText = contrastLargeText !== null ? contrastLargeText: this.contrastLargeText;
+        let root = this, hasContrast = contrast !== undefined && contrast !== null, isColor = false, level = 1, isForeground = true, rows = [], count = 0;
+        if(root.__hexCodes !== undefined && root.__hexCodes !== null){
+          if(hasContrast) {
+            let cssVariable = contrast.replace('--simple-colors-','').split('-theme-'), theme = cssVariable.length > 1 ? cssVariable[0] : '', colorLevelFg = cssVariable[cssVariable.length-1].split('-'); 
+            isColor = colorLevelFg[0].length > 1;
+            let levelFg = colorLevelFg[colorLevelFg.length-1];
+            isForeground = levelFg.indexOf('foreground') > -1, size = !contrastLargeText;
+            level = levelFg[levelFg.length-1];
+            console.log(contrast,cssVariable,theme,isColor,isForeground,level,!contrastLargeText,root.getContrasts(theme,isColor,isForeground,level,!contrastLargeText),root.__wcagaa);
+          }
+          for(let i=0; i<root.__hexCodes.colorLevels.length; i++){
+            let swatches = [];
+            for(let property in root.__hexCodes) { 
+              let temp = isColor || property !== 'grey'  ? root.__wcagaa.colors : root.__wcagaa.greys, highestLevel = contrastLargeText ? temp.large[parseInt(level)-1] : temp.small[parseInt(level)-1];
+              if (property !== 'colorLevels' && property !== 'accent' && root.__hexCodes.hasOwnProperty(property)) {
+                let disabledColor = isColor && property !== 'grey', disabledLevel = false;
+                if(isForeground && i < 5 || 10-i > highestLevel){
+                  if (i < 5 || 10-i > highestLevel) disabledLevel = true;
                 } else {
-                  if(level < 6){
-                    isForeground = false;
-                  } else {
-                    isForeground = true;
-                    level = 11 - level;
-                  }
+                  if (i > 4 || i+1 > highestLevel) disabledLevel = true;
                 }
-                color2 = color === 'grey' ? '' : '-'+color;
-                fgbg = isForeground ? 'foreground' : 'background';
-                colorName = '--simple-colors-'+theme+'-theme'+color2+'-'+fgbg+level; results += '<p><strong>Color Name:</strong> '+colorName+' ('+hex+')</p><p><strong>Contrasting Colors:</strong></p><ul>';
-                contrasts = root.getContrasts(theme,color !== 'grey',isForeground,level,size === 'small text'); 
-                for(let j=0; j < contrasts.length;j++){
-                  let hex2 = contrasts[j].hexCode, c1 = textColor = isForeground ? hex : hex2, bgColor = !isForeground ? hex : hex2;
-                  results += '<li style="color: '+textColor+';background-color: '+bgColor+';">'+contrasts[j].variable+' ('+hex2+')</li>';
+                if(!hasContrast || !disabledColor && !disabledLevel) {
+                  swatches.push({
+                    "label": property,
+                    "level": i+1,
+                    "hex": root.__hexCodes[property][i]
+                  }); 
+                  count++;
                 }
-                results += '</ul>';
-                root.$.results.innerHTML = results;
-              };
-              // set up swatches
-              swatch.style.backgroundColor = this.__hexCodes[property][i];
-              swatch.setAttribute('color',property);
-              swatch.setAttribute('level',(i+1));
-              swatch.style.width = '20px';
-              swatch.style.height = '20px';
-              swatch.style.margin = '0';
-              swatch.style.padding = '0';
-              swatch.style.borderRadius = '0em';
-              swatch.style.boxSizing = 'content-box';
-              swatch.style.border = 'none';
-              swatch.addEventListener('click',function(){
-                getColors(swatch);
-              });
-              // listen for swatch navigation or selection
-              swatch.addEventListener('keyup',function(e){
-                let level = parseInt(swatch.getAttribute('level'));
-                if(e.keyCode === 13 || e.keyCode === 32) {
-                  getColors(swatch);
-                } else if (e.keyCode === 37) {
-                  if (swatch.previousSibling !== undefined && swatch.previousSibling !== null) swatch.previousSibling.focus();
-                } else if (e.keyCode === 39) {
-                  if (swatch.nextSibling !== undefined && swatch.nextSibling !== null) swatch.nextSibling.focus();
-                } else if (e.keyCode === 38) {
-                  if (level < 10) root.$$('button[level="'+(level+1)+'"][color="'+swatch.getAttribute('color')+'"]').focus();
-                } else if (e.keyCode === 39) {
-                  if (level > 1) root.$$('button[level="'+(level-1)+'"][color="'+swatch.getAttribute('color')+'"]').focus();
-                } 
-              });
-              row.appendChild(swatch);
+              }
             }
-            this.$.swatches.appendChild(row);
+            rows.push(swatches);
           }
         }
+        root.set('swatches',[]);
+        root.set('swatches',rows);
+        root.$.empty.style.display = count > 0 ? 'none' : 'block';
+        root.$.rows.style.display = count === 0 ? 'none' : 'block';
+        root.$.rows.render();
+      },
+      /**
+        * action for when a swatch was selected
+        */
+      _onClickSwatch: function(e){
+        let dark = this.theme === 'dark', theme = this.theme === null ? '' : '-'+this.theme+'-theme', color = e.detail.label.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(),isForeground,suffix,level = parseInt(e.detail.level), hex = e.detail.hex;
+        if(!dark){
+          if(e.detail.level < 6){
+            isForeground = true;
+          } else {
+            isForeground = false;
+            level = 11 - level;
+          }
+        } else {
+          if(e.detail.level < 6){
+            isForeground = false;
+          } else {
+            isForeground = true;
+            level = 11 - level;
+          }
+        }
+        if(theme === 'dark') isForeground = !isForeground;
+        color = color === 'grey' ? '' : color;
+        //close swatches, set value and fire event
+        suffix = isForeground ? 'foreground' : 'background';
+        this.value = {"cssVariable": "--simple-colors"+theme+"-"+color+"-"+suffix+level, "hexCode": hex}; 
+        this.toggleCollapse(true);
+      },
+      /**
+        * navigate swatch cursor to left
+        */
+      _onPreviousSwatch: function(e){
+        let target = this.$$('simple-colors-picker-swatch[order="'+(e.detail.order-1)+'"][level="'+e.detail.level+'"]');
+        if(target !== null) target.focus();
+      },
+      /**
+        * navigate swatch cursor to right
+        */
+      _onNextSwatch: function(e){
+        let target = this.$$('simple-colors-picker-swatch[order="'+(e.detail.order+1)+'"][level="'+e.detail.level+'"]');
+        if(target !== null) target.focus();
+      },
+      /**
+        * navigate swatch cursor down
+        */
+      _onPreviousLevel: function(e){
+        let target = this.$$('simple-colors-picker-swatch[order="'+e.detail.order+'"][level="'+(e.detail.level+1)+'"]');
+        if(target !== null) target.focus();
+      },
+      /**
+        * navigate swatch cursor up
+        */
+      _onNextLevel: function(e){
+        let target = this.$$('simple-colors-picker-swatch[order="'+e.detail.order+'"][level="'+(e.detail.level-1)+'"]');
+        if(target !== null) target.focus();
+      },
+      /**
+        * update selected swatch preview's background color
+        */
+      _setSelectedStyle: function(value){
+        let hex = value !== null ? value.hexCode : 'transparent';
+        this.$.texture.style.display = value !== null ? 'none' : 'block';
+        if(this.__init !== undefined) {
+          this.__init = true;
+        } else {
+          this.fire('change',this);
+        }
+        return 'background: '+hex+';';
+      },
+      /**
+        * toggle the collapse
+        */
+      toggleCollapse: function(collapse){
+        collapse = collapse !== undefined ? collapse : !this.collapsed;
+        this.collapsed = collapse;
+        this.fire('toggleCollapse',this);
       }
     });
   </script>

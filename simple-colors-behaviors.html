@@ -35,6 +35,22 @@ A set of theming and accent color behaviors for components.
       Polymer.SimpleColorsUtility.requestAvailability();
       this.__hexCodes = Polymer.SimpleColorsUtility.instance.hexCodes;
       this.__variables = Polymer.SimpleColorsUtility.instance.variables;
+      this.__wcagaa = {
+        /* a given color's highest level of WCAG 2.00 AA contrasting color by level 
+            based on text size and level of color, for example: 
+            --simple-colors-foreground5: 
+              -background1 in small text, 
+              -background1 or -background2 for large text
+            --simple-colors-green-foreground4: 
+              -background1 in small text, 
+              -background1 or -background2 for large text
+            --simple-colors-green-foreground5: 
+              no colors in small text, 
+              -background1 for large text
+        */
+        "greys": { "small": [5,5,4,4,1], "large": [5,5,5,4,2] }, 
+        "colors": { "small": [4,3,3,1,0], "large": [5,4,3,2,1] }
+      };
       this.reset();
     },
 
@@ -103,51 +119,26 @@ A set of theming and accent color behaviors for components.
           - text that is 18 point or higher,
           - a decorative element that has no semantic meaning, such as a border, or
           - a disabled UI element */
-      let results = [], wcagaa = [
-        //level 1
-        {
-          "colors": {"small": [1,2,3,4], "largeOnly": [5]}, 
-          "greys": {"small": [1,2,3,4,5], "largeOnly": []} 
-        },
-        //level 2
-        {
-          "colors": {"small": [1,2,3], "largeOnly": [4]}, 
-          "greys": {"small": [1,2,3,4,5], "largeOnly": []} 
-        },
-        //level 3
-        {
-          "colors": {"small": [1,2,3], "largeOnly": []}, 
-          "greys": {"small": [1,2,3,4], "largeOnly": [5]} 
-        },
-        //level 4
-        {
-          "colors": {"small": [1], "largeOnly": [2]}, 
-          "greys": {"small": [1,2,3,4], "largeOnly": []} 
-        },
-        //level 5
-        {
-          "colors": {"small": [], "largeOnly": [1]}, 
-          "greys": {"small": [1], "largeOnly": [2]} 
-        }
-      ];
-      let data1 = wcagaa[level-1], data2 = isColor ? data1.colors : data1.greys, colors = data2.small.slice(0);
-      if(!isSmallText) {
-        colors = colors.concat(data2.largeOnly);
-      }
-      for(let i = 0; i<colors.length; i++){
-        let suffix = isForeground ? '-background'+colors[i] : '-foreground'+(i+1);
+      let results = [];
+      let data = isColor ? this.__wcagaa.colors : this.__wcagaa.greys, levels = data.small[level-1];
+      if(!isSmallText) levels = data.large[level-1];
+      for(let i = 0; i<levels; i++){
+        let suffix = isForeground ? '-background': '-foreground', cssVar, hex;
 
         if(!isColor) {
           for (var property in this.__hexCodes) {
             if(property !== 'colorLevels'){
-              let color = property === 'grey' ? '' : '-'+property.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(), cssVar =  '--simple-colors-'+theme+'-theme'+color+suffix, hex = this.__variables[cssVar];
+              let color = property === 'grey' ? '' : '-'+property.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(); 
+              cssVar =  '--simple-colors-'+theme+'-theme'+color+suffix+(i+1); 
+              hex = this.__variables[cssVar];
               results.push({"variable": cssVar, "hexCode": hex});
             }
           }   
         } else {
-          let  cssVar =  '--simple-colors-'+theme+'-theme'+suffix, hex = this.__variables[cssVar];
-          results.push({"variable": cssVar, "hexCode": hex});
+          cssVar =  '--simple-colors-'+theme+'-theme'+suffix+(i+1);
+          hex = this.__variables[cssVar];
         }
+        results.push({"variable": cssVar, "hexCode": hex});
       }
       return results;
     }

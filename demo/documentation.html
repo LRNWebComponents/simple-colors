@@ -10,7 +10,7 @@
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../simple-colors-demo.html">
-    <link rel="import" href="../simple-colors-picker.html">
+    <link rel="import" href="../simple-colors-contrast.html">
     <style>
       table {
         border: 1px solid black;
@@ -348,7 +348,35 @@
                 For short sections of text, such as callouts or UI buttons, 
                 you may reduce the contrast. 
               </p>
-              <simple-colors-picker></simple-colors-picker>
+              <h3>Small Text</h3>
+              <p>
+                Small text requires the highest contrast ratio for WCAG 2.0 AA compliance. 
+                Small text is any content that is <strong>NOT</strong>:
+              </p>
+              <ul>
+                <li>bold text that is 14 point or higher,</li>
+                <li>text that is 18 point or higher,</li>
+                <li>a decorative elements that has no semantic meaning, such as a border, or</li>
+                <li>a disabled UI element</li>
+              </ul>
+              <h3>Large Text</h3>
+              <p>
+                WCAG 2.0 AA requires higher contrast for small text than for large
+                text and for UI elements that have no text. Large text is defined as:
+              </p>
+              <ul>
+                <li>bold text that is 14 point or higher, or</li>
+                <li>text that is 18 point or higher</li>
+              </ul>
+              
+              <h3>Other UI Elements</h3>
+              <p>WCAG 2.0 AA allows the following exceptions for contrast:
+              </p>  
+              <ul>
+                <li>decorative elements that have no semantic meaning, such as borders</li>
+                <li>disabled UI elements</li>
+              </ul>
+              <simple-colors-contrast></simple-colors-contrast>
             </div> 
             <br/><br/>
           </div>
