@@ -53,6 +53,13 @@
           border-color: var(--simple-colors-picker-button-border-color, --simple-colors-background3);
           background-color: var(--simple-colors-picker-button-bg-color, --simple-colors-background2);
         }
+        :host[disabled] #button, 
+        :host #button[disabled] {
+          color: var(--simple-colors-picker-button-disabled-color, --simple-colors-foreground4);
+          border-color: var(--simple-colors-picker-button-disabled-border-color, --simple-colors-background5);
+          background-color: var(--simple-colors-picker-button-disabled-bg-color, --simple-colors-background4);
+          cursor: not-allowed;
+        }
         :host:not([disabled]) #button:focus,
         :host:not([disabled]) #button:hover {
           color: var(--simple-colors-picker-button-hover-color, --simple-colors-foreground1);
@@ -219,18 +226,18 @@
             let levelFg = colorLevelFg[colorLevelFg.length-1];
             isForeground = levelFg.indexOf('foreground') > -1, size = !contrastLargeText;
             level = levelFg[levelFg.length-1];
-            console.log(contrast,cssVariable,theme,isColor,isForeground,level,!contrastLargeText,root.getContrasts(theme,isColor,isForeground,level,!contrastLargeText),root.__wcagaa);
+            console.log('contrasting colors',root.getContrasts(theme,isColor,isForeground,level,!contrastLargeText),root.__wcagaa);
           }
           for(let i=0; i<root.__hexCodes.colorLevels.length; i++){
             let swatches = [];
             for(let property in root.__hexCodes) { 
               let temp = isColor || property !== 'grey'  ? root.__wcagaa.colors : root.__wcagaa.greys, highestLevel = contrastLargeText ? temp.large[parseInt(level)-1] : temp.small[parseInt(level)-1];
               if (property !== 'colorLevels' && property !== 'accent' && root.__hexCodes.hasOwnProperty(property)) {
-                let disabledColor = isColor && property !== 'grey', disabledLevel = false;
-                if(isForeground && i < 5 || 10-i > highestLevel){
-                  if (i < 5 || 10-i > highestLevel) disabledLevel = true;
-                } else {
-                  if (i > 4 || i+1 > highestLevel) disabledLevel = true;
+                let disabledColor = isColor && property !== 'grey', disabledLevel = false, lightFg = (theme === 'light' && isForeground) || (theme === 'dark' && !isForeground);
+                if(!lightFg && (i < 5 || 10-i > highestLevel)) {
+                  disabledLevel = true;
+                } else if(lightFg && (i > 4 || i+1 > highestLevel)) {
+                  disabledLevel = true;
                 }
                 if(!hasContrast || !disabledColor && !disabledLevel) {
                   swatches.push({
