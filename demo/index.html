@@ -132,15 +132,55 @@
         margin-right: 0.5em;
         --simple-colors-picker-preview-size: 1.25em;
       }
-      div#classes {
-        padding: 20px;
-        border: 1px solid;
-      }
     </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>simple-colors demo</h3>
+      <h3>simple-colors color picker</h3>
+      <demo-snippet>
+        <template>
+          <div class="picker">
+            <label for="contrast">Simple Colors Picker: </label>
+            <simple-colors-picker></simple-colors-picker>
+          </div>
+          <script>
+            document.addEventListener('change', function(e){
+              alert('You selected: \n'+JSON.stringify(e.detail).replace('{','{\n\t').replace(/","/g,'",\n\t"').replace(/":"/g,'": "').replace('}','\n}'));
+            });
+          </script>
+        </template>
+      </demo-snippet> 
+
+      <h3>simple-colors classes</h3>
+      <demo-snippet>
+        <simple-colors-demo>
+          <div class="box large simple-colors-red-foreground2-text simple-colors-red-background3-border simple-colors-background1">
+            This box has red text and border-color.
+          </div>
+          <div class="box simple-colors-foreground1-text simple-colors-accent-background5-border simple-colors-accent-background1">
+            This box has an accent color border and background color.
+          </div>
+        </simple-colors-demo>
+        <template>
+          <element-with-simple-colors-behaviors>
+            <div id="classes" class="simple-colors-foreground1-text simple-colors-accent-background5-border simple-colors-accent-background1">
+              This box uses classes instead of variables.
+            </div>
+          </element-with-simple-colors-behaviors>
+          <style>
+            div.box {
+              padding: 20px;
+              border: 1px solid;
+              margin: 0 0 15px;
+            }
+            div.box.large {
+              font-size: 14px;
+            }
+          </style>
+        </template>
+      </demo-snippet> 
+
+      <h3>simple-colors CSS variables</h3>
       <demo-snippet>
         <simple-colors-demo>
           <my-text>
@@ -167,15 +207,6 @@
                 <my-progress></my-progress>
               </my-progress-bar>
             </p>
-            
-            <div id="classes" class="simple-colors-accent-foreground1 simple-colors-accent-foreground5-border simple-colors-background1-text">
-              This box uses classes instead of variables.
-            </div>
-            
-            <div class="picker">
-              <label for="contrast">Simple Colors Picker: </label>
-              <simple-colors-picker></simple-colors-picker>
-            </div>
           </my-text>
         </simple-colors-demo>
         <template>
@@ -186,15 +217,6 @@
             <button class="delete">Delete Button</button>
             <button>Cancel Button</button>
             <button disabled>Disabled Button</button>
-
-            <div id="classes" class="simple-colors-accent-foreground1 simple-colors-accent-foreground5-border simple-colors-background1-text">
-              This box uses classes instead of variables.
-            </div>
-            
-            <div class="picker">
-              <label for="contrast">Simple Colors Picker: </label>
-              <simple-colors-picker></simple-colors-picker>
-            </div>
           </element-with-simple-colors-behaviors>
 
           <style is="custom-style">

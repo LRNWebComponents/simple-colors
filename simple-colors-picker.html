@@ -325,7 +325,7 @@
         if(this.__init !== undefined) {
           this.__init = true;
         } else {
-          this.fire('change',this);
+          this.fire('change',this.value);
         }
         return 'background: '+hex+';';
       },
