@@ -102,8 +102,8 @@ A set of theming and accent color behaviors for components.
       };
       this.__lightTheme = this.__hexCodes;
       this.__darkTheme = {};
-      for (var property in this.hexCodes) {
-        if (this.hexCodes.hasOwnProperty(property)) {
+      for (var property in this.__hexCodes) {
+        if (this.__hexCodes.hasOwnProperty(property)) {
           this.__darkTheme[property] = this.__lightTheme[property].slice().reverse();
         }
       }
