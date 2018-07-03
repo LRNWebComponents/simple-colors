@@ -180,6 +180,25 @@
                 would be a highest-contrast background color for UI element with 
                 a lighter theme. (See <a href="#tables">color reference</a> below.)
               </p>
+              <p>
+                  There are also CSS classes. The convention for simple-colors CSS classes is:
+                  <ul>
+                    <li>
+                        <strong>Background color:</strong> <tt>simple-colors-<em><a href="#color">(color)</a></em>-<em><a href="#contrast">foreground or background with level</a></em></tt>
+                    </li>
+                    <li>
+                        <strong>Text color:</strong> <tt>simple-colors-<em><a href="#color">(color)</a></em>-<em><a href="#contrast">foreground or background with level</a></em>-text</tt>
+                    </li>
+                    <li>
+                        <strong>Border color:</strong> <tt>simple-colors-<em><a href="#color">(color)</a></em>-<em><a href="#contrast">foreground or background with level</a></em>-border</tt>
+                    </li>
+                  </ul>
+                  Note that the classes do not allow you to specify a theme. 
+                  For example, <tt>&lt;div class="simple-colors-foreground1-text simple-colors-red-background3-border simple-colors-red-background1"/&gt;</tt> 
+                  would be a highest-contrast text color, highest-contrast background color, 
+                  and a mid-condrast border-color. 
+                  (See <a href="#tables">color reference</a> below.)
+              </p>
               <h2 id="thamename"><em>theme name</em></h2>
               <p>
                 The <em>theme name</em>, is optional. It can be <tt>light-theme</tt> 
