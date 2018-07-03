@@ -84,8 +84,9 @@
       ready: function(){
         let root = this;
         root.$.theme.addEventListener('change',function(){
-          root.$.color.setAttribute('theme',root.$.theme[root.$.theme.selectedIndex].innerText);
-          root.$.contrast.setAttribute('theme',root.$.theme[root.$.theme.selectedIndex].innerText);
+          root.$.color.theme = root.$.theme[root.$.theme.selectedIndex].innerText;
+          root.$.color.value = null;
+          root.$.color.updateSwatches();
         });
         root.$.size.addEventListener('change',function(){
           let swatch = root.$.color.value !== null ? root.$.color.value.cssVariable : null, isLargeText = root.$.size[root.$.size.selectedIndex].innerText !== 'small text';

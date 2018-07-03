@@ -218,6 +218,8 @@
       updateSwatches: function(contrast,contrastLargeText){
         contrast = contrast !== null ? contrast: this.contrast;
         contrastLargeText = contrastLargeText !== null ? contrastLargeText: this.contrastLargeText;
+        this.contrast = contrast;
+        this.contrastLargeText = contrastLargeText;
         let root = this, hasContrast = contrast !== undefined && contrast !== null, isColor = false, level = 1, isForeground = true, rows = [], count = 0;
         if(root.__hexCodes !== undefined && root.__hexCodes !== null){
           if(hasContrast) {
