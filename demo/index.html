@@ -11,6 +11,7 @@
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../simple-colors-demo.html">
+    <link rel="import" href="../simple-colors-picker.html">
     <style>
       element-with-simple-colors-behaviors { display: none; }
      my-text {
@@ -119,6 +120,18 @@
         background-color: var(--simple-colors-background2);
         border-color: var(--simple-colors-background3);
       }
+      .picker {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 5px;
+        padding: 20px;
+      }
+      .picker > * {
+        display: inline-flex;
+        align-self: center;
+        margin-right: 0.5em;
+        --simple-colors-picker-preview-size: 1.25em;
+      }
     </style>
   </head>
   <body>
@@ -161,6 +174,11 @@
             <button>Cancel Button</button>
             <button disabled>Disabled Button</button>
           </element-with-simple-colors-behaviors>
+
+          <div class="picker">
+            <label for="contrast">Simple Colors Picker: </label>
+            <simple-colors-picker></simple-colors-picker>
+          </div>
 
           <style is="custom-style">
             button {
