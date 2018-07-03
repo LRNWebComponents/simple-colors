@@ -74,7 +74,7 @@ Utily to control
           let root = this, css = '', addProp = function(prop,val){
             return prop+': '+val+'; \n';
           // writes the CSS for a theme and load the theme variables into the variables property
-          }, addTheme = function(selector,prefix,reverse,){
+          }, addTheme = function(selector,prefix,reverse){
             css += selector+' { ';
             for (var property in root.hexCodes) {
               if (property !== "colorLevels" && root.hexCodes.hasOwnProperty(property)) {
@@ -90,7 +90,30 @@ Utily to control
             css += ' } \n\n';
             return css;
           // add CSS to update CSS variables for accent colors
-          }, addAccent = function(prefix,color){
+          },  addClasses = function(prefix){
+            for (var property in root.hexCodes) {
+              if (property !== "colorLevels" && root.hexCodes.hasOwnProperty(property)) {
+                let val = root.hexCodes[property].slice();
+                let prefix = 'simple-colors-', prop = (property!== 'grey') ? property.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(): '';
+                for(let i = 0; i < 10; i++){
+                  let suffix = root.hexCodes.colorLevels[i];
+                  css += addClass(prop,prefix,suffix,'','background-color',val[i]);
+                  css += addClass(prop,prefix,suffix,'-text','color',val[i]);
+                  css += addClass(prop,prefix,suffix,'-border','border-color',val[i]);
+                }
+              }
+            }
+            css += '\n';
+            console.log(css);
+            return css;
+          // add CSS to update CSS variables for accent colors
+          }, addClass = function(prop,prefix,suffix,type,style,hex){
+            console.log(prop,prefix,suffix,type,style,hex);
+            let color = prop === '' ? 'none' : prop, accent = prefix+'accent-'+suffix+type, varName = prefix+prop+suffix;
+            let grey = prop === '' ? '.'+accent+', \n' : '';
+            let css = prop === 'accent' ? '' : '.'+varName+type+', \n'+grey+'[accent-color="'+color+'"] .'+accent+' { \n\t'+style+': var(--'+varName+', '+hex+'); \n}\n';
+            return css;
+          },addAccent = function(prefix,color){
             for(var i=0; i<10;i++){
               let suffix = i < 5 ? '-foreground' : '-background', level = i < 5 ? i+1 : i-4, val = color !== 'grey' ? prefix+color+suffix+level : prefix+suffix+level;
               css += prefix+'-accent'+suffix+level+': var('+val+');';
@@ -101,6 +124,7 @@ Utily to control
           addTheme('html','-dark-theme',true);
           addTheme('html, *[dark="false"]','',false);
           addTheme('*[dark]','',true);
+          addClasses('');
 
           // writes the CSS to update CSS variables for accent colors
           for (var property in root.hexCodes) {
@@ -121,7 +145,6 @@ Utily to control
           } else {
             style.appendChild(document.createTextNode(css));
           }
-    
           head.appendChild(style);
         }
       });

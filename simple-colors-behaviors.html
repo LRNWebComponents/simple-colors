@@ -61,8 +61,8 @@ A set of theming and accent color behaviors for components.
           this.__lightTheme.accent = this.__lightTheme[prop].slice();
           this.__darkTheme.accent = this.__darkTheme[prop].slice();
         } else {
-          this.__lightTheme.accent = this.__defaultAccent.slice();
-          this.__lightTheme.accent = this.__defaultAccent.slice().reverse();
+          this.__lightTheme.accent = this.__hexCodes.accent.slice();
+          this.__lightTheme.accent = this.__hexCodes.accent.slice().reverse();
         }
       }
       this.setThemeProps('--simple-colors-light-theme-',this.__lightTheme);

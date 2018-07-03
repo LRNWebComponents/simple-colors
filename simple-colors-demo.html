@@ -67,7 +67,7 @@
           if(span === undefined){
             span = document.createElement('span');
             span.style.fontWeight = "700";
-            document.getElementById('code').querySelector('code span span').appendChild(span);
+            if (document.getElementById('code') !== undefined && document.getElementById('code') !== null) document.getElementById('code').querySelector('code span span').appendChild(span);
           }
           span.innerHTML = dark+ac;
         };

@@ -132,6 +132,10 @@
         margin-right: 0.5em;
         --simple-colors-picker-preview-size: 1.25em;
       }
+      div#classes {
+        padding: 20px;
+        border: 1px solid;
+      }
     </style>
   </head>
   <body>
@@ -163,6 +167,15 @@
                 <my-progress></my-progress>
               </my-progress-bar>
             </p>
+            
+            <div id="classes" class="simple-colors-accent-foreground1 simple-colors-accent-foreground5-border simple-colors-background1-text">
+              This box uses classes instead of variables.
+            </div>
+            
+            <div class="picker">
+              <label for="contrast">Simple Colors Picker: </label>
+              <simple-colors-picker></simple-colors-picker>
+            </div>
           </my-text>
         </simple-colors-demo>
         <template>
@@ -174,11 +187,6 @@
             <button>Cancel Button</button>
             <button disabled>Disabled Button</button>
           </element-with-simple-colors-behaviors>
-
-          <div class="picker">
-            <label for="contrast">Simple Colors Picker: </label>
-            <simple-colors-picker></simple-colors-picker>
-          </div>
 
           <style is="custom-style">
             button {
