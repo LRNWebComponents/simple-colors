@@ -104,11 +104,9 @@ Utily to control
               }
             }
             css += '\n';
-            console.log(css);
             return css;
           // add CSS to update CSS variables for accent colors
           }, addClass = function(prop,prefix,suffix,type,style,hex){
-            console.log(prop,prefix,suffix,type,style,hex);
             let color = prop === '' ? 'none' : prop, accent = prefix+'accent-'+suffix+type, varName = prop === '' ? prefix+prop+suffix : prefix+prop+'-'+suffix;
             let grey = prop === '' ? '.'+accent+', \n' : '';
             let css = prop === 'accent' ? '' : '.'+varName+type+', \n'+grey+'[accent-color="'+color+'"] .'+accent+' { \n\t'+style+': var(--'+varName+', '+hex+'); \n}\n';
