@@ -8,16 +8,21 @@
       }
       .theme-selector,
       .theme-selector > div {
-        display: flex;
-        justify-content: space-around;
         margin-bottom: 5px;
-      }
-      .theme-selector > div, 
-      .theme-selector > div > * {
-        align-self: middle;
       }
       .theme-selector select { 
         margin-left: 1em;
+      }
+      @media screen and (min-width: 900px) {
+        .theme-selector,
+        .theme-selector > div {
+          display: flex;
+          justify-content: space-around;
+        }
+        .theme-selector > div, 
+        .theme-selector > div > * {
+          align-self: middle;
+        } 
       }
     </style>
     <slot name="preselector"></slot>

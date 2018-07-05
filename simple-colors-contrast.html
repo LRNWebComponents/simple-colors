@@ -9,12 +9,12 @@
         padding: 15px;
         margin: 5px;
       }
+      .theme-selector > div > * {
+        align-self: middle;
+      } 
       .theme-selector-inner {
-        display: flex;
-        justify-content: space-around;
         margin: 15px 0;
       }
-      .theme-selector-inner > div,
       .theme-selector-inner > div > * {
         align-self: center;
       }
@@ -43,6 +43,18 @@
         padding: 20px;
         text-align: center;
         display: none;
+      }
+      @media screen and (min-width: 900px) {
+        .theme-selector-inner {
+          display: flex;
+          justify-content: space-around;
+        }
+        .theme-selector > div {
+          align-self: middle;
+        } 
+        .theme-selector-inner > div {
+          align-self: center;
+        }
       }
     </style>
     <div class="theme-selector">
