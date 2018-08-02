@@ -1,6 +1,7 @@
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icons/image-icons.html">
 <link rel="import" href="simple-colors.html">
+<link rel="import" href="simple-colors-behaviors.html">
 <link rel="import" href="simple-colors-picker-swatch.html">
 <dom-module id="simple-colors-picker">
   <template>
@@ -134,7 +135,7 @@
   <script>
     Polymer({
       is: 'simple-colors-picker',
-      behaviors: [ simpleColorsBehaviors ], 
+      behaviors: [ window.simpleColorsBehaviors ], 
       listeners: {
         'click-swatch': '_onClickSwatch',
         'previous-swatch': '_onPreviousSwatch',
@@ -143,6 +144,13 @@
         'next-level': '_onNextLevel'
       },
       properties: {
+        /**
+         * The theme for the color variables
+         */
+        theme: {
+          type: String,
+          value: null
+        },
         /**
           * Only show colors that contrast with supplied color variable?
           */
@@ -180,13 +188,6 @@
         label: {
           type: String,
           value: 'Pick a color.'
-        },
-        /**
-          * The theme for the color variables
-          */
-        theme: {
-          type: String,
-          value: null
         },
         /**
           * The swatches for the color picker
@@ -250,7 +251,7 @@
             for(let property in root.__hexCodes) { 
               let temp = isColor || property !== 'grey'  ? root.__wcagaa.colors : root.__wcagaa.greys, highestLevel = contrastLargeText ? temp.large[parseInt(level)-1] : temp.small[parseInt(level)-1];
               if (property !== 'colorLevels' && property !== 'accent' && root.__hexCodes.hasOwnProperty(property)) {
-                let disabledColor = isColor && property !== 'grey', disabledLevel = false, lightFg = (theme === 'light' && isForeground) || (theme === 'dark' && !isForeground);
+                let disabledColor = isColor && property !== 'grey', disabledLevel = false, lightFg = (root.theme === 'light' && isForeground) || (root.theme === 'dark' && !isForeground);
                 if(!lightFg && (i < 5 || 10-i > highestLevel)) {
                   disabledLevel = true;
                 } else if(lightFg && (i > 4 || i+1 > highestLevel)) {
