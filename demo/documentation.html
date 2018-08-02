@@ -167,14 +167,21 @@
               <li>Include <tt>&lt;link rel="import" href="<em>path/to/</em>simple-colors/simple-colors.html"&gt;</tt></li>
               <li>To allow an element to inherit the variables, add the behavior: <tt>simpleColorsBehaviors, </tt></li>
               <li>When the element ready, request the color variables: <tt>Polymer.SimpleColorsUtility.requestAvailability();</tt></li>
-              <li>Add custom styles to you element using the <a href="#naming">simple colors variables</a>:
-                <br><tt>&lt;style is="custom-style"&gt;
+              <li>Add custom styles to your element using the <a href="#naming">simple colors variables</a>. For example:
+                <br><tt>&lt;style is="custom-style" import="simple-colors"&gt;
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;<em>:host { 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: var(--simple-colors-accent-foreground1); 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: var(--simple-colors-accent-background2); 
-                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-color: 1px solid var(--simple-colors-red-background3); 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: --simple-colors-accent-foreground1; 
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--paper-listbox-background-color: --simple-colors-accent-background2;
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-color: 1px solid var(--my-component-border-color, --simple-colors-red-background3); 
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;}</em>
-                <br>&lt;/style&gt;</tt></li>
+                <br>&lt;/style&gt;</tt>
+              </li>
+              <li>
+                &ellip;Or use the simple-colors text, background and border color classes. For example:
+                <br><tt><div class="simple-colors-red-foreground1-text simple-colors-purple-background5-border simple-colors-pink-background1">
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;Red text with pink background and purple border.
+                <br></div></tt>
+              </li>
             </ol>
             <div id="naming">
               <p>
