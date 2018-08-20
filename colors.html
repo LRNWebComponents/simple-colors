@@ -50,9 +50,7 @@ crossorigin="anonymous"></script>
 window.onload = function(){
     let makeTable = function(){
         let html = '',results = document.getElementById('results').value.trim();
-        console.log(results);
         let json = JSON.parse(results);
-        console.log(json);
         for(color in json){
             if(json.hasOwnProperty(color)){
                 html+= '<tr><th>'+color;
