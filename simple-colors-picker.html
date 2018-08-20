@@ -124,6 +124,7 @@
                 level="[[swatch.level]]" 
                 order="[[order]]"
                 role="button"
+                selected="[[swatch.selected]]"
                 tabindex="0">
               </simple-colors-picker-swatch>
             </template>
@@ -244,7 +245,6 @@
             let levelFg = colorLevelFg[colorLevelFg.length-1];
             isForeground = levelFg.indexOf('foreground') > -1, size = !contrastLargeText;
             level = levelFg[levelFg.length-1];
-            console.log('contrasting colors',root.getContrasts(theme,isColor,isForeground,level,!contrastLargeText),root.__wcagaa);
           }
           for(let i=0; i<root.__hexCodes.colorLevels.length; i++){
             let swatches = [];
@@ -261,7 +261,8 @@
                   swatches.push({
                     "label": property,
                     "level": i+1,
-                    "hex": root.__hexCodes[property][i]
+                    "hex": root.__hexCodes[property][i],
+                    "selected": false
                   }); 
                   count++;
                 }
@@ -269,17 +270,16 @@
             }
             rows.push(swatches);
           }
-        }
-        root.set('swatches',[]);
-        root.set('swatches',rows);
+        } 
         root.$.empty.style.display = count > 0 ? 'none' : 'block';
         root.$.rows.style.display = count === 0 ? 'none' : 'block';
-        root.$.rows.render();
+        root._updateSelection(rows);
       },
       /**
         * action for when a swatch was selected
         */
       _onClickSwatch: function(e){
+        console.log('_onClickSwatch',e);
         let dark = this.theme === 'dark', theme = this.theme === null ? '' : '-'+this.theme+'-theme', color = e.detail.label.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(),isForeground,suffix,level = parseInt(e.detail.level), hex = e.detail.hex;
         if(!dark){
           if(e.detail.level < 6){
@@ -301,7 +301,30 @@
         //close swatches, set value and fire event
         suffix = isForeground ? 'foreground' : 'background';
         this.value = {"cssVariable": "--simple-colors"+theme+"-"+color+"-"+suffix+level, "hexCode": hex}; 
+        this._updateSelection(this.swatches);
         this.toggleCollapse(true);
+      },
+      /**
+        * navigate swatch cursor to left
+        */
+      _updateSelection: function(swatches){
+        let root = this, hasHex = root.value !== undefined && root.value !== null && root.value.hexCode !== undefined;
+        if(swatches !== undefined && swatches.length > 0){
+          let rows = [];
+          for(let i=0; i <swatches.length; i++){
+            let row = [];
+            for(let j=0; j <swatches[i].length; j++){
+              let swatch = swatches[i][j];
+              swatch.selected = hasHex && root.value.hexCode === swatch.hex;
+              row.push(swatch);
+            }
+            rows.push(row);
+          }
+          root.set('swatches',[]);
+          root.$.rows.render();
+          root.set('swatches',rows);
+          root.$.rows.render();
+        }
       },
       /**
         * navigate swatch cursor to left

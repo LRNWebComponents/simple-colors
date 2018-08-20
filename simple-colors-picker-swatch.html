@@ -19,15 +19,17 @@
       :host[disabled]:hover {
         cursor: not-allowed;
       }
-      :host:focus {
+      :host[selected] {
         outline: 1px solid white;
       }
-      :host[dark]:focus {
+      :host[dark][selected]{
         outline: 1px solid black;
       }
+      :host:focus,
       :host:hover {
         outline: 1px dotted white;
       }
+      :host[dark]:focus,
       :host[dark]:hover {
         outline: 1px dotted black;
       }
@@ -46,18 +48,18 @@
           reflectToAttribute: true
         },
         /** 
-          * The name of the color
+          * The hex code of the color
           */
-        label: {
+        hex: {
           type: String,
           value: null,
           reflectToAttribute: true
         },
         /** 
-          * The order of the color
+          * The name of the color
           */
-        order: {
-          type: Number,
+        label: {
+          type: String,
           value: null,
           reflectToAttribute: true
         },
@@ -70,11 +72,19 @@
           reflectToAttribute: true
         },
         /** 
-          * The hex code of the color
+          * The order of the color
           */
-        hex: {
-          type: String,
+        order: {
+          type: Number,
           value: null,
+          reflectToAttribute: true
+        },
+        /** 
+          * is the swatch selected?
+          */
+        selected: {
+          type: Boolean,
+          value: false,
           reflectToAttribute: true
         },
       },
