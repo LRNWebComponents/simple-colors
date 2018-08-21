@@ -76,13 +76,22 @@
     Polymer({
       is: 'simple-colors-demo',
       behaviors: [ simpleColorsBehaviors ], 
+      properties: {
+        target: {
+          type: String,
+          value: null
+        }
+      },
       ready: function(){
         let root = this, accent = root.$.accent, theme = root.$.theme, span, updateSpan = function(content){
           let ac = accent.selectedIndex > 0 ? ' accent-color="'+accent.options[accent.selectedIndex].innerText+'"' : '', dark = theme.options[theme.selectedIndex].innerText === 'dark' ? ' dark' : '';
           if(span === undefined){
             span = document.createElement('span');
             span.style.fontWeight = "700";
-            if (document.getElementById('code') !== undefined && document.getElementById('code') !== null) document.getElementById('code').querySelector('code span span').appendChild(span);
+            let code = document.getElementById(root.target);
+            if (code !== undefined && code !== null) {
+              code.querySelector('code span span').appendChild(span);
+            }
           }
           span.innerHTML = dark+ac;
         };
