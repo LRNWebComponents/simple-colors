@@ -55,7 +55,7 @@ A set of theming and accent color behaviors for components.
     },
 
     setTheme: function(accentColor,dark){
-      if(accentColor!== null && accentColor!==""){
+      if(this.__lightTheme !== undefined && accentColor!== null && accentColor!==""){
         let prop = accentColor.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
         if(this.__lightTheme.hasOwnProperty(prop)){
           this.__lightTheme.accent = this.__lightTheme[prop].slice();
