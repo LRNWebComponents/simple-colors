@@ -10,8 +10,8 @@
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../simple-colors-demo.html">
     <link rel="import" href="../simple-colors-picker.html">
+    <link rel="import" href="simple-colors-demo.html">
     <style>
       element-with-simple-colors-behaviors { display: none; }
       my-text {
@@ -141,10 +141,10 @@
         <template>
           <div class="picker">
             <label for="contrast">Simple Colors Picker: </label>
-            <simple-colors-picker></simple-colors-picker>
+            <simple-colors-picker id="picker-element"></simple-colors-picker>
           </div>
           <script>
-            document.addEventListener('change', function(e){
+            document.getElementById('picker-element').addEventListener('change', function(e){
               alert('You selected: \n'+JSON.stringify(e.detail).replace('{','{\n\t').replace(/","/g,'",\n\t"').replace(/":"/g,'": "').replace('}','\n}'));
             });
           </script>

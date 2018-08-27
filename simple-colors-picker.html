@@ -1,7 +1,6 @@
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icons/image-icons.html">
 <link rel="import" href="simple-colors.html">
-<link rel="import" href="simple-colors-behaviors.html">
 <link rel="import" href="simple-colors-picker-swatch.html">
 <dom-module id="simple-colors-picker">
   <template>
@@ -279,6 +278,7 @@
         * action for when a swatch was selected
         */
       _onClickSwatch: function(e){
+        console.log('_onClickSwatch',e);
         let dark = this.theme === 'dark', theme = this.theme === null ? '' : '-'+this.theme+'-theme', color = e.detail.label.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(),isForeground,suffix,level = parseInt(e.detail.level), hex = e.detail.hex;
         if(!dark){
           if(e.detail.level < 6){
