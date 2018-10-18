@@ -77,17 +77,17 @@
           </select>
         </div>
         <div>
-          <label for="color">Color:</label>
+          <label for="color">Background Color:</label>
           <simple-colors-picker id="color"></simple-colors-picker>
         </div>
         <div>
-          <label for="contrast">Contrasting Color:</label>
+          <label for="contrast">Foreground Color:</label>
           <simple-colors-picker id="contrast" disabled></simple-colors-picker>
         </div>
       </div> 
       <div id="preview">
-        <p><span id="fgColor"></span><span id="fgHex"></span></p>
-        <p><span id="bgColor"></span><span id="bgHex"></span></p>
+        <p><span id="bgColor"></span><span id="fgHex"></span></p>
+        <p><span id="fgColor"></span><span id="bgHex"></span></p>
       </div>
     </div>
   </template>
@@ -126,8 +126,8 @@
             root.$.fgHex.innerText = ' ('+fg.hexCode+')';
             root.$.bgColor.innerText = bg.cssVariable;
             root.$.bgHex.innerText = ' ('+bg.hexCode+')';
-            root.$.preview.style.color = fg.hexCode;
-            root.$.preview.style.backgroundColor = bg.hexCode;
+            root.$.preview.style.color = bg.hexCode;
+            root.$.preview.style.backgroundColor = fg.hexCode;
             root.$.preview.style.display = 'block';
           } else {
             root.$.preview.style.display = 'none';

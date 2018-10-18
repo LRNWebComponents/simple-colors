@@ -138,6 +138,7 @@ A set of theming and accent color behaviors for components.
       return dark;
     },
     getContrasts: function(theme,isColor,isForeground,level,isSmallText) {
+      console.log(theme,isColor,isForeground,level,isSmallText);
       isSmallText =  isSmallText !== undefined ? isSmallText : true;
       /*  Small text requires the highest contrast ratio for WCAG 2.0 AA compliance. 
           Small text is any content that is NOT:
@@ -150,7 +151,7 @@ A set of theming and accent color behaviors for components.
       if(!isSmallText) levels = data.large[level-1];
       for(let i = 0; i<levels; i++){
         let suffix = isForeground ? '-background': '-foreground', index = (isForeground && theme === 'light') || (!isForeground && theme === 'dark') ? i+1 : levels - (i-1);
-
+        console.log(isForeground,theme,index);
         if(!isColor) {
           for (var property in this.__hexCodes) {
             if(property !== 'colorLevels'){

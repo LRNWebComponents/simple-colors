@@ -120,67 +120,21 @@
         background-color: var(--simple-colors-background2);
         border-color: var(--simple-colors-background3);
       }
-      .picker {
-        display: flex;
-        justify-content: flex-start;
-        margin-bottom: 5px;
-        padding: 20px;
-      }
-      .picker > * {
-        display: inline-flex;
-        align-self: center;
-        margin-right: 0.5em;
-        --simple-colors-picker-preview-size: 1.25em;
-      }
     </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>simple-colors color picker</h3>
-      <demo-snippet id="picker">
-        <template>
-          <div class="picker">
-            <label for="contrast">Simple Colors Picker: </label>
-            <simple-colors-picker id="picker-element"></simple-colors-picker>
-          </div>
-          <script>
-            document.getElementById('picker-element').addEventListener('change', function(e){
-              alert('You selected: \n'+JSON.stringify(e.detail).replace('{','{\n\t').replace(/","/g,'",\n\t"').replace(/":"/g,'": "').replace('}','\n}'));
-            });
-          </script>
-        </template>
-      </demo-snippet> 
+      <h1>simple-colors demo</h1>
+      <p>
+        The simple-colors component allows you to change an element's color scheme accessibly 
+        on the fly by using a set CSS <a href="#variables">variables</a> and <a href="#classes">classes</a>. 
+        It also includes the simple-colors-picker, a <a href="picker.html">color-picker</a> 
+        tool with simple colors swatches. (See 
+        <a class="simple-colors-blue-foreground4-text" href="documentation.html">documentation</a> and the  
+        and the <a href="colors.html">color reference</a> for more information.)
+      </p>
 
-      <h3>simple-colors classes</h3>
-      <demo-snippet id="classes">
-        <simple-colors-demo target="classes">
-          <div class="box large simple-colors-red-foreground2-text simple-colors-red-background3-border simple-colors-background1">
-            This box has red text and border-color. (See <a class="simple-colors-blue-foreground4-text" href="documentation.html">documentation</a> for more information.)
-          </div>
-          <div class="box simple-colors-foreground1-text simple-colors-accent-background5-border simple-colors-accent-background1">
-            This box has an accent color border and background color.
-          </div>
-        </simple-colors-demo>
-        <template>
-          <element-with-simple-colors-behaviors>
-            <div id="classes" class="simple-colors-foreground1-text simple-colors-accent-background5-border simple-colors-accent-background1">
-              This box uses classes instead of variables.
-            </div>
-          </element-with-simple-colors-behaviors>
-          <style>
-            div.box {
-              padding: 20px;
-              border: 1px solid;
-              margin: 0 0 15px;
-            }
-            div.box.large {
-              font-size: 14px;
-            }
-          </style>
-        </template>
-      </demo-snippet> 
-
-      <h3>simple-colors CSS variables</h3>
+      <h2 id-"variables">simple-colors CSS variables</h2>
       <demo-snippet id="variables">
         <simple-colors-demo target="variables">
           <my-text>
@@ -268,6 +222,35 @@
               color: var(--simple-colors-foreground5);
               background-color: var(--simple-colors-background2);
               border-color: var(--simple-colors-background3);
+            }
+          </style>
+        </template>
+      </demo-snippet> 
+
+      <h2 id="classes">simple-colors classes</h2>
+      <demo-snippet id="classes">
+        <simple-colors-demo target="classes">
+          <div class="box large simple-colors-red-foreground2-text simple-colors-red-background3-border simple-colors-background1">
+            This box has red text and border-color. (See <a class="simple-colors-blue-foreground4-text" href="documentation.html">documentation</a> for more information.)
+          </div>
+          <div class="box simple-colors-foreground1-text simple-colors-accent-background5-border simple-colors-accent-background1">
+            This box has an accent color border and background color.
+          </div>
+        </simple-colors-demo>
+        <template>
+          <element-with-simple-colors-behaviors>
+            <div id="classes" class="simple-colors-foreground1-text simple-colors-accent-background5-border simple-colors-accent-background1">
+              This box uses classes instead of variables.
+            </div>
+          </element-with-simple-colors-behaviors>
+          <style>
+            div.box {
+              padding: 20px;
+              border: 1px solid;
+              margin: 0 0 15px;
+            }
+            div.box.large {
+              font-size: 14px;
             }
           </style>
         </template>

@@ -240,7 +240,7 @@
         if(root.__hexCodes !== undefined && root.__hexCodes !== null){
           if(hasContrast) {
             let cssVariable = contrast.replace('--simple-colors-','').split('-theme-'), theme = cssVariable.length > 1 ? cssVariable[0] : '', colorLevelFg = cssVariable[cssVariable.length-1].split('-'); 
-            isColor = colorLevelFg[0].length > 1;
+            isColor = colorLevelFg.length > 1;
             let levelFg = colorLevelFg[colorLevelFg.length-1];
             isForeground = levelFg.indexOf('foreground') > -1, size = !contrastLargeText;
             level = levelFg[levelFg.length-1];
@@ -250,7 +250,7 @@
             for(let property in root.__hexCodes) { 
               let temp = isColor || property !== 'grey'  ? root.__wcagaa.colors : root.__wcagaa.greys, highestLevel = contrastLargeText ? temp.large[parseInt(level)-1] : temp.small[parseInt(level)-1];
               if (property !== 'colorLevels' && property !== 'accent' && root.__hexCodes.hasOwnProperty(property)) {
-                let disabledColor = isColor && property !== 'grey', disabledLevel = false, lightFg = (root.theme === 'light' && isForeground) || (root.theme === 'dark' && !isForeground);
+                let disabledColor = isColor && property !== 'grey', disabledLevel = false, lightFg = (root.theme === 'light' && !isForeground) || (root.theme === 'dark' && isForeground);
                 if(!lightFg && (i < 5 || 10-i > highestLevel)) {
                   disabledLevel = true;
                 } else if(lightFg && (i > 4 || i+1 > highestLevel)) {
@@ -278,7 +278,6 @@
         * action for when a swatch was selected
         */
       _onClickSwatch: function(e){
-        console.log('_onClickSwatch',e);
         let dark = this.theme === 'dark', theme = this.theme === null ? '' : '-'+this.theme+'-theme', color = e.detail.label.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase(),isForeground,suffix,level = parseInt(e.detail.level), hex = e.detail.hex;
         if(!dark){
           if(e.detail.level < 6){
@@ -296,10 +295,10 @@
           }
         }
         if(theme === 'dark') isForeground = !isForeground;
-        color = color === 'grey' ? '' : color;
+        color = color === 'grey' ? '' : '-'+color;
         //close swatches, set value and fire event
         suffix = isForeground ? 'foreground' : 'background';
-        this.value = {"cssVariable": "--simple-colors"+theme+"-"+color+"-"+suffix+level, "hexCode": hex}; 
+        this.value = {"cssVariable": "--simple-colors"+theme+color+"-"+suffix+level, "hexCode": hex}; 
         this._updateSelection(this.swatches);
         this.toggleCollapse(true);
       },
