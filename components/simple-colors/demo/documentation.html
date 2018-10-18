@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>simple-colors demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="simple-colors-contrast.html">
+    <style>
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+      table th, table td, table caption {
+        border: 1px solid black;
+      }
+      table caption {
+        border-bottom: none;
+        font-size: 120%;
+      }
+      table td {
+        padding: 0.25em 1em;
+      }
+      
+      #simple-color-table td:nth-child(1) {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-accent-foreground1);
+      }
+      #simple-color-table td:nth-child(2) {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-accent-foreground2);
+      }
+      #simple-color-table td:nth-child(3) {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-accent-foreground3);
+      }
+      #simple-color-table td:nth-child(4) {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-accent-foreground4);
+      }
+      #simple-color-table td:nth-child(5) {
+        color: var(--simple-colors-background1);
+        background-color: var(--simple-colors-accent-foreground5);
+      }
+      #simple-color-table td:nth-child(6) {
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-accent-background1);
+      }
+      #simple-color-table td:nth-child(7) {
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-accent-background2);
+      }
+      #simple-color-table td:nth-child(8) {
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-accent-background3);
+      }
+      #simple-color-table td:nth-child(9) {
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-accent-background4);
+      }
+      #simple-color-table td:nth-child(10) {
+        color: var(--simple-colors-foreground1);
+        background-color: var(--simple-colors-accent-background5);
+      }
+      #light-color-table td:nth-child(1) {
+        color: var(--simple-colors-light-theme-background1);
+        background-color: var(--simple-colors-light-theme-accent-foreground1);
+      }
+      #light-color-table td:nth-child(2) {
+        color: var(--simple-colors-light-theme-background1);
+        background-color: var(--simple-colors-light-theme-accent-foreground2);
+      }
+      #light-color-table td:nth-child(3) {
+        color: var(--simple-colors-light-theme-background1);
+        background-color: var(--simple-colors-light-theme-accent-foreground3);
+      }
+      #light-color-table td:nth-child(4) {
+        color: var(--simple-colors-light-theme-background1);
+        background-color: var(--simple-colors-light-theme-accent-foreground4);
+      }
+      #light-color-table td:nth-child(5) {
+        color: var(--simple-colors-light-theme-background1);
+        background-color: var(--simple-colors-light-theme-accent-foreground5);
+      }
+      #light-color-table td:nth-child(6) {
+        color: var(--simple-colors-light-theme-foreground1);
+        background-color: var(--simple-colors-light-theme-accent-background1);
+      }
+      #light-color-table td:nth-child(7) {
+        color: var(--simple-colors-light-theme-foreground1);
+        background-color: var(--simple-colors-light-theme-accent-background2);
+      }
+      #light-color-table td:nth-child(8) {
+        color: var(--simple-colors-light-theme-foreground1);
+        background-color: var(--simple-colors-light-theme-accent-background3);
+      }
+      #light-color-table td:nth-child(9) {
+        color: var(--simple-colors-light-theme-foreground1);
+        background-color: var(--simple-colors-light-theme-accent-background4);
+      }
+      #light-color-table td:nth-child(10) {
+        color: var(--simple-colors-light-theme-foreground1);
+        background-color: var(--simple-colors-light-theme-accent-background5);
+      }
+      #dark-color-table td:nth-child(1) {
+        color: var(--simple-colors-dark-theme-background1);
+        background-color: var(--simple-colors-dark-theme-accent-foreground1);
+      }
+      #dark-color-table td:nth-child(2) {
+        color: var(--simple-colors-dark-theme-background1);
+        background-color: var(--simple-colors-dark-theme-accent-foreground2);
+      }
+      #dark-color-table td:nth-child(3) {
+        color: var(--simple-colors-dark-theme-background1);
+        background-color: var(--simple-colors-dark-theme-accent-foreground3);
+      }
+      #dark-color-table td:nth-child(4) {
+        color: var(--simple-colors-dark-theme-background1);
+        background-color: var(--simple-colors-dark-theme-accent-foreground4);
+      }
+      #dark-color-table td:nth-child(5) {
+        color: var(--simple-colors-dark-theme-background1);
+        background-color: var(--simple-colors-dark-theme-accent-foreground5);
+      }
+      #dark-color-table td:nth-child(6) {
+        color: var(--simple-colors-dark-theme-foreground1);
+        background-color: var(--simple-colors-dark-theme-accent-background1);
+      }
+      #dark-color-table td:nth-child(7) {
+        color: var(--simple-colors-dark-theme-foreground1);
+        background-color: var(--simple-colors-dark-theme-accent-background2);
+      }
+      #dark-color-table td:nth-child(8) {
+        color: var(--simple-colors-dark-theme-foreground1);
+        background-color: var(--simple-colors-dark-theme-accent-background3);
+      }
+      #dark-color-table td:nth-child(9) {
+        color: var(--simple-colors-dark-theme-foreground1);
+        background-color: var(--simple-colors-dark-theme-accent-background4);
+      }
+      #dark-color-table td:nth-child(10) {
+        color: var(--simple-colors-dark-theme-foreground1);
+        background-color: var(--simple-colors-dark-theme-accent-background5);
+      }
+      table {
+        max-width: 100%;
+        overflow-x: scroll;
+      }
+      .themename, .color, .contrast, .usecase {
+        padding-left: 0.25em;
+        padding-right: 0.25em;
+        display: inline-block;
+      }
+      .themename, .color {
+        font-style: italic;
+      }
+      .themename {
+        border: 1px solid #f6f600;
+        background-color: #ffffac;
+      }
+      .color {
+        border: 1px dotted #520000;
+        background-color: #ffaeae;
+
+      }
+      .contrast {
+        border: 1px dashed #002c38;
+        background-color: #9beaff;
+
+      }
+      .usecase {
+        border: 1px ridge #888888;
+        background-color: #ffffff;
+      }
+      .lighttheme {
+        color: #222;
+        background-color: #eee;
+
+      }
+      .darktheme {
+        color: #eee;
+        background-color: #222;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h1>simple-colors documentation</h1>
+      <h2>Getting started</h2>
+      To use simple-colors in a component:
+      <ol>
+        <li><tt>bower install --save LRNWebComponents/simple-colors</tt></li>
+        <li>Include <tt>&lt;link rel="import" href="<em>path/to/</em>simple-colors/simple-colors.html"&gt;</tt></li>
+        <li>To allow an element to inherit the variables, add the behavior: <tt>simpleColorsBehaviors, </tt></li>
+        <li>Add custom styles to your element using the <a href="#naming">simple colors variables</a>. For example:
+          <br><tt>&lt;style is="custom-style" import="simple-colors"&gt;
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;<em>:host { 
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: --simple-colors-accent-foreground1; 
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--paper-listbox-background-color: --simple-colors-accent-background2;
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-color: 1px solid var(--my-component-border-color, --simple-colors-red-background3); 
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;}</em>
+          <br>&lt;/style&gt;</tt>
+        </li>
+        <li>
+          &hellip;Or use the simple-colors text, background and border color classes. For example:
+          <br><tt>class="<em>simple-colors-light-blue-foreground1-text simple-colors-light-blue-background5-border simple-colors-lime-background1</em>"</tt>
+        </li>
+      </ol>
+      <h2>simple-colors naming conventions</h2>
+      <p>To see these naming conventions in action,  see <a href="colors.html">color reference</a>.</p>
+      <div id="naming">
+        <h3>CSS variable names</h3>
+        <p>
+          The naming convention for simple-colors CSS variables is: 
+          <tt>--simple-colors-<span class="themename">(light-theme or dark-theme)</span>-<span class="color">(color)</span>-<span class="contrast">foreground or background contrast level</span></tt>. For example:
+        </p>
+        <ul>
+          <li>
+              For the light theme's highest contrast indigo foreground color, use <tt>--simple-colors-<span class="themename">light-theme</span>-<span class="color">indigo</span></-<span class="contrast">foreground1</span></tt>
+          </li>
+          <li>
+              For the light theme's lowest contrast foreground color in the element's current accent color, use <tt>--simple-colors-<span class="themename">light-theme</span>-<span class="color">accent</span>-<span class="contrast">foreground5</span></tt>
+          </li>
+          <li>
+              For the dark theme's lowest contrast default greyscale background color, use <tt>--simple-colors-<span class="themename">dark-theme</span>-<span class="contrast">background5</span></tt>
+          </li>
+          <li>
+              For the element's current theme's highest contrast lime background color, use <tt>--simple-colors-<span class="color">lime</span>-<span class="contrast">background1</span></tt>
+          </li>
+        </ul>
+        </p>
+        <h3>CSS class names</h3>
+        <p>
+          The naming convention for simple-colors CSS classes is: 
+          <tt>.simple-colors-<span class="color">(optional color)</span>-<span class="contrast">foreground or background with contrast level</span></tt>-<span class="usecase">use case</span></tt>. 
+          Note that the classes do not allow you to specify a theme. For example:
+        </p>
+        <ul>
+          <li>
+              For a default greyscale <tt>background-color</tt> with the highest possible contrast background, use <tt>--simple-colors-<span class="contrast">background5</span></tt>
+          </li>
+          <li>
+              For a text <tt>color</tt> with highest contrast indigo foreground, use <tt>--simple-colors-<span class="color">indigo</span>-<span class="contrast">foreground1</span>-<span class="usecase">text</span></tt>
+          </li>
+          <li>
+              For a <tt>border-color</tt> with the lowest contrast foreground in the element's current accent color, use <tt>--simple-colors-<span class="color">accent</span>-<span class="contrast">foreground5</span>-<span class="usecase">border</span></tt>
+          </li>
+        </ul>
+        <h3 id="thamename">theme name</h3>
+        <p>
+          The theme name, is optional. It can be <tt><span class="themename">light-theme</span></tt> 
+          or <tt><span class="themename">dark-theme</span></tt>. 
+        </p>  
+        <ul>
+          <li>
+              The <tt>--simple-colors-<span class="themename">light-theme</span></tt> 
+              colors are based on a <span class="lighttheme">light background with a 
+              dark foreground</span>. 
+          </li>
+          <li>
+              The <tt>--simple-colors-<span class="themename">dark-theme</span></tt> 
+              colors are based on a <span class="darktheme">dark background with a 
+              light foreground</span>. 
+          </li>
+        </ul>
+        <p>
+          If the theme name is omitted, 
+          the theme will be applied based on whether or not the element 
+          or its ancestor has a <tt>dark</tt> attribute. This allows you to 
+          specify only one set of CSS color variables and allow a single 
+          attribute to switch between light and dark. In other words, you 
+          can change 
+          <tt>--simple-colors-red-foreground1</tt> from 
+          <tt>--simple-colors-light-theme-red-foreground1</tt> to 
+          <tt>--simple-colors-dark-theme-red-foreground1</tt>simply by adding  
+          a <tt>dark</tt> attribute that uses simple colors behaviors.
+        </p>
+        <h3 id="color">color</h3>
+        <p>
+          The color, is optional. If omitted, the color will be in 
+          greyscale. Simple colors using the naming and similar shares of 
+          <a href="https://materializecss.com/color.html">Materialize</a>. 
+          However, colors have been adapted to support WCAG 2.0 AA contrast 
+          ratios. The colors availble are: 
+          <tt><span class="color">red</span></tt>,
+          <tt><span class="color">pink</span></tt>,
+          <tt><span class="color">purple</span></tt>,
+          <tt><span class="color">deep-purple</span></tt>,
+          <tt><span class="color">indigo</span></tt>,
+          <tt><span class="color">blue</span></tt>,
+          <tt><span class="color">light-blue</span></tt>,
+          <tt><span class="color">cyan</span></tt>,
+          <tt><span class="color">teal</span></tt>,
+          <tt><span class="color">green</span></tt>,
+          <tt><span class="color">light-green</span></tt>,
+          <tt><span class="color">lime</span></tt>,
+          <tt><span class="color">yellow</span></tt>,
+          <tt><span class="color">amber</span></tt>,
+          <tt><span class="color">orange</span></tt>,
+          <tt><span class="color">deep-orange</span></tt>,
+          <tt><span class="color">brown</span></tt>,
+          <tt><span class="color">blue-grey</span></tt>. 
+        </p>
+        <p>
+          There is also an <tt><span class="color">accent</span></tt> color variable 
+          that changes based on an the <tt>accent-color</tt> 
+          attribute of an element using simple-colors behaviors.
+          For example, if <tt>accent-color="indigo"</tt>, then 
+          <tt>--simple-colors-accent-foreground2</tt> will be set to 
+          <tt>--simple-colors-indigo-foreground2</tt>. If your accent 
+          color is indigo, but you want to use red for a delete button, 
+          you can either, set the button to <tt>accent-color="red"</tt> 
+          to override the parent's color, or you can use CSS to change 
+          its color to <tt>--simple-colors-red-background1</tt>.
+        </p>
+        <h3 id="contrast">foreground or background with level</h3>
+        <p>
+          For each theme there are 5 foreground and 5 background contrast 
+          values for each color in a theme. The lower the number, the higher 
+          the contrast. For example, <tt><span class="color">foreground2</span></tt> 
+          has a higher contrast than <tt><span class="color">foreground4</span></tt>. 
+        </p> 
+        <simple-colors-contrast></simple-colors-contrast>
+        <p>
+          Most often you will want to use the highest-contrast foreground
+          with the highest-contrast background to ensure readability. 
+          For short sections of text, such as callouts or UI buttons, 
+          you may reduce the contrast. Specific WCAG 2.0 Guidelines are below:
+        </p>
+        <h3>Small Text</h3>
+        <p>
+          Small text requires the highest contrast ratio for WCAG 2.0 AA compliance. 
+          Small text is any content that is <strong>NOT</strong>:
+        </p>
+        <ul>
+          <li>bold text that is 14 point or higher,</li>
+          <li>text that is 18 point or higher,</li>
+          <li>a decorative elements that has no semantic meaning, such as a border, or</li>
+          <li>a disabled UI element</li>
+        </ul>
+        <h4>Large Text</h4>
+        <p>
+          WCAG 2.0 AA requires higher contrast for small text than for large
+          text and for UI elements that have no text. Large text is defined as:
+        </p>
+        <ul>
+          <li>bold text that is 14 point or higher, or</li>
+          <li>text that is 18 point or higher</li>
+        </ul>
+        
+        <h4>Other UI Elements</h4>
+        <p>WCAG 2.0 AA allows the following exceptions for contrast:
+        </p>  
+        <ul>
+          <li>decorative elements that have no semantic meaning, such as borders</li>
+          <li>disabled UI elements</li>
+        </ul>
+      </div> 
+    </div>
+  </body>
+</html>
